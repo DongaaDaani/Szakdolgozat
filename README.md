@@ -6,5 +6,4 @@ A dolgozat célja egy olyan információs rendszer készítése, amely segítsé
 
 A modellezett folyamatok véges állapotú automatáknak tekinthetők. A dolgozat részletezi ezek megvalósításának gyakori módjait, az azokból adódó előnyöket és hátrányokat. A vizsgálatok kitérnek arra, hogy hogyan lehet kezelni a folyamatokban bekövetkező változásokat, automatikusan jelezni a hibákat, javaslatokat tenni a folyamatok hatékonyabbá tételére, ilyen módon optimalizálva azokat.
 
-Az alkalmazás szerver oldali része C# programozási nyelven .Net környezetben készül. Az adatok perzisztens tárolásához Microsoft SQL szerver kerül felhasználásra, melyhez a hozzáférést az Entity Framework segíti. A kliens megvalósításához az Angular nevű JavaScript keretrendszert használja az alkalmazás.
-
+Az alkalmazás szerver oldali része C# programozási nyelven .Net környezetben készül. Az adatok perzisztens tárolásához Microsoft SQL szerver kerül felhasználásra, melyhez a hozzáférést az Entity Framework segíti. A kliens megvalósításához a React nevű JavaScript keretrendszert használja az alkalmazás.
