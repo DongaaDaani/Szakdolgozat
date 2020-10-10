@@ -1,30 +1,120 @@
 \Chapter{Koncepció}
 
-\Section{A fejezet célja}
+\Section{Folyamatok az iparban}
 
-Ez a fejezet még nem a saját eredményekkel foglalkozik, hanem bemutatja, mi a problémakör, milyen módszerekkel, milyeneredményeket sikerült elérni eddig másoknak.
+Minden nagyvállalatban egyszerre több meglévő folyamat zajlik. Ezeket a folyamatokat többféleképpen lehet nyomonkövetni.
 
-A hivatkozások jelentős része ehhez a fejezethez szokott kötődni.
-(Egy hivatkozás például így néz ki \cite{coombs1987markup}.)
-Itt lehet bemutatni a hasonló alkalmazásokat.
+Egy autógyárban lehet akár egy sima gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen igénylési folyamat, amelyek több lépésekben folynak le. Ezeket a folyamatokat valahol nyilván kell tartani, kezelni kell őket.
 
-\Section{Tartalom és felépítés}
+\Section{Az alkalmazás bemutatása}
 
-A fejezet tartalma témától függően változhat. Az alábbiakat attól függően különböző arányban tartalmazhatják.
+Az fentebb említett problémára, egy olyan vállalati folyamatmodellezési rendszer készítése, amelyben végig lehet követni az elindított folyamatokat, lehetőség lesz új folyamatokat lehet elindítani, az elindított folyamatok állapotát megtekinteni , a meglévő folyamatokat nyomon követni, ezzel megkönnyítve a cég üzleti folyamatainak menedzselését.
+
+A folyamatnak egy aktuális lépésében lehetőség van annak a továbbítása, amellyel a következő illetékes személyhez fog kerülni a feladat. (Ez akár egy feltételes elágazás is lehet, valamilyen megadott paraméter alapján).
+Lehetőség van elutasításra, ha valamilyen hiba lépett fel, akár egy nem megfelelő adat, amellyel az előző személyhez kerül a feladat elküldése.
+
+A folyamatot a vezetőknek lesz jogosultsága elindítani, és a vállalat alkalmazottai közül lehet majd választani, hogy kinek szeretné kiadni a feladatot. A folyamat elindításához szükséges kitölteni a feladat pontos leírását, az elvégzési határidőt, illetve kiválasztani az illetékes személyt.
+ 
+Az alkalmazásban több különböző viewpage lesz megvalósítva.
+
+Lesz egy belépő felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva.
+
+A belépést követően a vezetőségnek, és az alkalmazottaknak is másféle weboldal fog megjelenni.
+
+Felugró ablakban fog megjelenni a feladat elindítása.
+
+Az alkalmazott a folyamatokat, amiket neki osztottak ki, megtekintheti egy erre specializált menüpontba, itt kiválasztva a folyamatot, megtekintheti a hozzá tartozó információkat.
+
+\SubSection{Működése}
+
+A felhasználó képes lesz arra, hogy a kapott feladatot továbbítsa, esetleg vissza küldje attól a felhasználótól (Vezetőségtől), akitől megkapta.
+
+Egy feladat az alábbi információkat tartalmazza:
+\begin{enumerate}
+\item Feladat pontos leírása
+\item Elvégzési határidő
+\item Kitől kapta (Név + Részleg) 
+\item Mikor kapta 
+\end{enumerate}
+
+Minden Részlegnek lesz egy vezetője, aki képes lesz ki listázni a részlegen lévő alkalmazottakat, itt megtudja tekinteni ki lenne a legaktuálisabb a feladat elvégzésére. Az egyes alkalmazottakra kattintva, lehetőség lesz az alkalmazott adatainak részleges megjelentésére. Ez a mód csak vezetőként belépve lesz elérhető. Itt tudunk majd egy feladatot elindítani. 
+
+\SubSection{Megvalósítás}
+
+Az adatok tárolása a Microsoft Sql Server-ben történik, itt egy CompanyDB-ben létre lesz hozva több különböző táblázat, mint például , Employee, Leader, Task, illetve Részleg.
+
+A részleg táblázatban
 \begin{itemize}
-\item Irodalomkutatás. Amennyiben a dolgozat egy módszer kidolgozására, kifejlesztésére irányul, akkor itt lehet részletesen végignézni (módszertani vagy időrendi bontásban), hogy az eddigiekben milyen eredmények születtek a témakörben.
-\item Technológia. Mivel jellemzően kutatásról vagy szoftverfejlesztésről van szó, ezért annak a jellemző elemeit, technikai részleteit itt kell bemutatni.
-Ez tehát egy módszeres bevezetés ahhoz, hogy ha valaki nem jártas a témakörben, akkor tudja, hogy a dolgozat milyen aktuálisan elérhető eredményeket, eszközöket használt fel.
-\item Piackutatás. Bizonyos témáknál új termék vagy szolgáltatás kifejlesztése a cél.
-Ekkor érdemes annak alaposan utánanézni, hogy aktuálisan milyen eszközök érhetők el a piacon.
-Ez szoftverek esetében a hasonló alkalmazások bemutatását, táblázatos formában történő összehasonlítását jelentheti.
-Szerepelhetnek képek és észrevételek a viszonyításként bemutatott alkalmazásokhoz.
-\item Követelmény specifikáció. Külön szakaszban érdemes részletesen kitérni az elkészítendő alkalmazással kapcsolatos követelményekre.
-Ehhez tartozhatnak forgatókönyvek (\textit{scenario}-k).
-A szemléletesség kedvéért lehet hozzájuk képernyőkép vázlatokat is készíteni, vagy a használati eseteket más módon szemléltetni.
+\item A részleghez tartozó egyedi azonosító : ID
+\item A részleg pontos megnevezése, amelyhez az Id tartozik
 \end{itemize}
 
-\Section{Amit csak említés szintjén érdemes szerepeltetni}
+A task táblához fog az alábbi rekordok fognak tartozni:
+\begin{itemize}
+\item Egy részleg vezetőéhez tartozó Id, hogy melyik vezető indította el a task-ot.
+\item Egy időpont, hogy mikor lett elindítva a feladat.
+\item Feladat pontos leírása, Description rész.
+\item Illetve egy határidő rekort.
+\end{itemize}
 
-Az olvasóról annyit feltételezhetünk, hogy programozásban valamilyen szinten járatos, és a matematikai alapfogalmakkal sem ebben a dolgozatban kell megismertetni.
-A speciális eszközök, programozási nyelvek, matematikai módszerekk és jelölések persze jó, hogy ha említésre kerülnek, de nem kell nagyon belemenni a közismertnek tekinthető dolgokba.
+Employee Táblázatban:
+\begin{itemize}
+\item Id, Az alkalmazott egyedi azonosítója.
+\item Az alkalmazott pontos neve. (Vezetéknév + Keresztnév) 
+\item Életkora
+\item Neme
+\item Lakcíme
+\item Telefonszáma
+\item Email címe
+\item poziciója
+\item A részleg Id-ja, hogy melyik részlegen dolgozik az adott alkalmazott.
+\item A részleg neve, amelyhez a megadott Id tartozik.
+\end{itemize}
+
+Leader Táblázatban:
+\begin{itemize}
+\item Leader pontos neve, ez tartalmazza a keretnevét, illetve a vezetéknevét. Összetett rekord lesz.
+\item Részleg kódja, amely részlegen az adott személy vezető.
+\item Elérhetősége , amelye egy email cím formát fog jelenteni, validálással megfeleltve.
+\item Egy dátum mező, hogy pontosan mióta vezető az adott részlegen.
+\end{itemize}
+
+Egy Department tartalmazó táblázat:
+\begin{itemize}
+\item Id, A részleg egyedi azonosítószáma (Elsődleges kulcs)
+\item Name, a részleg pontos megnevezése
+\end{itemize}
+
+Egy Task-ot tartalmazó táblázat:
+\begin{itemize}
+\item Egy Id, amely a task-ot azonosítja. Ki az elküldő, a feladatot ki kapja majd meg.
+\item Description, a feladat pontos leírása.
+\item Kezdő idő , amikor a feladat létre lett hozva.
+\item Befejezési idő, hogy a feladat meddig végezhető el.
+\end{itemize}
+
+A kapcsolatok az alábbi séma szerint lettek kialakítva:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{images/er.png}
+\caption{ER modell}
+\label{fig:cimer}
+\end{figure}
+
+ Az adatbázisban a kapcsolatok kialakítása, és a feltételekhez kötött listázások .net framework egyik sajátosággával, az Entity Frameworkkel lesz kialakítva, Visual Studióban implementálva, asp.net Core-t használva.
+
+\Section{Funkciók}
+
+Az applikációban megvalósításra kerülnek az alábbiak:
+\begin{enumerate}
+\item Felhasználók kilistázása részlegek szerint, amelyre vezetőknek van jogosultsága.  Ez egy különálló view page-n fog megjelnni.
+\item Lehetőségük lesz egy adott alkalmazott megkeresésére, majd az alkalmazattok adatainak részleges lekérésére.
+\item Az olyan kiosztott feladatokat lehet kilistázni, amelyeket az aktuális vezető indított el . A feladatnak megtekinteni a feladatok státuszát,  mikor lett kiosztva , ki kapta meg a feladatot stb.
+\item Alkalmazottak adatainak módosítása, esetleges alkalmazottak törlése, hozzáadása.
+\item Feladat elindítása, itt egy felugró ablak lesz, amelyben a szükséges adatokat kell kitölteni a vezetőnek. (Validálással). 
+\item A kiosztott feladatot az alkalmazott belépve megtekinthet, majd ha elvégezte a feladatot, akkor továbbíthatja a következő felhasználónak, visszaküldheti a vezetőnek. A feladat utolsó lépésben mindig a vezetőhöz kerül vissza az elvégzett folyamat.
+\item A vezető végig tudja követni a feladat lefolyását.
+\item Bejelentkező felület elkészítésé validálással, különböző jogosultságok megkülönböztetése.
+\end{enumerate}
+
