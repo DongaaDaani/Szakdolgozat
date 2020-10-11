@@ -5,10 +5,34 @@
 Minden nagyvállalatban egyszerre több folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni.
 
 % TODO: Leírni, hogy a megközelítési módok miben különbözhetnek.
+A legtöbb nagy cég a BPM (Business Process Management) platformot használja a feladatok nyomonkövetésére, menedzselésére.
+A rendszerben megtalálható Process Designer program segítségével minden folyamathoz tartozik egy folyamatábra.
+A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli.
+A rendszer listázza az összes meglévő folyamatot, amelyet el lehet indítani egy cégnél.
+A folyamatábrán az egyes lépésekre kattintva további részletes információkat tekinthetünk meg, mint a view pagen használt mezőket,
+a mögötte lévő adatbázis mezőket, a felhasznált ajax service-eket. Az Ajax Service implementációit lehet megtekinteni.
+Az egyes elágazásokban lévő döntési változókat lehet megtekinteni stb. (Elég részletes program)
 
-Egy autógyárban lehet akár egy gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen igénylési folyamat, amelyek több lépésekben folynak le. Ezeket a folyamatokat valahol nyilván kell tartani, kezelni kell őket.
+Ez a rendszer fizetős, nem érhetőek el ezek a szolgáltatások Lokális gépről.
+A rendszer mivel elég széles körü, így eléggé rugalmatlan is, mivel ha hirtelen egy új üzleti folyamatra lenne szüksége a cégnek, akkor annak az 
+elkészítése akár több hetet is igénybe vehet.
 
-% TODO: Érdemes lenne több konkrétumot írni. A folyamatok komplexitását is érzékeltetni kellene valahogy. (Például mennyi lépésből állnak? Mennyi van egyidejűleg?)
+Hogy példát említsek üzleti folyamatokra: 
+Egy autógyárban lehet akár egy gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen igénylési folyamat, amelyek több lépésekben folynak le.
+Több jogosultsági szintek vannak egy ilyen folyamatnál, amelyeket megkell különböztetni. Mikor, melyik lépésnél ki a jóváhagyó stb.
+Ezeket a folyamatokat valahol nyilván kell tartani, kezelni kell őket.
+
+-Egy karbantartási folyamat esetén , egy nagyobb cégnél 5 lépésben folyik le:
+-Az igénylő kitölti a formot, ahol megadja a gépjármű adatait, a probléma pontos leírását. Továbbítja a folyamatot.
+-Az első jóváhagyó (SupervisorApprove) ez a formot megkapja, ír hozzá egy megjegyzést, majd eztkövetően a folyamat továbbmegy a coordinátorhoz,
+amely meghatározza a probléma leírása alapján,a költségeket, a javítás várható idő intervallumát, a helyet stb.
+-Amennyiben költség szintje meghaladja az adott értéket, akkor a folyamat folytatásához a Director jóváhagyása kell. Ő dönti el hogy vissza reject-eli, vagy továbbítja a folyamatot.
+-A feladat visszakerül az igénylőhöz
+
+
+
+% TODO: Érdemes lenne több konkrétumot írni. A folyamatok komplexitását is érzékeltetni kellene valahogy. (Például mennyi lépésből állnak? Mennyi van egyidejűleg?)hoz
+
 
 % TODO: Kellene írni néhány dolgot azokról a szoftverekről, amelyek hasonló feladatot látnak el, és már ipari szinten használják őket.
 
@@ -26,14 +50,15 @@ Az alkalmazásban több különböző \textit{viewpage} lesz megvalósítva.
 
 % TODO: Az előbbit valahogy magyarosabban is ki lehetne fejezni.
 
-Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva.
-(Ezekről a későbbiekben még részletesebben szó lesz.)
+%Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva.
+%(Ezekről a későbbiekben még részletesebben szó lesz.)
 
-A belépést követően a vezetőségnek, és az alkalmazottaknak is másféle weboldal fog megjelenni.
+%A belépést követően a vezetőségnek, és az alkalmazottaknak is másféle weboldal fog megjelenni.
 
-Felugró ablakban fog megjelenni a feladat elindítása.
+%Felugró ablakban fog megjelenni a feladat elindítása.                                                              (Egyenlőre kikommentezem akkor a törölhető részletet! )
 
 % TODO: Ez olyan részlet, amit itt vagy konkrétan, képernyőképekkel kellene bemutatni, vagy nem kell ilyen formában említeni.
+
 
 Az alkalmazott a folyamatokat, amiket neki osztottak ki, megtekintheti egy erre specializált menüpontban, itt kiválasztva a folyamatot, megtekintheti a hozzá tartozó információkat.
 
