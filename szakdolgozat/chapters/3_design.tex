@@ -37,6 +37,8 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         }
 Az osztály amelyben ezt a methódus megtalálható, egy DbContext osztályból származik le, amely implementálja az Entity Framework sajátosságait.
 
+Fontos az 1:N kapcsolat kialakításánál, hogy az osztály adattagjaként felvegyük egy osztálytípusú listát, amelyből a több származik az egy felé.
+
 Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
 Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, így egy "Select * from DbName" parancs helyett elég meghívni a listának a .toList() methódusát.
 Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
