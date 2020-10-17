@@ -38,7 +38,17 @@ Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, íg
 Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
 További a .remove , .hasFirstDefault stb..
 
+Egy példa, a controllerek között egy Post methodust megtekinve : 
 
+[HttpPost]
+        public async Task<ActionResult<Department>> PostDepartment(Department department)
+        {
+            _context.Department.Add(department);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetDepartment", new { id = department.DepartmentId }, department);
+        }
+
+Látható, hogy a Department rekordot feltölti a kapott Department osztálytípusú department nevű objektummal a   _context.Department.Add(department); résznél.
 
 Itt kezdődik a dolgozat lényegi része, úgy értve, hogy a saját munka bemutatása.
 Jellemzően ebben szerepelni szoktak blokkdiagramok, a program struktúrájával foglalkozó leírások.
