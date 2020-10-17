@@ -63,6 +63,9 @@ Pár alapvető kérés, mint a Post , amelyel egy új rekordot viszünk fel,  PU
 Data részben vannak az adatbázisban lévő kapcsolatok kialakítva, az itt definiált osztály, a DbSet osztályból származik.
 Migration, amely a projekt sikeres Build-elése , a nuget consolbe beírt  'Add-Migration Initial' + 'Update-Database' parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. (A connectionStringben megadott Serveren, a megadott adatbázis névvel) 
 
+A jelszavak, és egyéb bizalmasan tárolt adatoknál a .net Framework Authentication Hash Algoritmust használt a titkosításhoz.
+
+
 
 
 Itt kezdődik a dolgozat lényegi része, úgy értve, hogy a saját munka bemutatása.
