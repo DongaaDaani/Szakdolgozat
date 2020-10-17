@@ -1,5 +1,45 @@
 \Chapter{Tervezés}
 
+Entity Framework rövid bemutatása : 
+
+Az adatbázisban lévő kapcsolatok az alábbi methodus felüldefiniálásával lettek megadva.
+Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli DbSet listát hozunk létre. 
+public DbSet<Employee> Employee { get; set; }
+public DbSet<Department> Department { get; set; }
+public DbSet<Duty> Task { get; set; }
+public DbSet<Leader> Leader { get; set; }
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //reláció 1:1 1:n n:m
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Employee>()
+            .HasOne(p => p.Deprartment)
+            .WithMany(b => b.Employee)
+            .HasForeignKey(ug => ug.DepartmentId)
+            .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Duty>()
+            .HasKey(bc => new { bc.EmployeeId, bc.LeaderId });
+            modelBuilder.Entity<Duty>()
+                .HasOne(bc => bc.Employee)
+                .WithMany(b => b.Tasks)
+                .HasForeignKey(bc => bc.EmployeeId);
+            modelBuilder.Entity<Duty>()
+                .HasOne(bc => bc.Leader)
+                .WithMany(c => c.Tasks)
+                .HasForeignKey(bc => bc.LeaderId);
+            modelBuilder.Entity<Department>()
+             .HasOne(a => a.Leader).WithOne(b => b.Department)
+             .HasForeignKey<Leader>(e => e.DepartmentId);
+        }
+
+Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
+Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, így egy "Select * from DbName" parancs helyett elég meghívni a listának a .toList() methódusát.
+Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
+További a .remove , .hasFirstDefault stb..
+
+
+
 Itt kezdődik a dolgozat lényegi része, úgy értve, hogy a saját munka bemutatása.
 Jellemzően ebben szerepelni szoktak blokkdiagramok, a program struktúrájával foglalkozó leírások.
 Ehhez célszerű UML ábrákat (például osztály- és szekvenciadiagramokat) használni.
