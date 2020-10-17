@@ -2,6 +2,9 @@
 
 Entity Framework rövid bemutatása : 
 
+Létre kell hozni egy ConnectionStrings-et , amelyben a Servert nevét, és az Adatbázis nevét kell megadni, + egy Truested_Connection-értéket.
+
+
 Az adatbázisban lévő kapcsolatok az alábbi methodus felüldefiniálásával lettek megadva.
 Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli DbSet listát hozunk létre. 
 public DbSet<Employee> Employee { get; set; }
@@ -32,6 +35,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
              .HasOne(a => a.Leader).WithOne(b => b.Department)
              .HasForeignKey<Leader>(e => e.DepartmentId);
         }
+Az osztály amelyben ezt a methódus megtalálható, egy DbContext osztályból származik le, amely implementálja az Entity Framework sajátosságait.
 
 Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
 Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, így egy "Select * from DbName" parancs helyett elég meghívni a listának a .toList() methódusát.
@@ -49,6 +53,15 @@ Egy példa, a controllerek között egy Post methodust megtekinve :
         }
 
 Látható, hogy a Department rekordot feltölti a kapott Department osztálytípusú department nevű objektummal a   _context.Department.Add(department); résznél.
+
+A projekt felépítése több komponensből tevődik össze. 
+Model rész, ahol az adatbázisnak megfelelő osztályok implementációja történik.
+Controller rész, amelyben a szerver felé irányuló kérések implementációja kerül. 
+Pár alapvető kérés, mint a Post , amelyel egy új rekordot viszünk fel,  PUT amelyel egy meglévő adatot módosítunk , Delete amelyel törlünk , Get amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nemlétező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
+Data részben vannak az adatbázisban lévő kapcsolatok kialakítva, az itt definiált osztály, a DbSet osztályból származik.
+Migration, amely a projekt sikeres Build-elése , a nuget consolbe beírt  'Add-Migration Initial' + 'Update-Database' parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. (A connectionStringben megadott Serveren, a megadott adatbázis névvel) 
+
+
 
 Itt kezdődik a dolgozat lényegi része, úgy értve, hogy a saját munka bemutatása.
 Jellemzően ebben szerepelni szoktak blokkdiagramok, a program struktúrájával foglalkozó leírások.
