@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g13mYmRsDwO05Ve81gSqrzxq1yOQCUDYhmTSF5CFYXG/c+Ks9uSQquTiPFdENj7nnMvS/NJN43p4bU0OTN8DYQ==",
+  "dgSpecHash": "korcX9d3D7ENb86esXtzzg0N2CLh31Ss+TUTLGJkqdmq21ULSk51jcv9ieBSbZZKnYTgFTffL8OZyVTIeU010g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Donga Dániel\\Desktop\\szakdog\\Szakdolgozat\\apiCore\\apiCore.csproj",
+  "projectFilePath": "C:\\Users\\Donga Dániel\\Desktop\\Backend\\Szakdolgozat\\apiCore\\apiCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Donga Dániel\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Donga Dániel\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

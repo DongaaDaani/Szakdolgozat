@@ -9384,11 +9384,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Donga Dániel\\Desktop\\szakdog\\Szakdolgozat\\apiCore\\apiCore.csproj",
+      "projectUniqueName": "C:\\Users\\Donga Dániel\\Desktop\\Backend\\Szakdolgozat\\apiCore\\apiCore.csproj",
       "projectName": "apiCore",
-      "projectPath": "C:\\Users\\Donga Dániel\\Desktop\\szakdog\\Szakdolgozat\\apiCore\\apiCore.csproj",
+      "projectPath": "C:\\Users\\Donga Dániel\\Desktop\\Backend\\Szakdolgozat\\apiCore\\apiCore.csproj",
       "packagesPath": "C:\\Users\\Donga Dániel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Donga Dániel\\Desktop\\szakdog\\Szakdolgozat\\apiCore\\obj\\",
+      "outputPath": "C:\\Users\\Donga Dániel\\Desktop\\Backend\\Szakdolgozat\\apiCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Donga Dániel\\AppData\\Roaming\\NuGet\\NuGet.Config",

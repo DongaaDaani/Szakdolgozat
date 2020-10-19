@@ -10,14 +10,14 @@ using apiCore.Data;
 namespace apiCore.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20201019082854_initial")]
-    partial class initial
+    [Migration("20201019100203_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
