@@ -1,12 +1,13 @@
 \Chapter{Tervezés}
 
-Entity Framework rövid bemutatása : 
+\Section{Az Entity Framework rövid bemutatása}
 
-Létre kell hozni egy ConnectionStrings-et , amelyben a Servert nevét, és az Adatbázis nevét kell megadni, + egy Truested_Connection-értéket.
+Létre kell hozni egy \texttt{ConnectionStrings}-et, amelyben a szerver nevét, és az adatbázis nevét kell megadni, továbbá egy \texttt{Truested\_Connection}-értéket.
 
 
-Az adatbázisban lévő kapcsolatok az alábbi methodus felüldefiniálásával lettek megadva.
-Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli DbSet listát hozunk létre. 
+Az adatbázisban lévő kapcsolatok az alábbi metódus felüldefiniálásával lettek megadva.
+Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli \texttt{DbSet} listát hozunk létre.
+\begin{cpp}
 public DbSet<Employee> Employee { get; set; }
 public DbSet<Department> Department { get; set; }
 public DbSet<Duty> Task { get; set; }
@@ -14,7 +15,7 @@ public DbSet<Leader> Leader { get; set; }
 
 protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //reláció 1:1 1:n n:m
+            //relacio 1:1 1:n n:m
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>()
             .HasOne(p => p.Deprartment)
@@ -35,26 +36,37 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
              .HasOne(a => a.Leader).WithOne(b => b.Department)
              .HasForeignKey<Leader>(e => e.DepartmentId);
         }
-Az osztály amelyben ezt a methódus megtalálható, egy DbContext osztályból származik le, amely implementálja az Entity Framework sajátosságait.
+\end{cpp}
+
+Az osztály, amelyben ez a metódus megtalálható, egy \texttt{DbContext} osztályból származik, amely implementálja az \textit{Entity Framework} sajátosságait.
 
 Fontos az 1:N kapcsolat kialakításánál, hogy az osztály adattagjaként felvegyük egy osztálytípusú listát, amelyből a több származik az egy felé.
 
 Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
-Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, így egy "Select * from DbName" parancs helyett elég meghívni a listának a .toList() methódusát.
-Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
-További a .remove , .hasFirstDefault stb..
+Az \textit{Entity Framework} sajátossága, hogy listaként kezeljük az adatbázist, így egy "\texttt{SELECT * FROM DbName}" parancs helyett elég meghívni a listának a \texttt{.toList} metódusát.
+Hasonló módon, ha egy rekordot szeretnénk az adatbázisba felvinni, akkor a lista \texttt{.add} metódusával lehet ezt megtenni.
 
-Egy példa, a controllerek között egy Post methodust megtekinve : 
+% TODO: További a .remove , .hasFirstDefault stb..
 
+Egy példa, a controllerek között egy Post metódust megtekinve: 
+
+\begin{cpp}
 [HttpPost]
-        public async Task<ActionResult<Department>> PostDepartment(Department department)
-        {
-            _context.Department.Add(department);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction("GetDepartment", new { id = department.DepartmentId }, department);
-        }
+public async Task<ActionResult<Department>>
+PostDepartment(Department department)
+{
+    _context.Department.Add(department);
+    await _context.SaveChangesAsync();
+    return CreatedAtAction("GetDepartment",
+      new { id = department.DepartmentId }, department);
+}
+\end{cpp}
 
-Látható, hogy a Department rekordot feltölti a kapott Department osztálytípusú department nevű objektummal a   _context.Department.Add(department); résznél.
+Látható, hogy a Department rekordot feltölti a kapott Department osztálytípusú department nevű objektummal a
+\begin{cpp}
+_context.Department.Add(department);
+\end{cpp}
+résznél.
 
 A projekt felépítése több komponensből tevődik össze. 
 Model rész, ahol az adatbázisnak megfelelő osztályok implementációja történik.
