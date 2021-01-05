@@ -5,6 +5,12 @@ import Button from 'react-bootstrap/Button'
 import {Home} from './components/Home'
 import {Employee} from './components/Employee'
 import {Department} from './components/Department'
+
+
+import {Draft} from './components/Draft'
+import {Supervisor} from './components/Supervisor'
+import {Coordinator} from './components/Coordinator'
+import {Mechanical} from './components/Mechanical'
 import {Navigation} from './components/Navigation'
 
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
@@ -19,7 +25,11 @@ function App() {
       <Switch>
         <Route path='/' component={Home} exact/>
         <Route path='/department' component={Department} />
+        <Route path='/draft' component={Draft} />
         <Route path='/employee' component={Employee} />
+        <Route path='/Supervisor' component={Supervisor} />
+        <Route path='/Coordinator' component={Coordinator} />
+        <Route path='/Mechanical' component={Mechanical} />
       </Switch>
     </div>
     </BrowserRouter>
