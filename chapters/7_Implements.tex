@@ -1,0 +1,409 @@
+\Chapter{Implementálás}
+\section{Tervezés}
+
+A projekt felépítése több komponensből tevődik össze.
+Model rész, ahol az adatbázisnak megfelelő osztályok implementációja történik.
+\\ A Controller rész, amelyben a szerver felé irányuló kérések implementációja kerül.
+\\Pár alapvető kérés, mint a Post , amelyel egy új rekordot viszünk fel,  PUT amelyel egy meglévő adatot módosítunk , Delete amelyel törlünk , Get amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nemlétező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
+Data részben vannak az adatbázisban lévő kapcsolatok kialakítva, az itt definiált osztály, a DbSet osztályból származik.
+Migration, amely a projekt sikeres Build-elése , a nuget consolbe beírt  'Add-Migration Initial' + 'Update-Database' parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. (A connectionStringben megadott Serveren, a megadott adatbázis névvel)
+
+A jelszavak, és egyéb bizalmasan tárolt adatoknál a .net Framework Authentication Hash Algoritmust használt a titkosításhoz.      \\
+
+
+Üzleti folyamat menedzselése: \\
+Vállalati folyamatok automatizálása: Arra a célra szolgál, hogy egy adott szerveretben történő
+tevékenységek gördülékenyebben és sokkal hatékonyabban menjenek. \\
+Üzleti folyamatnak tekintjük az alábbiakat : \\ egy vagy több tevékenység, amely értéket növel
+úgy, hogy egy bemenetkészletet átalakít a kimenetek készletévé.
+„Tenner és DeToro” \\
+Ez alapján üzleti folyamat lehet akár egy kevés lépésből álló, nem túl bonyolul folyamat, mint
+például egy kisebb alkatrész legyártása, vagy az is, hogy valaki éppen egy elemzéshez
+összesíti két táblázat adatait, így a vezetőség válláról levéve a terhet, ezáltal marad ideje
+potenciálisan nagyobb értékű feladatokra. Egy üzleti folyamat akár előző példáknál lehet
+sokkal komplexebb lépéssorozat, például egy nagyobb szervezetnél történő eszköz,
+szolgáltatás előállítása is.  \\
+
+A BPM platform folyamatosan próbálja meg tökéletesíteni a folyamatokat. Épp ezért
+„folyamatoptimalizációs folyamatként” is lehet értelmezni. \\
+
+Előnye, hogy segít abban, hogy könnyebben tudjanak változni, mint egy minőségét tekintve
+hagyományos, hierarchikus kezelési módszer. Továbbá, a költségcsökkenés mellett,
+környezetvédelmi okokból is fontos a feleslegesen használt erőforrások minimalizálása, mint
+az irodákban a papírmentesség \\
+
+Az üzleti folyamatok optimalizálásának 5 alapvető építő köve van. \\
+1. fázisban a Tervezés, amelyben magába foglalja a meglévő folyamatok beazonosítását
+illetve a későbbiekben lehetségesen létrehozandó folyamatok tervezését. \\ Esetünkben 2 ilyen
+rendszerbe integrált folyamatról lesz szó. Egy karbantartási, és egy Személygépjármű
+igénylési folyamatról.\\
+
+A megfelelően megtervezett rendszertervezés csökkenti a hibák számát a folyamat használata
+során.\\
+
+(Esetlegesen rossz jóváhagyóhoz kerül a folyamat, vagy egy végtelen ciklusba, mivel egy
+elágazás vagy ciklusnál nem megfelelően, strukturáltan lett megtervezve. ) \\
+
+Tehát ennek a lépésnek az célja, hogy biztosítsa, hogy egy korrekt és hatékony elméleti
+tervezés van elkészítve.\\
+
+
+2. fázisban a Modellezés kap szerepet, amelynek a lényege, hogy a meglévő modellezést
+alapul veszi az elméleti tervezést majd ezt követően beleveszi a változók kombinációját. Itt a
+jövőbe történő elemzések is szóba jöhetnek, mint például milyen lehet az, hogyha az
+erőforrások bizonyos százaléka ugyanazt a feladatot hajtja végre stb. \\
+
+
+3. fázisban a végrehajtás\\
+Mivel a gyakorlatban ritkán hajtják végre egy folyamat során az összes utasítást, ezért olyan
+alkalmazások fejlesztése, amely a szükséges lépéseket elvégzi.
+Megközelítés lehet az, hogy a szoftverek és emberek együttműködnek, viszont ez a
+dokumentációt bonyolultabbá teszi. \\
+
+
+4. fázisban a Monitorozás vagy ellenőrzés, ahol a különböző folyamatok nyomon követését ,
+és állapotát lehet tudjuk megtekinteni. \\
+
+Az 5. fázis \\ Az Optimalizálás szerepe hogy alkalmazza a potenciális vagy aktuális
+torlódásokat illetve információk nyerjen ki a különböző fáziskból, mint például a modellezési
+vagy a monitorozási fázisból folyamat tervezésében ezeket az információkat felhasználja. \\
+
+A folyamatos teljesítmény ellenőrzés során észlelt realizált és elvárt eredmények közötti
+különbségek csökkentésére helyezzük a hangsúlyt az optimalizálás lépésének során.\\
+
+A BPM projekt elkészítéséhez álltalában valamilyen külső, erre szakosodott tanácsadót, vagy
+egy elemzőt szoktak alkalmazni, akik felmérik a működését, majd javaslatokat tesznek a
+változtatásokra. Erre azért van szükség, mivel ő nem része a cégnek, így objektíven tudja
+elemezni a rábízott műveleteket. \\
+
+A felmérést követően a folyamatokból rengeteg (végtelen) fajtát , költségűt és méretűt lehetne
+felrajzolni, ám ez nagyban függ a megbízó cég stratégiájától, vágyaitól, költségvetésétől,
+illetve azoktól a szoftverektől , amelyeket használ. \\
+
+A különböző vállalati folyamatoknak 2 féle osztályozása van. \\
+Első a Portel Model, amelyben az iparági versenyt öt fontos tényező határozza meg , mint az
+új belépők, a helyettesítő termékek fenyegetése, a vevők alkupozíciója, a szállítók alku ereje,
+valamint a meglévő versenytársakkal folytatott versengés. A második megközelítés az APQC
+folyamatkategorizálási séma. \\
+
+Fontos megemlíteni a folyamatban használt grafikus leírását, amiért a JBPM felelős, amely
+Java nyelvben íródott. Egy folyamat több tevékenységből áll, amelyeket átmenetek kapcsolnak
+össze. A folyamat grafikus leírása a fejlesztő és a megrendelő közötti kommunikációt segíti. \\
+
+Egyéb, hasonló rendszerként szokták említeni a CRM rendszert (Customer Relationship
+Management) , amely egy cég saját partnerei felé irányuló folyamatainak leírására
+vonatkozik. \\
+CRM szoftver célja, hogy ezeket a folyamatokat támogassa, illetve a jelenlegi és potenciális
+ügyfelekkel kapcsolatos információkat tárolja. \\
+
+
+CRM rendszert használunk az ügyfelekkel fenntartott kapcsolatok kezelésére.
+Irányítson egy értékesítési csatornát, készítsen értékesítési célokat, hasonlítsa össze
+az értékesítési csapatokat, kövesse nyomon a támogatási kérdéseket, kezelje az
+SLA-kat stb. A CRM általában bármit tartalmaz, amely kapcsolatban áll az ügyféllel,
+ezért a neve: Ügyfélkapcsolat-kezelő rendszer. \\
+A BPM rendszer mind a folyamatokra, mind a szoftverekre vonatkozik, a CRM-hez
+képest egy sokkal átfogóbb alkalmazást foglal magában, amelyben az ügyfelek
+számára meghatározott alkalmazásra utal. \\ Úgy hasonlíthatnánk össze őket, hogy a
+BPM egy ház, amíg a CRM egy szoba. A BPM szoftver tartalmazhat CRM funkciót,
+fordítva nem. \\
+
+Az üzleti folyamatok kezelésére BPM rendszert (Business Process Management
+system) használnak. Kétféle típus létezik: \\
+BPM rendszer: az üzleti folyamatok tervezésére, szimulálására és optimalizálására
+szolgáló rendszer. Ezek elsősorban az információ elemzők, építészek stb. Eszközei.
+Alig kapcsolódnak közvetlenül a vállalkozás működési szintjéhez. \\
+BPMS: olyan rendszer, amely lehetővé teszi az üzleti folyamatok tervezését, de ezen
+folyamatok végrehajtását is (más néven munkafolyamat). Ezeket a rendszereket az
+egész társaságban lehet használni. Az építészet szintjétől az operatív szintig. \\
+
+
+Maga az kezelő felület megjelenése teljesen dinamikus. A statikus tartalom itt azokat a
+tartalmakat jelenti, amelyeket az oldalon nem változnak vagy csak ritka esetben változnak,
+ilyen például folyamatok megnevezése, és a hozzájuk tartozó view pagen lévő mezők, illetve
+a különböző kilistázási és módosító műveletek, vagy esetleg a céget bemutató szöveg, cég
+logó. \\
+Ezek az adatok közvetlen a React html (jsx) fájlaiban szerepelnek. A dinamikus tartalmak
+pedig az adatbázisból töltődnek az oldal felületére, ilyenek például a felhasználók által felvitt
+értékek egy folyamat során , akár az adatok betöltődésénél egy kiolvasási rész, akár egy
+adatbázisba történő beszúrás, az első lépésben. A különböző dolgozó menedzselése, amely
+során az adataikat lehet változtatni, esetleg törölni az adatbázisból, vagy egy új dolgozót
+hozzáadni ahhoz. \\
+Ami pedig a dinamikus megjelenést illeti, amelyben a react js elterjedt bootstrapje nyújt
+segítséget, ebben az esetben azt jelenti, hogy a felhasználó bármilyen készülékről is
+használja a vállalati alkalamzást (akár egy kisebb irodai laptop, akár egy nagy monitorral
+rendelkező számítógép, Tablet ) , a tartalom átláthatóan és érthetően, a készülék méretéhez
+igazítva jelenik meg. Nem lát kevesebb tartalmat és nem korlátozottabb az alkalmazás
+használatában, egyszerűen csak egy más elrendezésű felületet kap, ami az adott készülékhez
+igazodik. \\
+
+A react js bootstrapjében rengeteg előre definiált stílusú objektumot tudtunk felhasználni,
+amelyektől a weboldal sokkal felhasználó barátabb lesz a dolgozók számára. \\
+Maga a felület a minimalista megjelenésre törekszik a könnyebb és átláthatóbb tartalom
+közvetítése és használhatósága végett. \\
+A vállalat dolgozóinak lehetősége van bejelentkezni a programba. Ezt email címük és jelszó
+segítségével tudják megtenni. Ezután fogja tudni ténylegesen használni a programot.
+Amennyiben hibás adatokkal próbál valaki belépni, egy hibaüzenet ugrik fel: "Érvénytelen
+adatok. Adjon meg egy meglévő dolgozó adatait, vagy vegye fel a kapcsolatot az
+ügyfélszolgálattal." \\
+
+Bejelentkezés követően a felhasználó megtekintheti a kapott feladatokat egy külön erre
+szolgáló menüpontban. Továbbá amennyiben jogosult rá, lehetősége van a rendszerbe
+implementált folyamatok közül elindítani egyet. Két alapvető folyamat lesz definiálva a
+rendszerben, egy személy gépjármű igénylő és egy karbantartási folyamat. \\
+Több felhasználót különböztet meg a rendszer. \\
+Erős felhasználó : Egy cégnél dolgozó felhasználó, akinek a szándéka a program tényleges
+használata, a feladatok megtekintése, esetleg folyamatok elindítása. \\
+Vezető : ő a programot egész átfogóan használja, annak minden egyes funkciójával együtt.
+Lehetősége van a cégben dolgozó személyek adatainak módosítására, törlésére, különböző
+lekérdezéskre. \\
+
+A rendszer további előnye a felhasználóbarát szemléletnek köszönhetően különösebb
+betanulási időt nem igényel, legfeljebb 5 perc alatt mindenki képes lesz elérni a kívánt
+tartalmat, folyamatot elindítani, a feladatokat megtekinteni. \\
+A folyamat elindításához szükség van az előre leimplementált draft űrlap minden kötelező
+mezőjének a kitöltése, majd a submit gombra kattintva elküldheti a felhasználó a következő
+illetékes személynek a folyamatot. \\
+Ezután a program az adatokat lementi az adatbázisba, hogy a következő jóváhagyónál ezt
+kiolvassa, és megjelenítse neki a felvitt adatokat, ha mentési hiba történne, akkor azt egy
+hibajelző üzenettel a felhasználó tudomására adná a program. Hibaüzenettel alapvetően nem
+találkozni, a dátum formátumra egy külön, React Bootstrapbe beépített rész lesz alkalmazva, a
+helytelen formátum megadás elkerülésének érdekében. Továbbá az Érvénytelen számot adott
+meg és hasonlók. \\
+
+\section{Technológiák részletesebb bemutatása} 
+Frontend részről használt technológia bemutatása : \\
+-React : A react js egy Javascript könyvtár, amelyet a Facebook, Community és egyéb hasonló
+vállalatok tartanak fent. \\
+Az egyik különlegessége, hogy egy bizonyos „jsx” típussal tér vissza, amely egy html kód. \\
+Ahhoz, hogy létrehozzunk egy React projektet az alábbi parancsok szükségesek: \\
+Első fontos parancs: npm create-react-app , vagy npm install –g create-react-app . \\
+Egy react csomagot kell telepíteni, mivel ez is egy node package, ezzel a paranccsal
+telepítjük. Ezt a facebook fejlesztése, hogy mindenféle bonyolult konfiguráció nélkül tudjuk
+elkezdeni a fejlesztést, mivel ezt már alapból megcsinálja. \\
+A tartalmát később részletezzük
+
+npx-create-react-app application-name , ezzel létrehozzuk magát, a projektünk mappáját, és a
+bennelévő node modulokat. \\
+A mappába belépve, az „npm start” parancsot kiadva tudjuk szerveren elindítani a projektet. \\
+A node$\_$modules csomagokat a package.json mappában lévő 3 fő függőség (react , react-dom
+, react-scripts) alapján telepíti fel. \\
+
+A package.json-ben vannak korábban említett, már előre megírt scriptek (start,build, test,
+eject) \\
+Start (npm start) – Ezzel a parancsal lehet a szerveren elindítani a projektet. \\
+Build (npm run build)- a végleges változatot fordítja le, ezzel egy olyan állapothoz lehet jutni,
+amit fel lehet tenni a szerverre. \\
+Test (npm test)-A tesztet fogja lefuttatni \\
+eject (npm run eject)– A konfigurációs fájlokat át lehet írni, de ezt már nem lehet visszavonni
+a parancs után, ha nincs verzió kezelve a projektet. Alapvetően nem ajánlott. \\
+
+Mint a legtöbb Javascript keretrendszerben, a src mappában vannak js kiterjesztésű , fő fileok. \\
+ES6 szintaktikát használ a React, hiszen a különböző komponenseket importáljuk be, majd ez
+automatikusan átfordul egy korábbi scriptre, hogy a böngészőkön könnyebben futhassanak. \\
+Több komponenst különböztetünk meg. \\
+Minden Komponensnek kötelező jelleggel van egy Render() függvénye, amelynek a
+visszatérési értéke egy „html” , amely úgynevezett JSX. \\
+
+
+Ennek az előnye az, hogy átláthatóbbá és könnyebbé teszi a kódolást. \\
+react dom kezelés: \\
+Szintaktikája: \\
+Az egyik legáltalánosabb metódusa a .render , amely 2 bemeneti paramétert vár. \\
+Az első bemeneti paraméter, az maga a JSX kód, a második pedig az, hogy hova generálja az
+adott kódot. \\
+Minta :\\
+ReactDom.render(JSX , (document.getElementById(’Id’)) ) \\
+Vannak bizonyos komponensek, ahol nem szükséges a Render methódus, ez az úgynevezett
+Stateless Komponens, amely Önmagában egy függvény. \\
+\begin{python}
+const Vehicle =()=>{ \\
+	return ( \\
+	<div> Text </div> \\
+	) \\
+}\\
+export default Vehicle; \\
+\end{python}
+Ki kell adni (Exportálni), hogy ezt a komponenst további helyekre is belehessen importálni, a
+következő paranccsal: \\
+
+
+import Vehicle from ’./path’ \\
+Az importálást követően, ha hivatkozni szeretnénk a komponensen belül a Vehicle
+függvényre, akkor azt a Render metóduson belül, html Tag-ként hivatkozhatunk , <Vehicle/>
+szintaktikával tehetjük meg. \\
+Amennyiben a stateless komponensnek tulajdonságokat szeretnénk átadni, akkor azt a
+paraméter listában kell jelölnünk, ekkor az alábbira módosul a függvényünk. \\
+
+\begin{python}
+	const Vehicle =(props)=>{ 
+		return ( 
+		<div> {props.type}</div> 
+		) 
+	} 
+export default Vehicle; 
+\end{python}
+A függvény kifogja írni a beérkező props-nak a type-ját. 
+A render methódusban pedig a tagre az alábbi módon hivatkozhatunk : 
+<Vehicle type=”opel” /> 
+
+
+Amennyiben egy sima komponenst hozunk létre, több különböző beépített metódust tudunk
+használni. (Ezek az ős komponensből származnak ) \\
+Ilyenek például az alábbiak : \\
+ComponentWillMounth- A metódusban definiált tevékenységek lefutnak a Render függvény
+előtt. \\
+ComponentDidMounth- A metódusban definiált tevékenységek, a Render függvény után
+futnak majd le. \\
+További előnyei, hogy a komponensen belül létre tudunk hozni construktort illetve state-et és
+egyéb más dolgokat. \\
+\section{Adatbázis használatának bemutatása}
+Az implementáció során a Microsoft Sql Szerver adatbázis-kezelő szerverre jutott a döntés,
+mivel az Entity Frameworkkel törénő adatbázis kezelés egy magas szintű absztakciót nyúlt,
+programozási technika adatok konvertálására Visual Studioban, nem beszélve a kiváló
+támogatottságáról, illetve a gyorsasága és megbízhatóságáról. Az ingyenes verzióban pedig
+minden szükséges funkció elérhető a programunk működtetéséhez. \\
+Amikor elkezdünk objektum orientált nyelvben programozni, akkor az adatkezelési feladatot
+álltalában az objektumok módosításával végezzük.
+Ez az úgynevezett Object-relational mapping (ORM).\\
+
+Entity Framework rövid bemutatása : \\
+
+Létre kell hozni egy ConnectionStrings-et , amelyben a Servert nevét, és az Adatbázis nevét kell megadni, $+$ egy Truested Connection értéket. \\
+
+
+Az adatbázisban lévő kapcsolatok az alábbi methodus felüldefiniálásával lettek megadva.
+Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli DbSet listát hozunk létre. \\
+\begin{python}
+	public DbSet<Employee> Employee { get; set; }  
+	public DbSet<Department> Department { get; set; } 
+	public DbSet<Duty> Task { get; set; } 
+	public DbSet<Leader> Leader { get; set; } 
+	
+	protected override void OnModelCreating(ModelBuilder modelBuilder) 
+	{
+		
+		base.OnModelCreating(modelBuilder); 
+		modelBuilder.Entity<Employee>() 
+		.HasOne(p => p.Deprartment) 
+		.WithMany(b => b.Employee) 
+		.HasForeignKey(ug => ug.DepartmentId) 
+		.OnDelete(DeleteBehavior.NoAction); 
+		modelBuilder.Entity<Duty>() 
+		.HasKey(bc => new { bc.EmployeeId, bc.LeaderId }); 
+		modelBuilder.Entity<Duty>() 
+		.HasOne(bc => bc.Employee)
+		.WithMany(b => b.Tasks)
+		.HasForeignKey(bc => bc.EmployeeId); 
+		modelBuilder.Entity<Duty>() 
+		.HasOne(bc => bc.Leader) 
+		.WithMany(c => c.Tasks) 
+		.HasForeignKey(bc => bc.LeaderId); 
+		modelBuilder.Entity<Department>() 
+		.HasOne(a => a.Leader).WithOne(b => b.Department) 
+		.HasForeignKey<Leader>(e => e.DepartmentId); 
+	}
+\end{python}
+
+Az osztály amelyben ezt a methódus megtalálható, egy DbContext osztályból származik le, amely implementálja az Entity Framework sajátosságait.
+
+Fontos az 1:N kapcsolat kialakításánál, hogy az osztály adattagjaként felvegyük egy osztálytípusú listát, amelyből a több származik az egy felé.
+
+\vskip 0.3 true cm
+
+Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
+Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, így egy "Select * from DbName" parancs helyett elég meghívni a listának a .toList() methódusát.
+Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
+További a .remove , .hasFirstDefault stb.. \\
+
+Egy példa, a controllerek között egy Post methodust megtekinve : \\
+\begin{python}
+	[HttpPost] 
+	public async Task<ActionResult<Department>> 
+	PostDepartment(Department department) 
+	{ 
+		_context.Department.Add(department); 
+		await _context.SaveChangesAsync(); 
+		return CreatedAtAction("GetDepartment",
+		new { id = department.DepartmentId }, department); 
+	}  
+	tartalom...
+\end{python}
+
+Látható, hogy a Department rekordot feltölti a kapott Department osztálytípusú department nevű objektummal a  
+\begin{python}
+	
+	_context.Department.Add(department); 
+\end{python}
+résznél.
+
+
+Összehasonlítva a hagyományos módszerrel, az ORM gyakran lecsökkenti a megírandó kód
+mennyiségét, objektumorientált nyelv és relációs adatbázis közötti adatcsere esetén.
+Az ORM hátrányos az olyan területeken, rendszerekben ahol az adatbázist jelentősen
+optimalizálják speciális technikák alapján.  \\
+
+Ahhoz, hogy az Entity Frameworköt használatba tudjunk fenni, különböző szükséges toolokat kell telepíteni a programba, amelyeket a visual studióban megtalálunk, mint például: \\
+\begin{python}
+	Microsoft.EntityFrameworkCore 
+	Microsoft.EntityFrameworkCore.Design 
+	Microsoft.EntityFrameworkCore.SqlServer 
+	Microsoft.EntityFrameworkCore.Design 
+	Microsoft.EntityFrameworkCore.Tools 
+	
+\end{python}
+
+Az Entity Framework előnye, hogy az adatbázisban lévő adatokat lista szerkezetként tudjuk
+kezelni, így a megszokott adatbázis parancsokat felcserélhetjük, egy egyszerűbb
+szintaktikával rendelkező kódolásra. \\
+
+Összehasonlítva : \\
+Egy listázást az alábbi módon tudjuk megtenni, mind sql-ben , mind Entity Frameworköt
+használva. \\
+Select * from TableName helyett használhatjuk a listanév.toList() szintaktikával tehetjük
+meg. \\
+Az adatbázisba történő beszúrás, egy Insert Into TableName values parancs helyett
+könnyedén alkalmazhatunk egy .Add() metódust, ahol a paraméter listába az adatbázisnak
+megfelelően egy osztály példánya kerül. \\
+Egy feltételekhez kötött listázás szintaktikája is tovább egyszerüsödik, hiszen a Select *from
+tablename where feltétel helyett használhatjauk a listanév.where(feltétel) parancsot. \\
+
+További sajátosságai, jelentősen megkönnyítik a szerver oldali implementációt, a kliens
+oldallal történő kommunikáció használatára pedig json (Javascript Object Notation)-t
+használunk, amely tulajdonképpen rendezett érték lista amely , egy név és érték párok
+gyüjteménye dupla idézőjel párok között megadva. \\
+
+Általános szintaktikája : \\
+{ "name":"value", \\
+	"name2":"value2" \\
+} \\
+Kezdetben a szerver oldali tesztelés, adatok felvitele, listázása és egyéb alapvető funkciók a
+Postman nevű alkalmazásban történik. \\
+Mivel a Json sokkal könyebben értelmezhető, mint az xml, ezért esett erre a választás. \\
+
+
+További lényeges implementáció szükséges a szerver oldalon ahhoz, a frontend értelmezni
+tudja a kapott értékeket. \\
+Az alapvető Requesteket , a Microsoft által készített .NET keretrendszerben kerültek
+implementálásra. \\
+A keretrendszer előnyei közé tartozik szintén a megfelelő támogatottság, hiszen egy
+Microsoft és a Xamarin áll mögötte, Mivel .NET Framework alapját a CLI, vagyis a Common
+language Interface képezi, ezért a platformfüggetlenség, illetve a gyors alkalmazás
+fejlesztés (RAD, Rapid application development). \\
+\section{Platformfüggetlenség}
+A CLI rendszerek leírják nyelvfüggetlen fejlesztői környezetet, a futtatókörnyezetet,
+típusrendszert. \\
+Négy fő része van : \\
+1. A CLS, amely azokat a szabályokat írja le, amelyeket a CLI-kompatibilis nyelveknek
+be kell tartaniuk \\
+2. A CTS, amely a CLI azon része, ahol a típusokat, és azoknak a memóriaban történő
+reprezentációját illetve egymással való kapcsolatait írja le. \\
+3. CLR, amely a CLI nyelven megírt programok betöltéséért és végrehajtásáért felel. \\
+
+
+A gyors alkalmazás fejlesztéshez használt módszertan 3 fő elemből tevődik össze: \\
+Ciklikus fejlesztés, működő prototípusok létrehozása, és a szoftverfejlesztést támogató
+számítógépes programok.\\
+
+Előnye: Az alkalmazások elkészítése egyszerűbbé válik , amelyhez hozzátartozik egy
+felhasználóbarát kezelőfelület, illetve egy uniformizált platform megjelenése. \\
