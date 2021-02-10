@@ -1,0 +1,239 @@
+\Chapter{Modellezett üzleti folyamatok}
+\section{Road Transportation Demand}
+Az első üzleti folyamat, amely a személygépkocsi igénylése, tulajdonképpen egy
+elég egyszerű (2 lépéses folyamat), itt talán felugró mezők okozzák a
+legnagyobb kihívást.\\
+A folyamat első, draft lépése így nézne ki :\\
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\textbf{\huge\textsc{Road Transportation Demand első lépése}}\\
+		\vglue 1truecm
+		\includegraphics[width=11.8truecm, height=7.5truecm]{images/road1.png}\\
+		\textbf{\textsc{Draft page}}
+\end{center}}
+
+Az igénylés típusát kiválasztva, olyan mezők adódnak hozzá a folyamathoz, amelyek a jelenlegi
+képernyő fotón nem látszódnak. \\
+A következő az igénylő szervezeti egység lenne, amely egy felugró kereső ablak , ahol a felhasználó
+kiválasztja azt, hogy melyik szervezethez tartozik. \\
+Ez egy külön adatbázis tábla lenne, amelyben a cégnél nyilvántartott szervezetek lesznek eltárolva,
+majd a felugró ablakban, ezekből lehet választani. \\
+Több mező is a felhasználó álltál kiválasztott Checkbox szerint jelenik majd meg, és tűnik el.
+Vegyük példaként azt, ha a felhasználó kiválasztja az igénylés típusánál a „Járművezetővel ellátott
+személygépkocsit” : \\
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\vglue 1truecm
+		\includegraphics[width=11.8truecm, height=7.5truecm]{images/road2.png}\\
+		\textbf{\textsc{Draft page}}
+\end{center}}
+
+Ekkor megjelenik egy új kiválasztós mező, amelyben az Oda út és visszaútról kérdez, illetve négy
+további mező, amely a gépjármű elvitelének és a gépjármű leadásának az idejéről, illetve a gépjármű
+elviteli ideje + leadási ideje. \\
+Ha csak „egy út” van kiválasztva, akkor a gépjármű leadásának dátuma, és ideje mező eltűnik,
+ellenkező esetben megmarad. \\
+Lehetőségünk van több utast is hozzáadni, amelyben a hozzáadás gomra kattintva felugrik egy rész,
+ahol az adatokat kérjük le. \\
+Ez szintén egy új táblázat lesz (Road Transportation Demand DTL), amelyből 1 folyamathoz, akár több
+is tartozhat. \\
+
+{\large
+	\begin{center}
+		\vglue 1truecm
+	
+		\vglue 1truecm
+		\includegraphics[width=11.8truecm, height=7truecm]{images/road3.png}\\
+		\textbf{\textsc{Felugró ablak }}
+	
+\end{center}}
+
+Itt az Utas neve, egy szintén felugró ablak, amelyből kiválaszthat a cég alkalmazottak közül egyet. \\
+Az utasok a User táblából lesznek Listázva, amelyben nyilván van tartva a cég összes alkalmazottja,
+annyi eltéréssel, hogy az utasnak nem lesz költség helyi kódja. \\
+Tetszőleges számú utast adhatunk hozzá, illetve tudjuk törölni is őket. \\
+Ha kitöltötte a felhasználó a mezőket, akkor a Submit gombra kattintva a következő, approve lépésbe
+ér a folyamat, ahol a meglévő adatok kiolvasása történik. Itt láthatja a következő illetékes azt, hogy
+milyen adatokkal szeretnének járművel bérelni. \\
+Mivel ez egy egyszerű, 2 lépéses folyamat, egy Draft és egy Approve lépésből állt, a folyamat ezt
+követően véget is ért. \\
+
+\section{Road Transportation Maintance}
+
+ második üzleti folyamat, amely egy karbantartási folyamat. \\
+Ez egy komplexebb folyamat, itt több lépés van, mint az előzőben, illetve itt is
+megtalálhatóak a Checkbox szerinti kiválasztással felugró mezők. \\
+Az első lépést, az-az a draft-ot itt láthatjuk : \\
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\textbf{\huge\textsc{Road Transportation Maintance első lépése}}\\
+		\vglue 1truecm
+		\includegraphics[width=11.8truecm, height=4.5truecm]{images/road4.png}\\
+		\textbf{\textsc{Draft page}}
+\end{center}}
+
+
+\begin{python}
+	<el-row :gutter="20">
+	<el-col :span="12">
+	<el-form-item :label="$t('BCSMRTMI18.demandType')" 
+	prop="demandType">
+	<el-radio-group v-model=BCSMRTM.whBtBcRtm.demandType"
+	 @change="onVegicleChange">
+	<el-radio v-for="item in BCSMRTM.selectList-demandType" 
+	:key="item.relationKey" :label="item.relationKey">
+	{{item.value_}}
+	 </el-radio>
+	</el-radio-group>
+	</el-form-item>
+	</el-col>
+	</el-row>	
+	
+	<el-row :gutter="20" v-if="vehicleFieldVisible===true">
+	<el-col :span="12">
+	<el-form-item :label="$t('BCSMRTMI18.lplate')" 
+	prop="lplate">
+	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.lplate"
+	 placeholder="XXX-123">
+	<el-button slot="append" @click="licensePlateClick()" 
+	style="width:40px" size="small icon="el-search-icon"> 
+	</el-button>
+	</el-input>
+	</el-form-item>
+	</el-col>
+	<el-col :span=12>
+	<el-form-item :label="$t('BCSMRTMI18.brand')" 
+	prop="brand">
+	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.brand" readonly>
+	</el-input>
+	</el-form-item> 
+	</el-col>
+	</el-row>
+
+	<el-row :gutter="20" v-if="vehicleFieldVisible===true">
+	<el-col :span=12>
+	<el-form-item :label="$t('BCSMRTMI18.type')" 
+	prop="type">
+	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.type"
+	 readonly>
+	</el-input>
+	</el-form-item> 
+	</el-col>
+	<el-col :span=12>
+	<el-form-item :label="$t('BCSMRTMI18.model')" 
+	prop="model">
+	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.model"
+	 readonly>
+	</el-input>
+	</el-form-item> 
+	</el-col>
+	</el-row>
+	
+	<el-row :gutter="20" v-if="vehicleFieldVisible===true">
+	<el-col :span=12>
+	<el-form-item :label="$t('BCSMRTMI18.totalMileage')"
+	 prop="totalMileage">
+	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.totalMileage"
+	 readonly></el-input>
+	</el-form-item> 
+	</el-col>
+	<el-col :span=12>
+	<el-form-item :label="$t('BCSMRTMI18.totalUsage')"
+	 prop="totalUsage">
+	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.totalUsage"
+	 readonly></el-input>
+	</el-form-item> 
+	</el-col>
+	</el-row>
+	
+	<el-row :gutter="20>
+	<el-col :span="24">
+	<el-form-item :label="$t('BCSMRTMI18.propertyDesc')" 
+	prop="propertyDesc">
+	<el-input type="textare"
+	 v-model="BCSMRTM.whBtBcRtm.propertyDesc">
+	</el-input>
+	</el-form-item> 
+	</el-col>
+	</el-row>
+\end{python}
+
+Itt az első kiválasztott érték esetén, ha az nem jármű, akkor az alábbi mezőt kapjuk meg:\\
+{\large
+	\begin{center}
+		\vglue 1truecm
+	
+		\vglue 1truecm
+		\includegraphics[width=15.5truecm, height=2.7truecm]{images/road5.png}\\
+	
+\end{center}}
+
+Amennyiben a folyamatban a Jármű kerül kiválasztásra, akkor egy rendszámot kell beírni, amely
+szintén egy külön tábla lesz, hiszen több rendszámot kell nyilvántartani, és a gépjárművekhez tartozó
+további adatokat is, mivel a keresés gomra kattintva, automatikusan kitöltődnek a readonly mezők
+értékei, mint a Márka, típus, Üzemóra , Futott Kilométer stb. \\
+Ezután a probléma leírása rész következik, ahol egy tetszőleges leírást adhat az igénylő felhasználó.
+Ezt követően a második (Approve) lépésben az alábbi rész jelenik meg: \\
+
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\textbf{\huge\textsc{Road Transportation Maintance harmadik lépése}}\\
+		\vglue 1truecm
+		\includegraphics[width=14.8truecm, height=6truecm]{images/road6.png}\\
+		\textbf{\textsc{Approve page}}
+\end{center}}
+
+
+Itt a kiolvasott adatok mellett megjelenik egy újabb kitöltő mező, amelyben a Supervisor Descripont
+kell megadni. \\
+A következő 3. lépésben pedig azt kell megadni, hogy a probléma típusát, amely lehet Személyes,
+Belső, vagy külső probléma. \\
+Amennyiben a probléma típusa Belső, vagy Külső, akkor egy újabb mező ugrik fel, amelyben szintén a
+meglévő alkalmazottak közül kell kiválasztani azt, hogy a folyamat kihez megy tovább, ki lesz érte a
+felelős. \\
+A megjelenő oldalt itt láthatjuk :  \\
+\newpage
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\textbf{\huge\textsc{Road Transportation Maintance negyedik lépése}}\\
+		\vglue 1truecm
+		\includegraphics[width=14.8truecm, height=6.5truecm]{images/road7.png}\\
+		\textbf{\textsc{Approve page}}
+\end{center}}
+
+
+\section{KÉP}
+
+Tesztelésként kiválasztjuk az Internált, majd továbbítjuk, akkor az általunk megadott Ownerhez fog a
+folyamat tovább menni.  \\
+
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\textbf{\huge\textsc{Road Transportation Maintance ötödik lépése}}\\
+		\vglue 1truecm
+		\includegraphics[width=14.8truecm, height=6.5truecm]{images/road8.png}\\
+		\textbf{\textsc{Approve page}}
+\end{center}}
+
+
+Ezután, az illetékes az alábbi formot fogja látni : \\
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\textbf{\huge\textsc{Road Transportation Maintance utolsó lépése}}\\
+		\vglue 1truecm
+		\includegraphics[width=15truecm, height=7truecm]{images/road9.png}\\
+		\textbf{\textsc{Approve page}}
+\end{center}}
+
+
+Itt az alábbi adatokat megadva, visszatér a folyamat az előző lépésben lévő emberhez, aki megkapja
+ezeket az adatokat, és jóváhagyja. \\
+Ezáltal vége a folyamatnak. Amennyiben a „Personal” részt választotta volna ki, akkor ott lett volna
+vége a folyamatnak. \\
