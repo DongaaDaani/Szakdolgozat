@@ -1,11 +1,34 @@
-\Chapter{Tesztelés}
+\Chapter{Folyamatok az iparban}
+Minden nagyvállalatban egyszerre akár több üzleti, logisztikai folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni. \\
+\Section{Bpm bemutatása}
+% TODO: Leírni, hogy a megközelítési módok miben különbözhetnek.
+A legtöbb nagy cég a BPM (Business Process Management) platformot használja a feladatok nyomonkövetésére, menedzselésére.
+A rendszerben megtalálható Process Designer program segítségével minden folyamathoz tartozik egy folyamatábra.
+\\A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli.
+A rendszer listázza az összes meglévő folyamatot, amelyet el lehet indítani egy cégnél.
+A folyamatábrán az egyes lépésekre kattintva további részletes információkat tekinthetünk meg, mint a view pagen használt mezőket,
+a mögötte lévő adatbázis mezőket, a felhasznált ajax service-eket. Az Ajax Service implementációit lehet megtekinteni.
+Az egyes elágazásokban lévő döntési változókat lehet megtekinteni stb. (Elég részletes program)
+\Section{Bpm rendszer korlátja, hátrányai}
+Ez a rendszer fizetős, nem érhetőek el ezek a szolgáltatások Lokális gépről.
+A rendszer mivel elég széles körü, így eléggé rugalmatlan is, mivel ha hirtelen egy új üzleti folyamatra lenne szüksége a cégnek, akkor annak az
+elkészítése akár több hetet is igénybe vehet.
 
-A fejezetben be kell mutatni, hogy az elkészült alkalmazás hogyan használható.
-(Az, hogy hogyan kell, hogy működjön, és hogy hogy lett elkészítve, az előző fejezetekben már megtörtént.)
+Hogy példát említsek üzleti folyamatokra:
+Egy autógyárban lehet akár egy gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen igénylési folyamat, amelyek több lépésekben folynak le.
+Több jogosultsági szintek vannak egy ilyen folyamatnál, amelyeket megkell különböztetni. Mikor, melyik lépésnél ki a jóváhagyó stb.
+Ezeket a folyamatokat valahol nyilván kell tartani, kezelni kell őket.
 
-Jellemzően az alábbi dolgok kerülhetnek ide.
-\begin{itemize}
-\item Tesztfuttatások. Le lehet írni a futási időket, memória és tárigényt.
-\item Felhasználói kézikönyv jellegű leírás. Kifejezetten a végfelhasználó szempontjából lehet azt bemutatni, hogy mit hogy lehet majd használni.
-\item Kutatás kapcsán ide főként táblázatok, görbék és egyéb részletes összesítések kerülhetnek.
-\end{itemize}
+Folyamatok előfordulhatnak ipait vállalatoknál (Bosch, Joyson, BorsodChem),\\ és  egyéb logisztikával kapcsolatos cégeknél, különböző kereskedelmi szervezeteknél.
+A legtöbb nagyipari vállalat az IBM-BPM platformot használja.
+A folyamatok menedzseléséhez, követéséhez hozzátartozik az SAP, amely egy vállalatirányítási rendszer, sokszor indítanak el SAP-ból egy folyamatot.
+Ahhoz, hogy egy folyamatot elkészítsünk, amely sap-ból indul, szükséges a Process Designerben ezt Ajax Service formájában definiálni, és Postman segítségével teszteleni,
+amely a legtöbb esetben egy folyamat azonosítót és egy lépés azonosítót ad vissza. Ezeket megkeresve tudjuk az adatbázisba megtekinteni , felhasználni, és a formon kiolvasni az adatokat.
+
+
+-Egy karbantartási folyamat esetén , egy nagyobb cégnél 5 lépésben folyik le:
+\\-Az igénylő kitölti a formot, ahol megadja a gépjármű adatait, a probléma pontos leírását. Továbbítja a folyamatot.
+\\-Az első jóváhagyó (SupervisorApprove) ez a formot megkapja, ír hozzá egy megjegyzést, majd eztkövetően a folyamat továbbmegy a coordinátorhoz,
+amely meghatározza a probléma leírása alapján,a költségeket, a javítás várható idő intervallumát, a helyet stb.
+\\-Amennyiben költség szintje meghaladja az adott értéket, akkor a folyamat folytatásához a Director jóváhagyása kell. Ő dönti el hogy vissza reject-eli, vagy továbbítja a folyamatot.
+\\-A feladat visszakerül az igénylőhöz
