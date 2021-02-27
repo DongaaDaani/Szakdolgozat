@@ -1,34 +1,46 @@
-\Chapter{Folyamatok az iparban}
-Minden nagyvállalatban egyszerre akár több üzleti, logisztikai folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni. \\
-\Section{Bpm bemutatása}
-% TODO: Leírni, hogy a megközelítési módok miben különbözhetnek.
-A legtöbb nagy cég a BPM (Business Process Management) platformot használja a feladatok nyomonkövetésére, menedzselésére.
-A rendszerben megtalálható Process Designer program segítségével minden folyamathoz tartozik egy folyamatábra.
-\\A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli.
-A rendszer listázza az összes meglévő folyamatot, amelyet el lehet indítani egy cégnél.
-A folyamatábrán az egyes lépésekre kattintva további részletes információkat tekinthetünk meg, mint a view pagen használt mezőket,
-a mögötte lévő adatbázis mezőket, a felhasznált ajax service-eket. Az Ajax Service implementációit lehet megtekinteni.
-Az egyes elágazásokban lévő döntési változókat lehet megtekinteni stb. (Elég részletes program)
-\Section{Bpm rendszer korlátja, hátrányai}
-Ez a rendszer fizetős, nem érhetőek el ezek a szolgáltatások Lokális gépről.
-A rendszer mivel elég széles körü, így eléggé rugalmatlan is, mivel ha hirtelen egy új üzleti folyamatra lenne szüksége a cégnek, akkor annak az
-elkészítése akár több hetet is igénybe vehet.
+\Chapter{Folyamatok modellezése az iparban}
 
-Hogy példát említsek üzleti folyamatokra:
-Egy autógyárban lehet akár egy gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen igénylési folyamat, amelyek több lépésekben folynak le.
-Több jogosultsági szintek vannak egy ilyen folyamatnál, amelyeket megkell különböztetni. Mikor, melyik lépésnél ki a jóváhagyó stb.
+Minden nagyvállalat esetében egyszerre több üzleti, logisztikai folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni.
+
+\Section{BPM bemutatása}
+
+% TODO: Leírni, hogy a megközelítési módok miben különbözhetnek.
+
+A legtöbb nagy cég a BPM (\textit{Business Process Management}) platformot használja a feladatok nyomonkövetésére, menedzselésére [].
+A rendszerben megtalálható \textit{Process Designer} program segítségével minden folyamathoz tartozik egy folyamatábra.
+
+A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli.
+
+% TODO: Ide is kellene egy kisebb ábra, hogy ne csak leírva legyen, hogy mit kellene látni.
+
+A rendszer listázza az összes meglévő folyamatot, amelyet el lehet indítani egy cégnél.
+A folyamatábrán az egyes lépésekre kattintva további részletes információkat tekinthetünk meg, mint a \textit{view page}-en használt mezőket, a mögötte lévő adatbázis mezőket, a felhasznált AJAX szolgáltatásokat. Az \textit{Ajax Service} implementációit lehet megtekinteni. Az egyes elágazásokban lévő döntési változókat lehet megtekinteni.
+
+\Section{A BPM rendszer korlátai, hátrányai}
+
+Ez a rendszer fizetős, nem érhetőek el ezek a szolgáltatások lokális gépről. A rendszer mivel elég széles körü, így eléggé rugalmatlan is, mivel ha hirtelen egy új üzleti folyamatra lenne szüksége a cégnek, akkor annak az elkészítése akár több hetet is igénybe vehet.
+
+Tekintsük példaként az alábbi esetet.
+Egy autógyárban lehet akár egy gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen igénylési folyamat, amelyek több lépésben zajlanak.
+Különböző jogosultsági szintek vannak egy ilyen folyamatnál, amelyeket meg kell különböztetni. Például, hogy mikor, melyik lépésnél éppen ki a jóváhagyó.
 Ezeket a folyamatokat valahol nyilván kell tartani, kezelni kell őket.
 
-Folyamatok előfordulhatnak ipait vállalatoknál (Bosch, Joyson, BorsodChem),\\ és  egyéb logisztikával kapcsolatos cégeknél, különböző kereskedelmi szervezeteknél.
+Folyamatok előfordulhatnak ipari vállalatoknál, és  egyéb logisztikával kapcsolatos cégeknél, különböző kereskedelmi szervezeteknél.
 A legtöbb nagyipari vállalat az IBM-BPM platformot használja.
-A folyamatok menedzseléséhez, követéséhez hozzátartozik az SAP, amely egy vállalatirányítási rendszer, sokszor indítanak el SAP-ból egy folyamatot.
-Ahhoz, hogy egy folyamatot elkészítsünk, amely sap-ból indul, szükséges a Process Designerben ezt Ajax Service formájában definiálni, és Postman segítségével teszteleni,
-amely a legtöbb esetben egy folyamat azonosítót és egy lépés azonosítót ad vissza. Ezeket megkeresve tudjuk az adatbázisba megtekinteni , felhasználni, és a formon kiolvasni az adatokat.
+A folyamatok menedzseléséhez, követéséhez hozzátartozik az SAP, amely egy vállalatirányítási rendszer. Gyakran indítanak el SAP-ból egy folyamatot.
 
+Ahhoz, hogy egy folyamatot elkészítsünk, amely SAP-ból indul, szükséges a \textit{Process Designer}-ben azt az \textit{Ajax Service} formájában definiálni, és \textit{Postman} segítségével teszteleni,
+amely a legtöbb esetben egy folyamat azonosítót és egy lépés azonosítót ad vissza. Ezeket megkeresve tudjuk az adatbázisba megtekinteni, felhasználni, és a formon kiolvasni az adatokat.
 
--Egy karbantartási folyamat esetén , egy nagyobb cégnél 5 lépésben folyik le:
-\\-Az igénylő kitölti a formot, ahol megadja a gépjármű adatait, a probléma pontos leírását. Továbbítja a folyamatot.
-\\-Az első jóváhagyó (SupervisorApprove) ez a formot megkapja, ír hozzá egy megjegyzést, majd eztkövetően a folyamat továbbmegy a coordinátorhoz,
-amely meghatározza a probléma leírása alapján,a költségeket, a javítás várható idő intervallumát, a helyet stb.
-\\-Amennyiben költség szintje meghaladja az adott értéket, akkor a folyamat folytatásához a Director jóváhagyása kell. Ő dönti el hogy vissza reject-eli, vagy továbbítja a folyamatot.
-\\-A feladat visszakerül az igénylőhöz
+% TODO: Az előző résznél eléggé keverednek az áttekintő jellegű fogalmak és a konkrét, implementáció szintű dolgok.
+
+Egy karbantartási folyamat esetén , egy nagyobb cégnél 5 lépésben folyik le:
+\begin{itemize}
+	\item Az igénylő kitölti a formot, ahol megadja a gépjármű adatait, a probléma pontos leírását. Továbbítja a folyamatot.
+	\item Az első jóváhagyó (\textit{SupervisorApprove}) ez a formot megkapja, ír hozzá egy megjegyzést, majd eztkövetően a folyamat továbbmegy a coordinátorhoz,
+	amely meghatározza a probléma leírása alapján,a költségeket, a javítás várható idő intervallumát, a helyet stb.
+	\item Amennyiben költség szintje meghaladja az adott értéket, akkor a folyamat folytatásához a Director jóváhagyása kell. Ő dönti el hogy vissza \textit{reject}-eli, vagy továbbítja a folyamatot.
+	\item A feladat visszakerül az igénylőhöz.
+\end{itemize}
+
+% TODO: Ide, mint a fejezet végére kell majd még valamilyen zárszó féle.

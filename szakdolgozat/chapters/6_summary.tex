@@ -97,18 +97,16 @@ Egy Task-ot tartalmazó táblázat:
 \end{itemize}
 Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a következő kibővített Er modellen ez látható : \\
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{A táblázatokat és a közüttük lévő kapcsolatot az alábbi diagramm reprezentálja}}\\
-		\vglue 1truecm
-		\includegraphics[width=11.0truecm, height=8.0truecm]{images/ER.png}\\
-		\textbf{\textsc{Entity–relationship model}}
-\end{center}}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{images/ER.png}
+	\caption{A táblázatokat és a közüttük lévő kapcsolatot az alábbi diagramm reprezentálja}
+	\label{fig:ER}
+\end{figure}
 
-A kapcsolatok . ábrán látható séma szerint lettek kialakítva. \\
+A kapcsolatok \aref{fig:ER}. ábrán látható diagram szerint lettek kialakítva.
 
-Az adatbázisban a kapcsolatok kialakítása, és a feltételekhez kötött listázások .net framework egyik sajátosággával, az Entity Frameworkkel lesz kialakítva, Visual Studióban implementálva, asp.net Core-t használva. \\
+Az adatbázisban a kapcsolatok kialakítása, és a feltételekhez kötött listázások .NET keretrendszerben lévő \textit{Entity Framework}-kel lesz kialakítva, Visual Studio-ban implementálva, ASP.NET Core-t használva.
 
 \section{Funkciók}
 

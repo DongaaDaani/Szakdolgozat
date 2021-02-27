@@ -1,30 +1,40 @@
 \Chapter{Petri hálók}
 
 \Section{Bevezetés}
-A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először. \\
-A Petri háló (Petri net, PN) egy súlyozott, irányított élű páros gráf, melynek élei kétféle
-csomópontot köthetnek össze: a körrel jelölt helyeket (places), illetve a téglalap-alakú állapotátmeneteket (transitions). \\
-Formálisan a Petri hálók olyan <P,T,E,  $\delta $ , $m_{0}$> ötös, ahol
-\begin{align*}
-	P & \text{ a } p_{i} \text{ helyek véges halmaza } \\
-	T & \text{ a } t_{i} \text{ tranzíciók véges halmaza } P \cap T = \emptyset \\
-	E & : (P \times T ) \cup (T \times P) \text{ a P-t és a T-t összekötő élek halmaza.}\\
-	\delta & \text{ a súlyfüggvény , }\qquad \delta:E\rightarrow N^{+} \\
-	& \text{Token eloszlás  }  m:P\rightarrow N   \text{ ami egy olyan függvény, } \\ & \text{  amely adott állapotban megadja a helyeken lévő tokenek számát} \\
-	&
-\end{align*}
-$m_{0}$ a kezdeti token eloszlás, az-az a hálózat kezdeti állapota. \\
+
+A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először [].
+A Petri háló (\textit{Petri Net}, \textit{PN}) egy súlyozott, irányított élű páros gráf, melynek élei kétféle csomópontot köthetnek össze:
+\begin{itemize}
+	\item a körrel jelölt helyeket (places), illetve
+	\item a téglalap-alakú állapotátmeneteket (transitions).
+\end{itemize}
+Formálisan a Petri hálók olyan $<P, T, E, \delta, m_{0}>$ ötös, ahol
+\begin{itemize}
+	\item $P$: a $p_{i}$ helyek véges halmaza,
+	\item $T$: a $t_{i}$ tranzíciók véges halmaza, $P \cap T = \emptyset$,
+	\item $E: (P \times T ) \cup (T \times P)$ a helyeket és tranzíciókat összekötő élek halmaza,
+	\item $\delta: E \rightarrow \mathbb{N}^{+}$ súlyfüggvény.
+\end{itemize}
+
+A tokenek eloszlását egy $m: P \rightarrow \mathbb{N}$ függvénnyel jellemezhetjük, amely tehát a helyeken megjelenő tokenek számát adja meg.
+
+Jelölje $m_{0}$ a kezdeti token eloszlást, az-az ez a hálózat kezdeti állapota.
+
 A tranzíciót egy rövid vízszintes vonallal reprezentált csúcs.
-\begin{align*}
-	(p,t) \in & (P\times T) : \text{ p-ből t-be irányított él.} \\
-	(t,p) \in & (T \times P) : \text{t-ből p-be irányított él.} \\
-	m: P \rightarrow N & \text{ token eloszlás } m(p) \\ & \text{-t a p helyen } m(p)  \text{ darab korong reprezentálja az m állapotban.} \\
-	e \in E & \text{ él címkéje a } w(e)
-\end{align*}
+
+% TODO: Ide ábra is kellene, hogy ha már említésre került, hogy hogy néz ki.
+
+Az éleket konstrukcióból adódóan két diszjunkt halmazra bonthatjuk.
+\begin{itemize}
+	\item $(p, t) \in (P \times T)$: helyekből tranzíciókba mutató élek,
+	\item $(t, p) \in (T \times P)$: tranzíciókból helyekre mutató élek.
+\end{itemize}
+
+Egy $e \in E$ élhez a $w(e)$ függvény segítségével rendelhetünk címkét.
 
 \Section{Élcsoportok}
 
-Két élcsoportot definiálhatunk a Petri hálóba, a bemenő és a kimenző élek halmazát. Ez megfogalmazva az alábbiakat jelenti : \\
+Két élcsoportot definiálhatunk a Petri hálóba, a bemenő és a kimenő élek halmazát. Ez formálisan felírva az alábbiakat jelenti.
 
 \begin{align*}
 	\text{Pre : } T \rightarrow \mu (P) & \text{ , ahol Pre(t) } = \{ p\in P \mid (p,t) \in E \} \text{ t őseinek vagy bemenő helyeinek halmaza}\\

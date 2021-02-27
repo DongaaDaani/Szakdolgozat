@@ -1,42 +1,47 @@
 \Chapter{Véges Determinisztikus autómaták}
 
+\Section{Folyamatok matematikai leírása}
 
-\Section{Leírása}
-Véges számú állapotból, és egy tranzíciós diagrammból áll, amelynek szakaszait úgynevezett input symbolumok jellemzik, amelyek ugyanabból a véges $\sum$ abc-ből vannak választva. 
+Véges számú állapotból, és egy tranzíciós diagrammból áll, amelynek szakaszait úgynevezett input szimbólumok jellemzik, amelyek ugyanabból a véges $\Sigma$ ábécéből vannak kiválasztva. 
 
-A hivatkozások jelentős része ehhez a fejezethez szokott kötődni.
-(Egy hivatkozás például így néz ki \cite{coombs1987markup}.)
-Itt lehet bemutatni a hasonló alkalmazásokat.
+Két kitüntetett állapot van: A kezdő állapot, jele : $q_{0}$ és a végállapot halmaza, amelynek a jele $F$. (Ezek a \textit{Start} és a \textit{Stop} elemnek tekinthetők egy folyamat modellezése esetén.
+A \textit{Start} jelzi a folyamatábrán a \textit{draft} lépést, ahonnan elindul maga az üzleti folyamat. A végső lépés, az utolsó jóváhagyó, \textit{approve} lépés pedig a végállapot, amely megfeltethető az $F$-nek.)
 
-\Section{Jelölések}
+Minden állapotban minden egyes bemeneti szimbólumhoz pontosan egy következő állapot tartozik. Diagram esetében pontosan ezek az állapotok közötti nyilak.
 
-Két kitüntetett állapot van: A kezdő állapot, jele : $q_{0}$ és a végállapot halmaza, amelynek a jele F. Ezek Start és Stop egység elemnek tekinthetők egy folyamat modellezés esetén.
-\\ Start jelzi a folyamatábrán a draft lépést, ahonnan elindul maga az üzleti folyamat. A végső lépés, az utolsó jóváhagyó (Approve lépés) pedig a végállapot, amely megfeltethető az F-nek.
-\\ Minden egyes input szimbólum, pontosan 1 választ vált ki minden állapotból, az-az egy input szimbólum és állapothoz pontosan egy nyíl tartozik.
-\Section{Definíció}
-Egy véges determinisztikus autómatát a következőképpen definiálunk : \\ $A= (Q,\Sigma,\rho,q_{0},F)  $ ahol $Q$ az állapotok halmaza, $\Sigma$ a véges abc ,  $\Sigma \notin \emptyset $ továbbá $\rho$ a tranzíciós függvény, a  $q_{0}$ a kezdő állapot, $q_{0} \in Q $  $F$ a végállapot.
-\\ Könnyen belátható, hogy $F \in Q $ illetve $ F \notin \emptyset$.\\
-A kimenő impulzus függ a bemeneti jelből, és attól, hogy éppen milyen állapotban van a neurom rendszer.
-\\
-Ez pontosan megfeleltethető annak, hogy egy folyamat esetén , melyik lépésben milyen input adatokat ad meg a felhasználó, mert a következő lépés ezen adatok alapján változhat.\\ Egy példa esetén : A felhasználó 300.0000ft-ot állít be egy becsült költségnek, akkor oda egy igazgatói jóváhagyás szükséges, ellenkező eseben ez a lépés kihagyható. Az ilyen elágazásokat, és ciklusokat követően jutunk el a végállapotba, az inputoktól függően. Amely szintén az F. \\
+\Section{Formális definíció}
+
+Egy véges determinisztikus autómatát a következőképpen definiálunk.
+Legyen $A = (Q, \Sigma, \rho, q_{0}, F)$, ahol $Q$ az állapotok halmaza, $\Sigma$ a véges ábécé, $\Sigma \notin \emptyset$, továbbá $\rho$ a tranzíciós függvény, a  $q_{0}$ a kezdő állapot, $q_{0} \in Q $  $F$ a végállapot.
+
+Könnyen belátható, hogy $F \in Q$ illetve $F \notin \emptyset$.
+
+A matematikai modell pontosan megfeleltethető annak, hogy egy folyamat esetén melyik lépésben milyen input adatokat ad meg a felhasználó, mert a következő lépés ezen adatok alapján változik. Például, egy konkrét esetben, ha a felhasználó 300'000 Ft-ot állít be egy becsült költségnek, akkor oda egy igazgatói jóváhagyás szükséges, ellenkező eseben ez a lépés kihagyható. Az ilyen elágazásokat, és ciklusokat követően jutunk el a (modellben $F$-el jelölt) végállapotba.
 
 \Section{Egyszerű átmeneti rendszerek}
-\begin{align*}
-	A=(S,T,\alpha,\beta) & , ahol \\
-	S \text{ az állapotok}& \text{ véges, vagy végtelen halmaza} \\
-	T \text{ az átmentek} & \text{ véges, vagy végtelen halmaza} \\
-	\alpha, \beta :  T \rightarrow S  , & \\
-	\forall t \in T \text{-re }  \alpha(t) & \text{ a t keződpontja } \beta(t) \text{ a t átmenet végpontja .} 
-\end{align*}
-- Irányított gráf \\
--A csúcsok állapotokat reprezentálnak \\
-- Az élek átmeneteket reprezentálnak \\
-$\forall t\in T \text{-re } \alpha(t) \text{ csúcsból él vezet } \beta(t) \text{ csúcsba} $ \\
-Az $A=(S,T,\alpha,\beta)$ átmeneti rendszerben $n>0$ hosszú útnak nevezünk egy olyan $t_{1},t_{2},\dots,t_{n}$ sorozatot, ha $\beta(t_{i}) = \alpha(t_{i+1})$ teljesül $\forall i\in \{ 1,\dots ,  n-1 \}$-re. \\
-Utak konkatenációja, vagy összefűzése $c * c' = t_{1}t_{2}\dots t_{n} g_{1}\dots $ \\
-Jó példa egy egyszerű átmeneti rendszerre például egy italautómata, amelybe egy rögzívett összeget dobva két gombot nyomhat meg a felhasználó. \\
 
-\Section{A Struktúrált programgráf és a nem determinisztikus autómat}
+A folyamatok egy másik reprezentálási módját adják az átmeneti rendszerek [].
+Legyen $A = (S, T, \alpha, \beta)$, ahol
+\begin{itemize}
+	\item $S$: az állapotok véges, vagy végtelen halmaza,
+	\item $T$: az átmentek véges, vagy végtelen halmaza,
+	\item $\alpha, \beta$: $T \rightarrow S$ leképzés $\forall t \in T$-re, amelyben $\alpha(t)$ az átmenet kezdőpontja, $\beta(t)$ pedig a végpontja.
+\end{itemize}
+
+A modell ebben az esetben is egy irányított gráf, ahol a csúcsok állapotokat reprezentálnak, az élek pedig átmeneteket.
+
+% TODO: Megnézni, hogy a következő kommentezett rész milyen formában kerül további felhasználásra! (Csak akkor kell bele, hogy ha később lesz valamilyen jelentősége.)
+% Az $A=(S,T,\alpha,\beta)$ átmeneti rendszerben $n>0$ hosszú útnak nevezünk egy olyan $t_{1},t_{2},\dots,t_{n}$ sorozatot, ha $\beta(t_{i}) = \alpha(t_{i+1})$ teljesül $\forall i\in \{ 1,\dots ,  n-1 \}$-re. \\
+% Utak konkatenációja, vagy összefűzése $c * c' = t_{1}t_{2}\dots t_{n} g_{1}\dots $ \\
+
+Jó példa egy egyszerű átmeneti rendszer egy italautómata, amelybe egy rögzített összeget dobva két gombot nyomhat meg a felhasználó.
+
+% TODO: Nem teljesen látszik az FSA-val való kapcsolat.
+
+\Section{A Struktúrált programgráf és a nem determinisztikus autómata}
+
+% TODO: Ez a szakasz nem biztos, hogy kell bele, csak ha ugyanezen jelölések szerepelnek majd később is, illetve, hogy ha a program valódiságát validálni lehet.
+
 A struktúrált programozás olyan programozási elvek összessége, amelyek segítenek
 megteremteni, hogy a program szövegszerkezete tükrözze a program végrehajtása
 során követett vezérlési folyamatot.
@@ -60,72 +65,76 @@ A belépési pont a struktúa elején, a kilépés a végén van.
 amely egy bemenő éllel és egy kimenő éllel rendelkezik ( a programgráf kezdő élétől \\
 a kilépési élig vezet).
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Üzleti folyamatokhoz tartozó folyamatábrák}}\\
-		\vglue 1truecm
-		\includegraphics[width=6.8truecm, height=6.8truecm]{images/Demand_Process.png}\\
-		\textbf{\textsc{Road Transportation Demand}}
-		
-\end{center}}
+\Section{Üzleti folyamatokhoz tartozó folyamatábrák}
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=6.8truecm, height=6.8truecm]{images/Maintance_Process.png}\\
-		\textbf{\textsc{Road Transportation Maintance}}
-		
-\end{center}}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6.8truecm, height=6.8truecm]{images/Demand_Process.png}
+\caption{Road Transportation Demand}
+\label{fig:Demand_Process}
+\end{figure}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6.8truecm, height=6.8truecm]{images/Maintance_Process.png}
+\caption{Road Transportation Maintance}
+\label{fig:Maintance_Process.png}
+\end{figure}
 
 \Section{Folyamat megtervezése}
-A folyamat tervezésénél fontos szerepe van a strukturáltságnak, ellenkező esetben nagy problémák is adóthatnak, mint egy  végtelen ciklus, esetleg több input bemenet,vagy output.
-Az első azért okozna problémát, mert a folyamat sosem érne véget, nem lenne befejezve. \\
-Ha több input bemenet lenne (több különböző draft page), egy folyamaton belül,  akkor az már egy más folyamathoz tartoznak, egy más igényléshez.
-\\
-A nagyobb és komplexebb folyamatokat, kisebb részekre is bonthatjuk, amelyre csak struktúrált programként van lehetőségünk. Ezt az eljárást
-a vezérlőgráf lebontásának nevezzük. \\
-Lépései :  a struktúrált alapszerkezetek valamelyikét egy függvény csomóponttal helyettesítjük, és ezt mindaddig folytatjuk, amíg ez lehetséges. Az egyetlen csomópontból álló gráfot egyetlen
+
+A folyamat tervezésénél fontos szerepe van a strukturáltságnak, ellenkező esetben nagy problémák is adódhatnak, mint egy  végtelen ciklus, esetleg több input bemenet.
+\begin{itemize}
+	\item Az első azért okozna problémát, mert a folyamat sosem érne véget, nem lenne befejezve.
+	\item Ha több input bemenet lenne (több különböző draft page), egy folyamaton belül,  akkor az már egy más folyamathoz tartoznak, egy más igényléshez.
+\end{itemize}
+
+A nagyobb és komplexebb folyamatokat, kisebb részekre is bonthatjuk, amelyre csak struktúrált programként van lehetőségünk megadni. Ezt az eljárást
+a vezérlőgráf lebontásának nevezzük.
+
+% TODO: A következő rész akkor lehet érdekes, hogy ha egy gráf validátort össze sikerül hozzá rakni.
+
+Lépései:  a struktúrált alapszerkezetek valamelyikét egy függvény csomóponttal helyettesítjük, és ezt mindaddig folytatjuk, amíg ez lehetséges. Az egyetlen csomópontból álló gráfot egyetlen
 éllel helyettesítjük.
-\vskip 0.3 true cm
-Megjegyzés \\
-minden nem struktuált program átírható vele ekvivals strukturált program formályában. \\
+
+Megjegyzés:
+minden nem strukturált program átírható vele ekvivals strukturált program formályában. \\
 Áttérésként a Véges Determinisztikus autómatákra, egy $a\in \Sigma$ betűhöz, és $q_{i}$ állapothoz, pontosan egy output (nyíl) tarotzik. \\
-Nem determinisztikus autómata  (Nondeterminisztic Finite Automation) NFA esetén, viszon egy adott $q_{i}$ állapothoz és egy $a\in \Sigma$ jelhez több output is tartozhat, vagy egy sem.
+% TODO: Ennél a Böhm-Jacopini tételt lehet hivatkozni.
+
+\Section{Nem determinisztikus autómata}
+
+(Nondeterminisztic Finite Automation) NFA esetén, viszon egy adott $q_{i}$ állapothoz és egy $a\in \Sigma$ jelhez több output is tartozhat, vagy egy sem.
 \vskip 0.3 true cm
 Tehát lehetséges olyan belső állapota, amiből a beolvasott szimbólum hatására több lehetséges állapot egyikébe mehet át.\\
 Láthatjuk , hogy a véges állapotú autómaták megfeleltethetőek a modellezett folyamatoknak.
 Egy strukturálatlan alapelemekből felépülő folyamat, megfelel egy Non determinisztikus autómatának.
 A struktúrált elemekből felépülő modellezés pedig egy véges állapotú, determinisztikus autómatával.
 
-Mint ahogy a Struktúrált programozánál is említettük, hogy bármely nem struktúrált program átírható, vele ekvivalens struktúrált programmá, ez szintén jellemző a véges állapotú, nondetermenisztikus autómatákra. \\
+Mint ahogy a Struktúrált programozánál is említettük, hogy bármely nem struktúrált program átírható, vele ekvivalens struktúrált programmá, ez szintén jellemző a véges állapotú, nondetermenisztikus autómatákra.
 Ezt a tranzíciós függvény elkészítésével tudjuk megoldani, amelyben minden olyan állapot, ahonnan egy bizonyos beolvasott szóval több helyre tudunk eljutni, egy új állapotként felvesszük, majd rekurzívan tovább vizsgáljuk.
 
-\begin{center}
-	DFA és NFA ekvivalenciája
-\end{center}
-Legyen adott egy $N=(Q,\Sigma,\rho , q_{0}, F) $ véges nondeterminisztikus autómata. Nyelve legyen $\alpha(n)$. n-ből kiindulva szerkezhetünk egy olyan A véges determinisztikus autómatát, amely ugyanazt az $\alpha(n)$ nyelvet fogadja el.\\
+\Section{DFA és NFA ekvivalenciája}
+
+Legyen adott egy $N = (Q, \Sigma, \rho, q_{0}, F) $ véges nondeterminisztikus autómata. Nyelve legyen $\alpha(n)$. $n$-ből kiindulva szerkezhetünk egy olyan A véges determinisztikus autómatát, amely ugyanazt az $\alpha(n)$ nyelvet fogadja el.\\
 \begin{equation}
 	A=(P(q),\Sigma,\rho^{'},[q_{0}],F' )
 \end{equation}
-Ahol Q a részhalmazok összessége, F' pedig a Q mindazon részhalmazai, amelyek legalább egy F beli állapotot tartalmaznak.(Végállapothoz vezetnek)
+Ahol Q a részhalmazok összessége, F' pedig a Q mindazon részhalmazai, amelyek legalább egy F beli állapotot tartalmaznak. (Végállapothoz vezetnek)
 
 \begin{align*}
 	&& \rho'  \text{ így értelmezhetünk, minden } a\in\Sigma \\
 	&&  \rho'([q_{1},q_{2},\dots,q_{n}],a) = \rho(q_{1},a) \cup \rho(q_{2},a) \cup \dots \cup \rho(q_{k},a)
 \end{align*}
 
-\begin{center}
-	Egy A determinisztikus autómata és az N nondszereminisztikus autómata álltal elfogadott nyelv ugyanaz. $\alpha(A) = \alpha(N)$
-\end{center}
-
-
+Egy $A$ determinisztikus autómata és az N nemdszereminisztikus autómata által elfogadott nyelv ugyanaz, $\alpha(A) = \alpha(N)$.
 
 \Section{Folyamatmodellezés részei}
+
+% NOTE: Ez a rész kissé váratlanul jön, főleg annak tükrében, hogy utána ismét állapotgépes modell következik majd.
+
 \subsection{Érzékenység vizsgálat}
+
 Mi történik, ha rosszul becsljük meg az erőforrásainkat? \\
 Mik számítanak lényeges paraméterek? \\
 Milyen erőforrásokat bővítsünk? (emberi vagy gépi)? \\
@@ -164,11 +173,8 @@ Konkrét eset kezelhető-e sikeresen \\
 A folyamat végrehajtása során, minden eset végrehajtódik helyesen, és a végén terminál. \\
 Van e lehetőség két feladat tetszőleges sorrendben való végrehajtására.
 
-
 \subsection{Valószínűségi modell}
+
 A folyamat során bizonyos lépéseknél, elemzéseket végezve, az erőforrásokat különféleképpen is feloszthatjuk, hiszen lehet, hogy egy elágazás során az egyik részbe az esetek $90 \% $-ban lép be, így erre a részre nagyobb erőforrást teszünk, mint a maradék $10 \% $ részre.
 Az adatokat megvizsgálva következtethetünk, becsülhetünk.
 Egy  egy Diszkrét valószínűségi változó lesz, hiszen véges számú adatokat vizsgálunk.
-
-
-
