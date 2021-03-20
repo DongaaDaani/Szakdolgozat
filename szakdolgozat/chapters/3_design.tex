@@ -34,58 +34,81 @@ Egy $e \in E$ élhez a $w(e)$ függvény segítségével rendelhetünk címkét.
 
 \Section{Élcsoportok}
 
-Két élcsoportot definiálhatunk a Petri hálóba, a bemenő és a kimenő élek halmazát. Ez formálisan felírva az alábbiakat jelenti.
+Két élcsoportot definiálhatunk a Petri hálóba: a bemenő és a kimenő élek halmazát. Ez formálisan felírva az alábbiakat jelenti.
+Egy tranzíció bemenő helyeinek, őseinek halmazát a $\text{Pre}: T \rightarrow \mu (P)$ leképzés segítségével kaphatjuk meg, ahol 
+\[
+\text{Pre}(t) = \{ p \in P \mid (p, t) \in E \}, \quad \forall t \in T.
+\]
+Hasonlóképpen adódik a kimenő helyek, útódok halmazának meghatározásához a $\text{Post}: T \rightarrow \mu(P)$ leképzés, ahol
+\[
+\text{Post(t)} = \{ p \in P \mid (t, p) \in E \}, \quad \forall t \in T.
+\]
 
 \begin{align*}
-	\text{Pre : } T \rightarrow \mu (P) & \text{ , ahol Pre(t) } = \{ p\in P \mid (p,t) \in E \} \text{ t őseinek vagy bemenő helyeinek halmaza}\\
-	\text{Post: } T \rightarrow \mu(P) & \text{ ,ahol Post(t) } = \{ p\in P \mid (t,p) \in E \} \text{ t útódainak vagy kimenő helyeinek halmaza} \\
 	\forall p \in P , \forall t \in T & \text{ esetén } \delta^{-}((p,t)) = \delta((p,t)) \text{ ha } (p,t) \in E \text{ egyébként } \delta^{-}((p,t)) = 0 \\
 	& \delta^{-}((t,p)) = \delta((t,p)) \text{ ha } (t,p) \in E \text{ egyébként } \delta^{-}((t,p)) = 0
 \end{align*}
-$\Delta $ súlyozott szomszédsági $ \mid T \mid \times \mid P \mid $ dimenziós mátrixok, ahol \\ 
-$\Delta(t,p) = \delta^{+}((p,t))-\delta^{-}((t,p)) $. \\
-A $\Delta^{-} $ és a $\Delta^{+}$ szintén $\mid T \mid \times \mid P \mid $ dimenziós mátrixok, ahol $\Delta^{-}(t,p) = \delta^{-}((p,t))$ illetve $ \Delta^{+}(t,p) = \delta^{+}((p,t)) $  \\
 
-Egy tranzíció tüzelés akkor megengetedd, a t minden ősén van legalább $\delta((p,t))$ token, vagyis
-\begin{equation*}
-	\forall p \in Pre(t) : m(p) \geq \delta((p,t))
-\end{equation*}
-m állapotban véletlen módon választ egy engedélyezett tranzíciót, melyet tüzel. \\
-m állapotban a t traníció tüzelésének eredménye az-az m' állapot , ahol 
-\begin{equation*}
-	\forall p \in P-re: m'(p) = m(p) - \delta^{-}((p,t)) + \delta^{+}((p,t))
-\end{equation*}
+% TODO: A \delta^{-}((p, t)) mit jelent pontosan itt? (A \delta kitevője miatt kérdéses.)
 
+Legyen $\Delta $ súlyozott szomszédsági $ \mid T \mid \times \mid P \mid $ dimenziós mátrixok, ahol
+\[
+\Delta(t,p) = \delta^{+}((p,t))-\delta^{-}((t,p)).
+\]
+A $\Delta^{-} $ és a $\Delta^{+}$ szintén $\mid T \mid \times \mid P \mid $ dimenziós mátrixok, ahol $\Delta^{-}(t,p) = \delta^{-}((p,t))$ illetve $ \Delta^{+}(t,p) = \delta^{+}((p ,t))$
 
+Egy tranzíció tüzelés akkor megengedett a $t$ minden ősén, ha van legalább $\delta((p,t))$ token, vagyis
+\[
+\forall p \in \text{Pre}(t) : m(p) \geq \delta((p, t))
+\]
+Egy $m$ állapotban véletlen módon választ egy engedélyezett tranzíciót, melyet tüzel.
 
+Az $m$ állapotban a $t$ tranzíció tüzelésének eredménye egy $m'$ állapotként jelölhető, ahol 
+\[
+m'(p) = m(p) - \delta^{-}((p,t)) + \delta^{+}((p, t)), \quad \forall p \in P.
+\]
+
+% TODO: A tokenek már korábban említésre kerültek. Érdemes előbb részletezni.
 
 A Petri hálók állapotváltozók státuszát reprezentálják. Az állapotokat a hely körében lévő fekete
-pontok, az úgynevezett tokenek reprezentálják. A helyállapota a benne lévő tokenek számát
-jelenti. A hálózat állapota az egyes helyállapotok összessége. Az állapotvektor a  $ \tau = \mid P \mid $ komponensű M token-eloszlású vektor, ahol a $p_{i}$ helyen található tokenek számát jelöli $m_{i}$ \\
+pontok, az úgynevezett tokenek reprezentálják. A hely állapota a benne lévő tokenek számát
+jelenti. A hálózat állapota az egyes helyállapotok összessége. Az állapotvektor a $\tau = \mid P \mid $ komponensű $M$ token-eloszlású vektor, ahol a $p_{i}$ helyen található tokenek számát $m_{i}$ jelöli.
 
-A Petri hálók működése állapotátmenetekkel (trajektória) reprezentálható. Egy állapot
-megváltozása a tranzíciók tüzelését jelenti:
+A Petri hálók működése állapotátmenetekkel (trajektória) reprezentálható. Egy állapot megváltozása a tranzíciók tüzelését jelenti.
 
-A petri hálókat szokták alkalmazni az alábbi rendszerek modellezésében :
-1.Nemdeterminisztikus \\
-2.Párhuzamos \\
-3.Elosztott\\
-4.Konkurens\\
-5.Asszinkron \\
-A Petri-háló diszkrét elosztott rendszerek matematikai ábrázolása.\\
-Az áttekinthetőség kedvéért ad egy grafikus reprezentációt, a precizitás és egyértelműség kedvéért pedig egy matematikai reprezentációt. \\
-Az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, az automataelmélet általánosításának tekinthető. \\
-Előnye az autómatákhoz képest, hogy az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, az automataelmélet általánosításának tekinthető. Előnye az autómatával szemben, hogy sokkal szemléletesebben fejezi ki a szinkronizációt, illetve kompakt módon fejezi ki az állapotot.
-\vskip 0.3 true cm
+A Petri hálókat az alábbi rendszerek modellezésében szokták alkalmazni: nemdeterminisztikus, párhuzamos, elosztott, konkurens, asszinkron.
+
+% TODO: Itt érdemes lehet a felsorolt típusokra, azok viszonyára kitérni! (Egyesek sajnos szinonímaként vagy szimplán helytelenül használják őket, ezért itt sem gond ha hangsúlyozásra kerül, hogy melyik mit jelent.)
+
+A Petri-háló diszkrét elosztott rendszerek matematikai ábrázolása.
+Az áttekinthetőség kedvéért ad egy grafikus reprezentációt, a precizitás és egyértelműség kedvéért pedig egy matematikai reprezentációt.
+Az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, az automataelmélet általánosításának tekinthető.
+
+Előnye az autómatákhoz képest,
+% TODO: Ez is egy automata. Itt melyikkel történik a szembeállítás?
+hogy az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, az automataelmélet általánosításának tekinthető. Előnye az autómatával szemben, hogy sokkal szemléletesebben fejezi ki a szinkronizációt, illetve kompakt módon fejezi ki az állapotot.
+
 \Section{Működése és felépítése}
-irányított,súlyozott, páros gráf\\
-Két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.\\
+
+irányított, súlyozott, páros gráf
+
+Két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.
+
 Van egy állapotjelölő token, amely fekete pötty a hely körébe rajzolva.
-A hely állapota pedig a bennelévő tokenek száma.\
-Petri hálók jellemzői : \\
-Azonnal tüzelések , Aszinkron tüzelések , nem determinisztikus , két tranzíció nem tüzel egyszerre, nem interpretált.\\
-Bármely $e\in E$ élhez egy $ \delta : E  \rightarrow \Re^{+}  $ súlyfüggvényt is hozzárendelhetünk. \\
-A minimális súlyú feszítőfa megtalálására legismertebb algoritmus a mohó algoritmus, amelyet az alábbi képpen definiálhatunk :\\
+A hely állapota pedig a bennelévő tokenek száma.
+
+% TODO: A leírás így redundáns, és nem teljesen következetes. Érdemes az ábrázolással kapcsolatos részeket átszervezni, hogy a jelölésrendszer, tokenek definiálása egy helyre kerüljön.
+
+\Section{Petri hálók jellemzői}
+
+Azonnal tüzelések, Aszinkron tüzelések, nem determinisztikus, két tranzíció nem tüzel egyszerre, nem interpretált.
+
+Bármely $e\in E$ élhez egy $ \delta : E \rightarrow \Re^{+}  $ súlyfüggvényt is hozzárendelhetünk.
+
+A minimális súlyú feszítőfa megtalálására legismertebb algoritmus a mohó algoritmus, amelyet az alábbi képpen definiálhatunk:
+
+% TODO: Hogyan kapcsolódik az előzőekhez a feszítőfa?
+
 Egy $\Gamma = (V,E)$ összefüggő gráf. Legyen $\delta R \rightarrow \Re^{+}$ egy súlyfüggvény. A mohó algoritmus lépésében, kiválasztunk egy olyan $e_{1} \in E$ elemet, amelyre $\delta(e_{1}) \leq \delta(e)  $ ,  $\forall e \in E $ \\ Ha megvan kiválasztottuk az $e_{1} , e_{2}, \dots , e_{k}$  éleket, akkor az $e_{k+1}$-edik élet úgy választjuk, hogy ne alkosson kört
 \begin{equation}
 	e_{k+1} = { e\in E \setminus \{ {e_{1},e_{2},\dots,e_{k}} \} | \text{ az } \{ {e_{1},e_{2},\dots,e_{k},e} \} \text{ élek nem alkotnak kört} }
@@ -93,15 +116,17 @@ Egy $\Gamma = (V,E)$ összefüggő gráf. Legyen $\delta R \rightarrow \Re^{+}$ 
 illetve teljesül az is , hogy $ e_{k+1} < \forall \delta(e)$ \\
 
 Könnyen belátható ez az algoritmus n-1 lépésből áll, ahol \\  $n=|V|, \text{ amely egy } \{ e_{1},e_{2},\dots,e_{n-1} \} $  élsorozatú feszítőfát eredményez.
-\vskip 0.3 true cm
+
 Egy
 \begin{align*}
 	\Gamma = (V,E)  \text{ gráf feszítőfájának nevezünk egy olyan} \Delta \text{ részgráfot amelyre } \\ \Delta = (V,E) \text{ és } \Delta \subset \Gamma \text{ és } \Delta \text{ fa}
 \end{align*}
+
+% TODO: Ez a rész még itt elég zavaros.
+
 Az állapot megváltozása a tranzíciók "tüzelésével" történik.
 Tüzelés végrehajtása az alábbiképpen zajlik :
 Első lépésben megvizsgálja az engedélyezettséget, majd ezt követően a token elvétele következik a bemetni helyről, majd a token kirakása a kimeneti helyekre.\\
 Ez egy olyan új állapotot eredményez, amelyben megváltozik a Token eloszlás vektor.
 \\ Ezzel a témával kapcsolatosan hasznos információkat lehet találni az alábbi linken : \\
 https://inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/form%C3%A1lis-m%C3%B3dszerek/11/PN_alapfogalmak_kiterjesztesek.pdf
-
