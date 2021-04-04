@@ -30,7 +30,18 @@ Legyen $A = (S, T, \alpha, \beta)$, ahol
 
 A modell ebben az esetben is egy irányított gráf, ahol a csúcsok állapotokat reprezentálnak, az élek pedig átmeneteket.
 
-% TODO: Megnézni, hogy a következő kommentezett rész milyen formában kerül további felhasználásra! (Csak akkor kell bele, hogy ha később lesz valamilyen jelentősége.)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=6.8truecm, height=6.8truecm]{images/AllapotAtmenet.png}
+	\caption{A 3.lépésben járó üzleti folyamat}
+	\label{fig:Maintance_Process.png}
+\end{figure}
+
+Látható, hogy az elvégzett lépéseket zölddel, az aktuális lépést pedig pirossal jelzi a rendszer. \\
+$S:{\{\text Draft,Supervisor Approve, Maintance Coordinator Approve, Mechanical Maintance, \\ Maintance Planning, Maintance Coordinator 2\}}$
+
+
+% TODO: Megnézni, hogy a következő kommentezett rész milyen formában kerül további felhasználásra! (Csak akkor kell bele, hogy ha később lesz valamilyen jelentősége.) (Erre nincs szükség, mivel nem térek ki sehol utak konkatenációjára.)
 % Az $A=(S,T,\alpha,\beta)$ átmeneti rendszerben $n>0$ hosszú útnak nevezünk egy olyan $t_{1},t_{2},\dots,t_{n}$ sorozatot, ha $\beta(t_{i}) = \alpha(t_{i+1})$ teljesül $\forall i\in \{ 1,\dots ,  n-1 \}$-re. \\
 % Utak konkatenációja, vagy összefűzése $c * c' = t_{1}t_{2}\dots t_{n} g_{1}\dots $ \\
 
@@ -40,7 +51,7 @@ Jó példa egy egyszerű átmeneti rendszer egy italautómata, amelybe egy rögz
 
 \Section{A Struktúrált programgráf és a nem determinisztikus autómata}
 
-% TODO: Ez a szakasz nem biztos, hogy kell bele, csak ha ugyanezen jelölések szerepelnek majd később is, illetve, hogy ha a program valódiságát validálni lehet.
+% TODO: Ez a szakasz nem biztos, hogy kell bele, csak ha ugyanezen jelölések szerepelnek majd később is, illetve, hogy ha a program valódiságát validálni lehet. (Csináltam a két modelezett folyamathoz ilyen fajta jelölést.)
 
 A struktúrált programozás olyan programozási elvek összessége, amelyek segítenek
 megteremteni, hogy a program szövegszerkezete tükrözze a program végrehajtása
@@ -81,6 +92,11 @@ a kilépési élig vezet).
 \label{fig:Maintance_Process.png}
 \end{figure}
 
+
+
+
+
+
 \Section{Folyamat megtervezése}
 
 A folyamat tervezésénél fontos szerepe van a strukturáltságnak, ellenkező esetben nagy problémák is adódhatnak, mint egy  végtelen ciklus, esetleg több input bemenet.
@@ -100,7 +116,18 @@ Lépései:  a struktúrált alapszerkezetek valamelyikét egy függvény csomóp
 Megjegyzés:
 minden nem strukturált program átírható vele ekvivals strukturált program formályában. \\
 Áttérésként a Véges Determinisztikus autómatákra, egy $a\in \Sigma$ betűhöz, és $q_{i}$ állapothoz, pontosan egy output (nyíl) tarotzik. \\
-% TODO: Ennél a Böhm-Jacopini tételt lehet hivatkozni.
+% TODO: Ennél a Böhm-Jacopini tételt lehet hivatkozni. (Így emlékszem, a jegyzetet nem találom)
+Minden valódi program átalakítható vele ekvivalens strukturált program formájába.
+
+A Road Transportation Maintance folyamathoz tartozó jelölés a 3 alapvető elem segítségével :
+\vskip 0.3 true cm
+{\bf S(Start,Draft, E(Approve; Stop; S(Supervisor,maintance, \\ E(ProblemType;S(Maintance planning); S(Mechanical))), Maintance Coordinator 2));}
+
+
+Látható, hogy a start lépés után a szekvenciában a draft lépés következik, így ezzel a felírással strukturált lesz a folyamatábra.\\
+Hasonlóképpen a Road Transportation Demand is felírható az alábbi módon : \\
+{\bf S(Start,Draft,E(Approve;S(Manager approve,RoadTransp Ort Approve; Stop)),\\ Stop)
+}
 
 \Section{Nem determinisztikus autómata}
 
@@ -113,6 +140,8 @@ A struktúrált elemekből felépülő modellezés pedig egy véges állapotú, 
 
 Mint ahogy a Struktúrált programozánál is említettük, hogy bármely nem struktúrált program átírható, vele ekvivalens struktúrált programmá, ez szintén jellemző a véges állapotú, nondetermenisztikus autómatákra.
 Ezt a tranzíciós függvény elkészítésével tudjuk megoldani, amelyben minden olyan állapot, ahonnan egy bizonyos beolvasott szóval több helyre tudunk eljutni, egy új állapotként felvesszük, majd rekurzívan tovább vizsgáljuk.
+
+
 
 \Section{DFA és NFA ekvivalenciája}
 
@@ -128,6 +157,37 @@ Ahol Q a részhalmazok összessége, F' pedig a Q mindazon részhalmazai, amelye
 \end{align*}
 
 Egy $A$ determinisztikus autómata és az N nemdszereminisztikus autómata által elfogadott nyelv ugyanaz, $\alpha(A) = \alpha(N)$.
+
+\Section{Folyamatmodellezés}
+
+A modell, a való világ egy részének egyszerűsített példánya.
+
+% TODO: Hogy ha a modellről ilyen formában szó esik, akkor azt érdemes korábban megtenni. (Előrébb hoztam, a második részhez.)
+
+A modellezés célja az, hogy felmérjük, majd  elemezhessük és javíthassuk a
+folyamatainkat.Esetünkben azt célszerű vizsgálni, milyen jóváhagyási lépések szükségesek , és melyek azok amelyek elhagyhatóak, redundánsak. Az elmezés során több szempontot érdemes szemügyre venni. Például felhasználók kérését, az erőforrások kezelését.  A folyamatmodellek különböző információkat hordozhatnak és változó lehet a befogadó fél is, így nem mindegy, hogy milyen szemszögéből nézve készítjük el őket. Tehát a különböző nagy részlegeknek más-más célja lesz az adott folyamattal, különböző megjelenési formákat kell biztosítani, más változókkal, mezőkkel , adatbázissal, és erőforásokkal. A folyamatmodellek alapvetően két csoportra bonthatóak. Léteznek As-Is
+modellek, amik a jelenlegi helyzetet mutatják be, és To-Be modellek, amik a kívánt
+szituáció ábrázolását takarják.  \\
+A folyamatok leírására több lehetőség van. Legtöbbször ezek
+kombinációját használják a felelős személyek, ahelyett, hogy egyetlen egyhez
+ragaszkodnának. Készülhet szöveges folyamatleírás vagy táblázatos leírás is, de a
+legcélravezetőbb a grafikus, modell-orientált leírás, amely segítségével sokkal
+egyértelműbben, és átláthatóbban ábrázolhatjuk az adott folyamatokat. A Bpm rendszer grafikus ábrázolást használ, hiszen folyamatábrákat használ, a jó áttekinthetőség érdekében. \\
+
+Több különböző szoftvert vehetünk igénybe a grafikus ábrázolás elkészítéséhez, amelyek megkönnyítik az elkészítést, de ebből adódóan egy hátrányt is
+magában hordoz a módszer, mégpedig azt, hogy a többféle ábrázolási módból adódóan,
+nehezen értelmezhető modellek jöhetnek létre. Ennek kiküszöbölésére azonban már
+bevezetésre kerültek olyan modellező nyelvek, szoftverek, melyek egységesítik az
+ábrázolás módját, ilyenek például az UML szabvány.
+Az UML szabványos,  általános célú modellező nyelv, üzleti elemzők, rendszertervezők, szoftvermérnökök számára.
+Jelentése:  (Unified Modeling Language)
+Segítségével tervezni  illetve dokumentálni lehet a szoftvereket. Az UML-ben modellek és diagramok adhatók meg, különböző nézetekben.
+Az üzleti feladatok nem csupán a szereplőkkel lehetnek kapcsolatban, hanem más feladatokkal is kapcsolatban állhatnak. Gyakran állnak elő összefüggések különféle üzleti részfolyamatok illetve használati esetek között. Az UML két lehetséges függőségi kapcsolatot definiál a használati esetek között, ezek a beillesztés és a kiterjesztés.
+Az UML a jelöléseknek gazdag választékát kínálja, mely segítségével a szoftverfejlesztés összesfázisamodellezhető. \\
+
+Az üzleti folyamatok modellezésével az üzleti stratégia és az informatikai
+rendszerek között olyan kapcsolat hozható létre, ami nagyban hozzájárulhat üzleti
+értékünk növeléséhez.
 
 \Section{Folyamatmodellezés részei}
 

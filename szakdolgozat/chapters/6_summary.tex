@@ -11,12 +11,30 @@ Lehetőség van elutasításra, ha valamilyen hiba lépett fel, akár egy nem me
 
 A folyamatot a vezetőknek lesz jogosultsága elindítani, és a vállalat alkalmazottai közül lehet majd választani, hogy kinek szeretné kiadni a feladatot. A folyamat elindításához szükséges kitölteni a feladat pontos leírását, az elvégzési határidőt, illetve kiválasztani az illetékes személyt.
 
-Az alkalmazásban több különböző \textit{viewpage} lesz megvalósítva.
+Az alkalmazásban több különböző jogosultsági szinthez tartozó \textit{igénylési fórum} lesz megvalósítva. A korábban modellezett folyamatok közül, a Road Transportation Maintancere kitérően, 4 különböző fórum lesz létrehozva.
 
 % TODO: Az előbbit valahogy magyarosabban is ki lehetne fejezni.
 
-%Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva.
-%(Ezekről a későbbiekben még részletesebben szó lesz.)
+Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva.
+{\large
+	\begin{center}
+		\vglue 1truecm
+		\vglue 1truecm
+		\includegraphics[width=7.8truecm, height=6.8truecm]{images/login.png}\\
+		\textbf{\textsc{Bejelentkező felület}}
+		
+\end{center}}
+
+{\large
+	\begin{center}
+		\vglue 1truecm
+		
+		\vglue 1truecm
+		\includegraphics[width=10.8truecm, height=6.8truecm]{images/SignUp.png}\\
+		\textbf{\textsc{Regisztrációs felület}}
+		
+\end{center}}
+
 
 %A belépést követően a vezetőségnek, és az alkalmazottaknak is másféle weboldal fog megjelenni.
 
@@ -25,7 +43,8 @@ Az alkalmazásban több különböző \textit{viewpage} lesz megvalósítva.
 % TODO: Ez olyan részlet, amit itt vagy konkrétan, képernyőképekkel kellene bemutatni, vagy nem kell ilyen formában említeni.
 
 
-Az alkalmazott a folyamatokat, amiket neki osztottak ki, megtekintheti egy erre specializált menüpontban, itt kiválasztva a folyamatot, megtekintheti a hozzá tartozó információkat.
+Az alkalmazott a folyamatokat, amiket neki osztottak ki, megtekintheti egy erre specializált menüpontban, itt kiválasztva a folyamatot, megtekintheti a hozzá tartozó információkat. 
+(Ezekről a későbbiekben még részletesebben szó lesz.)
 
 \section{Működése}
 
@@ -48,52 +67,52 @@ Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \te
 
 A részleg táblázatban
 \begin{itemize}
-	\item \texttt{id}: A részleghez tartozó egyedi azonosító. (Egész érték)
+	\item \texttt{id}: A részleghez tartozó egyedi azonosító. (Elsődleges Kulcs)
 	\item \texttt{name}: A részleg pontos megnevezése, amelyhez az Id tartozik. (Szöveg)
 \end{itemize}
 
 A Task táblához fog az alábbi rekordok fognak tartozni:
 \begin{itemize}
-	\item Egy részleg vezetőéhez tartozó Id, hogy melyik vezető indította el a task-ot.
-	\item Egy időpont, hogy mikor lett elindítva a feladat.
-	\item Feladat pontos leírása, Description rész.
-	\item Illetve egy határidő rekort.
+	\item Egy részleg vezetőéhez tartozó egyedi azonosító, hogy melyik vezető indította el a task-ot. (Elsődleges Kulcs)
+	\item Egy időpont, hogy mikor lett elindítva a feladat. (Dátum)
+	\item A feladat pontos leírását tartalmazó mező. (Szöveg)
+	\item Határidőt tartalmazó mező. (Dátum)
 \end{itemize}
 
 Employee Táblázatban:
 \begin{itemize}
-	\item Id, Az alkalmazott egyedi azonosítója.
+	\item Id, Az alkalmazott egyedi azonosítója. (Elsődleges Kulcs)
 	\item Az alkalmazott pontos neve. (Vezetéknév + Keresztnév)
-	\item Életkora
-	\item Neme
-	\item Lakcíme
-	\item Telefonszáma
-	\item Email címe
-	\item poziciója
-	\item A részleg Id-ja, hogy melyik részlegen dolgozik az adott alkalmazott.
-	\item A részleg neve, amelyhez a megadott Id tartozik.
+	\item Életkora (Egész érték)
+	\item Neme (Szöveg)
+	\item Lakcíme (Szöveg)
+	\item Telefonszáma (Egész érték, telefon formátum)
+	\item Email címe (Szöveg, email formátum)
+	\item pozició leírása (Szöveg)
+	\item A részleg Id-ja, hogy melyik részlegen dolgozik az adott alkalmazott. (Egész érték)
+	\item A részleg neve, amelyhez a megadott Id tartozik. (Egész érték)
 \end{itemize}
 
 Leader Táblázatban:
 \begin{itemize}
-	\item Leader pontos neve, ez tartalmazza a keretnevét, illetve a vezetéknevét. Összetett rekord lesz.
-	\item Részleg kódja, amely részlegen az adott személy vezető.
-	\item Elérhetősége , amelye egy email cím formát fog jelenteni, validálással megfeleltve.
-	\item Egy dátum mező, hogy pontosan mióta vezető az adott részlegen.
+	\item Leader pontos neve, ez tartalmazza a keretnevét, illetve a vezetéknevét. Összetett rekord lesz. (Szöveg)
+	\item Részleg kódja, amely részlegen az adott személy vezető. (Egész érték)
+	\item Elérhetősége , amely egy email cím formát fog jelenteni, validálással megfeleltve. (Szöveg)
+	\item Egy dátum mező, hogy pontosan mióta vezető az adott részlegen. (Dátum)
 \end{itemize}
 
 Egy Department tartalmazó táblázat:
 \begin{itemize}
 	\item Id, A részleg egyedi azonosítószáma (Elsődleges kulcs)
-	\item Name, a részleg pontos megnevezése
+	\item Name, a részleg pontos megnevezése (Szöveg)
 \end{itemize}
 
 Egy Task-ot tartalmazó táblázat:
 \begin{itemize}
-	\item Egy Id, amely a task-ot azonosítja. Ki az elküldő, a feladatot ki kapja majd meg.
-	\item Description, a feladat pontos leírása.
-	\item Kezdő idő , amikor a feladat létre lett hozva.
-	\item Befejezési idő, hogy a feladat meddig végezhető el.
+	\item Egy Id, amely a task-ot azonosítja. (Elsődleges kulcs)
+	\item Description, a feladat pontos leírása. (Szöveg)
+	\item Kezdő idő , amikor a feladat létre lett hozva. (Dátum)
+	\item Befejezési idő, hogy a feladat meddig végezhető el. (Dátum)
 \end{itemize}
 Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a következő kibővített Er modellen ez látható : \\
 

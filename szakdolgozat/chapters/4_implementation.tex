@@ -6,9 +6,9 @@
 Magában foglalja az üzleti folyamatok definiálását, végrehajtását és automatizálását, ahol a feladatok, információ vagy dokumentumok kerülnek átadásra egy résztvevőtől egy másikhoz, az eljárás szabályainak
 megfelelően.
 
-% TODO: A BPM rövidítést ki kellene írni, és be kellene hivatkozni. (Más, hasonló hivatkozások is jól jöhetnek ide.)
+% TODO: A BPM rövidítést ki kellene írni, és be kellene hivatkozni. (Más, hasonló hivatkozások is jól jöhetnek ide.) 
 
-A korábbi workflow rendszerek csak az üzleti folyamatok leképezését tették lehetővé vizualizációs eszközök segítségével. A BPM azóta sokat fejlődött és a támogató szoftvercsomagok sokkal több lehetőséget nyújtanak már.
+A korábbi workflow rendszerek csak az üzleti folyamatok leképezését tették lehetővé vizualizációs eszközök segítségével. A Business Process Management azóta sokat fejlődött és a támogató szoftvercsomagok sokkal több lehetőséget nyújtanak már.
 Ezek a következő szakaszokban kerülnek kifejtésre.
 
 \Section{Elvárások}
@@ -98,40 +98,12 @@ $A_{1}  = \{ (X,Y):Y = (\alpha,\beta) \in O \text{ és } X \in \alpha \} \text{ 
 A_{2}  =  \{ (Y,X):Y = (\alpha,\beta) \in O \text{ és } X \in \beta \}
 $
 
-\Section{Folyamatmodellezés}
-
-A modell, a való világ egy részének egyszerűsített példánya.
-
-% TODO: Hogy ha a modellről ilyen formában szó esik, akkor azt érdemes korábban megtenni.
-
-A modellezés célja az, hogy felmérjük, majd  elemezhessük és javíthassuk a
-folyamatainkat.Esetünkben azt célszerű vizsgálni, milyen jóváhagyási lépések szükségesek , és melyek azok amelyek elhagyhatóak, redundánsak. Az elmezés során több szempontot érdemes szemügyre venni. Például felhasználók kérését, az erőforrások kezelését.  A folyamatmodellek különböző információkat hordozhatnak és változó lehet a befogadó fél is, így nem mindegy, hogy milyen szemszögéből nézve készítjük el őket. Tehát a különböző nagy részlegeknek más-más célja lesz az adott folyamattal, különböző megjelenési formákat kell biztosítani, más változókkal, mezőkkel , adatbázissal, és erőforásokkal. A folyamatmodellek alapvetően két csoportra bonthatóak. Léteznek As-Is
-modellek, amik a jelenlegi helyzetet mutatják be, és To-Be modellek, amik a kívánt
-szituáció ábrázolását takarják.  \\
-A folyamatok leírására több lehetőség van. Legtöbbször ezek
-kombinációját használják a felelős személyek, ahelyett, hogy egyetlen egyhez
-ragaszkodnának. Készülhet szöveges folyamatleírás vagy táblázatos leírás is, de a
-legcélravezetőbb a grafikus, modell-orientált leírás, amely segítségével sokkal
-egyértelműbben, és átláthatóbban ábrázolhatjuk az adott folyamatokat. A Bpm rendszer grafikus ábrázolást használ, hiszen folyamatábrákat használ, a jó áttekinthetőség érdekében. \\
-
-Több különböző szoftvert vehetünk igénybe a grafikus ábrázolás elkészítéséhez, amelyek megkönnyítik az elkészítést, de ebből adódóan egy hátrányt is
-magában hordoz a módszer, mégpedig azt, hogy a többféle ábrázolási módból adódóan,
-nehezen értelmezhető modellek jöhetnek létre. Ennek kiküszöbölésére azonban már
-bevezetésre kerültek olyan modellező nyelvek, szoftverek, melyek egységesítik az
-ábrázolás módját, ilyenek például az UML szabvány.
-Az UML szabványos,  általános célú modellező nyelv, üzleti elemzők, rendszertervezők, szoftvermérnökök számára.
-Jelentése:  (Unified Modeling Language)
-Segítségével tervezni  illetve dokumentálni lehet a szoftvereket. Az UML-ben modellek és diagramok adhatók meg, különböző nézetekben.
-Az üzleti feladatok nem csupán a szereplőkkel lehetnek kapcsolatban, hanem más feladatokkal is kapcsolatban állhatnak. Gyakran állnak elő összefüggések különféle üzleti részfolyamatok illetve használati esetek között. Az UML két lehetséges függőségi kapcsolatot definiál a használati esetek között, ezek a beillesztés és a kiterjesztés.
-Az UML a jelöléseknek gazdag választékát kínálja, mely segítségével a szoftverfejlesztés összesfázisamodellezhető. \\
-
-Az üzleti folyamatok modellezésével az üzleti stratégia és az informatikai
-rendszerek között olyan kapcsolat hozható létre, ami nagyban hozzájárulhat üzleti
-értékünk növeléséhez.
 
 \Section{Folyamatmodellezés és szimuláció}
 
-% TODO: A nemdeterminisztikus modelleknek milyen jelentősége lesz a későbbiekben? (Nem teljesen tünne indokoltnak ilyen formában a témához.)
+% TODO: A nemdeterminisztikus modelleknek milyen jelentősége lesz a későbbiekben? (Nem teljesen tünne indokoltnak ilyen formában a témához.) (A Későbbiekben nem lesz jelentősége, viszont az első két folyamat nem determinisztukus, hiszen két bemente van. Talán azt itt ki lehet hangsúlyozni.)
+
+Az első két ábrán látható folyamatábra nem determinisztikus volt, mivel mindkettőnél két bemenet volt, az egyik a Draft, a másik pedig a Start lépést. A start lépést a Draft lépés követi.
 
 A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
 várakozás vizsgálatával foglalkozik. Definíció szerint a sorbanállás-elmélet különböző
