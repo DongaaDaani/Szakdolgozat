@@ -10,7 +10,7 @@ megfelelően.
 
 A korábbi workflow rendszerek csak az üzleti folyamatok leképezését tették lehetővé vizualizációs eszközök segítségével. A Business Process Management azóta sokat fejlődött és a támogató szoftvercsomagok sokkal több lehetőséget nyújtanak már.
 Ezek a következő szakaszokban kerülnek kifejtésre.
-
+\cite{Bene}
 \Section{Elvárások}
 
 \begin{itemize}
@@ -42,23 +42,24 @@ működési szabályok előírása;\\
 folyamatok vezérlése működés közben; \\
 folyamatok monitorozása, nyomon követése;
 kiértékelése.
+\cite{Bene}
 
 \Section{Folyamatgráf}
 
 A folyamatgráf (\textit{Process Graph}, \textit{P-Graph}) egyik nagy előnye a folyamatok gráf alapú szemléltetésének, hogy a gráfelmélet eredmények és algoritmusok alkalmazhatóak  a vizsgálat során. \\
 A folyamat-gráf, egy speciális irányított páros gráf optimalizálási feladatok hatékony megoldásához, vagy épp
-workflow modellezéshez.  \\
+workflow modellezéshez. \cite{Bene}  \\
 
 BPMN (Business Process Modelling Notation ) fogalma:
 A BPMN szabványosított grafikus jelölési mód, mely lehetőséget ad az üzleti élet
-szereplőinek, hogy folyamataikat standardizált formában tehessék közzé.
+szereplőinek, hogy folyamataikat standardizált formában tehessék közzé. \cite{Bohacs}
 
 Egy  UML-hez hasonló workflow leíró eszköz, amely könnyen értelmezhető grafikus
 jelölésrendszer biztosít az üzleti folyamatok ábrázolásához.  A grafikus jelölés
 segítségével kiküszöbölhetőek a résztvevők között felmerülő kommunikáció nehézségek. Szabványos eszköznek számít az
 üzleti folyamatok, valamint a webes szolgáltatások modellezéséhez. \\
 Két fő célja van :
-Első,  hogy az XML alapú nyelvek, amiket az üzleti folyamatok végrehajtására terveznek, azok vizualizálhatók legyenek egy szabványos jelölőrendszerrel. \\
+Első,  hogy az XML alapú nyelvek, amiket az üzleti folyamatok végrehajtására terveznek, azok vizualizálhatók legyenek egy szabványos jelölőrendszerrel. \cite{Bene} \\
 Második, hogy egy olyan üzleti folyamat jelölőrendszer tudjon biztosítani, ami bármely stakeholder számára
 értelmezhető, az üzleti elemzőktől kezdve a szoftverfejlesztőkön át a vállalati vezetőkig, ezáltal
 a kommunikációt nagyban megkönnyítve.\\
@@ -68,7 +69,7 @@ A BPMN folyamat-orientált megközelítéssel dolgozik. Három alapobjektumát a
 A BPMN üzleti folyamat modellező standarddá vált. Népszerűségét könnyű elsajátíthatóságának és értelmezhetőségének köszönheti.
 
 Egy BPMN folyamatábra leképezhető P-gráffá is.
-
+\cite{BPMN}
 \Section{Folyamatszintézis}
 
 A nagy szoftverek kisebb részekből állnak. A kisebb részek szintén úgy épülnek fel, hogy mégkisebb programrészeket használnak fel. Egy-egy programrészről tudjuk, hogy mely adathalmazt és objektum összességet használja és ezekből milyen adatokat állít elő.\\
@@ -108,7 +109,7 @@ Az első két ábrán látható folyamatábra nem determinisztikus volt, mivel m
 A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
 várakozás vizsgálatával foglalkozik. Definíció szerint a sorbanállás-elmélet különböző
 folyamatok eseményeivel kapcsolatos várakozási sorokat, sorbanállási időket a
-kiszolgálásra, és ezek összefüggéseit tárgyalja az alkalmazott matematikai eszközeivel. \\
+kiszolgálásra, és ezek összefüggéseit tárgyalja az alkalmazott matematikai eszközeivel. \cite{Sorba} \\ 
 
 A folyamat során várakozó sor keletkezhet, ha a kiszolgáló egységekbe történő áramlás
 időköze, és a kiszolgálás időtartama szabálytalan. Sorbanállás keletkezhet akkor is a
@@ -215,7 +216,7 @@ A bizonyítás a karakterisztikus függvény segítségével is levezethető.
 \SubSection{IDEF diagramok}
 
 Az Integrated Definition (IDEF) folyamatleíró nyelvet elsősorban folyamatok
-fejlesztéséhez, integrációjához, tervezéséhez és rendszerelemzéshez kapcsolódó tevékenységek leírására használják [].
+fejlesztéséhez, integrációjához, tervezéséhez és rendszerelemzéshez kapcsolódó tevékenységek leírására használják \cite{Bohacs}.
 
 A modellkészítés első lépése, mivel a
 rendszer alapvető funkciói, tevékenységei közötti kapcsolati feltételeket állapítja meg.
@@ -237,7 +238,7 @@ IDEF11: Információs tárgyak modellezése \\
 IDEF12: Szervezeti modellezés \\
 IDEF13: Három séma leképezési tervezés -  az üzleti kényszerfelfedezés integrált meghatározása arra szolgál, hogy segítsen az üzleti rendszerbeli korlátok felderítésében és elemzésében. \\
 IDEF14  : Hálózat tervezése - a számítógépes és kommunikációs hálózatok modellezését és tervezését célozza \\
-
+\cite{Bene}
 \SubSection{Event Driven Process Chain}
 
 Az EPC (Event Driven Process Chain) események és funkciók irányított gráfja.
@@ -267,7 +268,7 @@ ahol B egy $r \times s $ mátrix, $0_{r,r}$ és $0_{s,s}$ pedig $ r \times r$, i
 
 A YAWL (Yet Another Workflow Language) Kezdetben csupán a munkafolyamatokban előforduló tevékenységekre koncentrált, de mára
 már munkafolyamat leírásának teljes eszköztárát támogatja a folyamateditortól a
-folyamatmotoron át a modellező eszközig [].
+folyamatmotoron át a modellező eszközig \cite{Bohacs}.
 A nyelvet egy olyan szoftverrendszer támogatja, amely egy végrehajtó motort, egy grafikus szerkesztőt és egy munkalista kezelőt tartalmaz. \\
 A nyelvet és támogató rendszerét eredetileg az Eindhoveni Műszaki Egyetem és a Queenslandi Műszaki Egyetem kutatói fejlesztették ki .\\
 Főbb jellemzői: \\
@@ -289,7 +290,7 @@ A BPEL olyan szabványos leíró nyelv, amely üzleti partnerek folyamatainak le
 alkalmas, és webszolgátatáson keresztül segíti a folyamatok összehangolását, végrehajtását.
 Megjelenítési nyelve az XML, de grafikus ábrázolást nem tesz lehetővé és nem rendelkezik
 szabványosított folyamattervezési metodikával. Az egyes aktivitások végrehajtása egy
-külső, kiegészítő nyelven elkészített parancs meghívásával jár, ami leggyakrabban Java.\\
+külső, kiegészítő nyelven elkészített parancs meghívásával jár, ami leggyakrabban Java. \cite{BMEIK} \\
 
 \SubSection{XML Process Definition Language}
 
@@ -298,7 +299,7 @@ Az XPDL (XML Process Definition Language) a WfMC (Wokflow Management Coalition)
 különböző leíró és modellezési eszközök közötti információcserére. Fontos kiemelni, hogy
 az XPDL a folyamat leírása mellett a folyamat végrehajtására is tartalmaz információkat.
 Ezzel szemben a BPEL csak a végrehajtásra koncentrál.
-
+\cite{Wikixpdl}
 \SubSection{SysML}
 
 A SysML egy általános célú leíró nyelv mérnöki alkalmazásokra kifejlesztve. Specifikációk,

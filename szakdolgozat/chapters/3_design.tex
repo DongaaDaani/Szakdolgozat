@@ -2,7 +2,7 @@
 
 \Section{Bevezetés}
 
-A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először [].
+A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először \cite{wikipedia}.
 A Petri háló (\textit{Petri Net}, \textit{PN}) egy súlyozott, irányított élű páros gráf, melynek élei kétféle csomópontot köthetnek össze:
 \begin{itemize}
 	\item a körrel jelölt helyeket (places), illetve
@@ -20,7 +20,7 @@ A tokenek eloszlását egy $m: P \rightarrow \mathbb{N}$ függvénnyel jellemezh
 
 Jelölje $m_{0}$ a kezdeti token eloszlást, az-az ez a hálózat kezdeti állapota.
 
-A tranzíciót egy rövid vízszintes vonallal reprezentált csúcs.
+A tranzíciót egy rövid vízszintes vonallal reprezentált csúcs. \cite{Szeged}
 
 % TODO: Ide ábra is kellene, hogy ha már említésre került, hogy hogy néz ki.
 \begin{figure}[h!]
@@ -82,7 +82,7 @@ jelenti. A hálózat állapota az egyes helyállapotok összessége. Az állapot
 
 A Petri hálók működése állapotátmenetekkel (trajektória) reprezentálható. Egy állapot megváltozása a tranzíciók tüzelését jelenti.
 
-A Petri hálókat az alábbi rendszerek modellezésében szokták alkalmazni: nemdeterminisztikus, párhuzamos, elosztott, konkurens, asszinkron.
+A Petri hálókat az alábbi rendszerek modellezésében szokták alkalmazni: nemdeterminisztikus, párhuzamos, elosztott, konkurens, asszinkron. \cite{Petri}
 
 % TODO: Itt érdemes lehet a felsorolt típusokra, azok viszonyára kitérni! (Egyesek sajnos szinonímaként vagy szimplán helytelenül használják őket, ezért itt sem gond ha hangsúlyozásra kerül, hogy melyik mit jelent.)
 
@@ -135,6 +135,4 @@ Az állapot megváltozása a tranzíciók "tüzelésével" történik.
 A tüzelés végrehajtása az alábbi módon történik: \\
 Az algoritmus megvizsgálja az első lépésben azt, hogy a token elvétele engedélyezett e, majd ezt követően veszi el a tokent a bemeneti helyről, és teszi ki a kimeneti helyre.\\
 Így pedig egy új állapot következik be, megváltozik az úgynevezett Token eloszlás vektor.
-
-Ezzel a témával kapcsolatosan hasznos információkat lehet találni az alábbi linken : \\
-https://inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/form%C3%A1lis-m%C3%B3dszerek/11/PN_alapfogalmak_kiterjesztesek.pdf
+\cite{Petri}
