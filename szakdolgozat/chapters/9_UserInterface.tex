@@ -42,17 +42,16 @@ Ezáltal képesek vagyunk responsive oldalt létrehozni, illetve felhasználni a
 React.js material componenseit, amelyeket az alábbi oldalon találhatunk. \\
 https://material-ui.com/components/snackbars/ \\
 
-A részlegek felülete: \\
+A részlegek felülete: \ref{fig:reszlegek} \\
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=15truecm, height=6.5truecm]{images/ListDepartment.png}\\
-		\textbf{\textsc{Részlegek listája}}
-\end{center}}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15truecm, height=6.5truecm]{images/ListDepartment.png}\\
+	\caption{Részlegek listázása}
+	\label{fig:reszlegek}
+\end{figure}
 
 
 
@@ -62,18 +61,16 @@ A részlegek felülete: \\
 Vezetőként belépve, lehetőségünk van a részlegek megtekintésére, törlésére,
 módosítására. \\
 Edit gomra kattintva, egy felugró ablak jelenik meg, amely kiolvassa, az aktuális
-mezőhöz tartozó adatokat, ezek alapján lehet módosítani. \\
+mezőhöz tartozó adatokat, ezek alapján lehet módosítani. \ref{fig:editreszleg} \\
 A felugró ablak hasonlóképpen néz ki: (A mezőhöz tartozó DepartmentID
 Disabled, hiszen azt nem lehet módosítani) \\
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=11.8truecm, height=7.5truecm]{images/EditDepartment.png}\\
-		\textbf{\textsc{Részleg szerkesztésének a felülete}}
-\end{center}}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=11.8truecm, height=7.5truecm]{images/EditDepartment.png}\\
+	\caption{Részleg szerkesztése}
+	\label{fig:editreszleg}
+\end{figure}
 
 
 A törlés gomb megnyomásával egy Alert rész ugrik fel, rákérdez arra, hogy
@@ -82,52 +79,50 @@ Ugyanezen a formon lehetőségünk van egy részleg hozzáadására, az Id
 automatikusan incrementálódik, tehát a felhasználónak csak magát a részleg
 nevét kell megadnia. \\
 \newpage
-Az Alkamazottak felülete : \\
+Az Alkamazottak felülete \ref{fig:alkalmazottak} : \\
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
 
-		\vglue 1truecm
-		\includegraphics[width=15truecm, height=6.5truecm]{images/ListEmployee.png}\\
-		\textbf{\textsc{Alkalmazottak listája}}
-\end{center}}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15.5truecm, height=6.5truecm]{images/ListEmployee.png}\\
+	\caption{Alkalmazottak listája}
+	\label{fig:alkalmazottak}
+\end{figure}
+
 
 
 A design és a funkciók hasonlóak az előző fórumom láttottakhoz, a tárolt
 adatok különböznek, illetve van még némi különbség. \\
 Ha egy új dolgozót szeretnénk felvenni a rendszerbe, akkor a részleg
 kiválasztásnál, a meglévő részlegek közül tudunk választani, egy legördülő
-listában. (Ezzel korlátozva azt, hogy hibás részleget adjon meg a felhasználó,
+listában. \ref{fig:addEmployee} (Ezzel korlátozva azt, hogy hibás részleget adjon meg a felhasználó,
 vagy nemlétezőt. ) \\
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=14truecm, height=7.5truecm]{images/addemployee.png}\\
-		\textbf{\textsc{Alkalmazott hozzáadásának a felülete}}
-\end{center}}
+\begin{figure}[h!]
+	\centering
+\includegraphics[width=14truecm, height=7.5truecm]{images/addemployee.png}\\
+	\caption{Alkalmazott hozzáadásának a felülete}
+	\label{fig:addEmployee}
+\end{figure}
+
 
 
 Az adatbázisban felvett Dátum típus miatt problémák lehetnek azzal, ha
 hibásan kezeljük a forumon leimplementált Dátum mezőt. \\
 Ebből kifolyólag, egy Dátum típusú Form Control lett megadva, a helytelen
 konvenciók miatt. \\
-Ez az alábbi képen tekinthető meg : \\
+Ez az alábbi képen tekinthető meg :  \ref{fig:editEmployeees} \\
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10.8truecm, height=8.5truecm]{images/EditEmployee.png}\\
+	\caption{Alkalmazott szerkesztésének a felülete}
+	\label{fig:editEmployeees}
+\end{figure}
 
-		\vglue 1truecm
-		\includegraphics[width=10.8truecm, height=8.5truecm]{images/EditEmployee.png}\\
-		\textbf{\textsc{Alkalmazott szerkesztése felület}}
-\end{center}}
 
 
 Mivel két különböző szerveren fut a Backend és a Frontend, így a
@@ -288,15 +283,27 @@ sikeres visszajelzést.
 	</Form>
 	
 \end{lstlisting}
-	
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Az új környezeben lévő Road Transportation Maintance}}\\
-		\vglue 1truecm
+	\newpage
+
+Az új igénylő első lépése megtekinthető a \ref{fig:newMaintance} , az első jóváhagyó lépése pedig a \ref{fig:newMaintance2} képeken tekinthető meg.
+
+\begin{figure}[h!]
+	\centering
 		\includegraphics[width=15truecm, height=7truecm]{images/newRoad1.png}\\
-		\textbf{\textsc{Draft page}}
-\end{center}}
+	\caption{Az új környezetben lévő Road Transportation Maintance}
+	\label{fig:newMaintance}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=15truecm, height=7truecm]{images/newRoad2.png}\\
+	\caption{Az új környezetben lévő Maintance Approve lépés}
+	\label{fig:newMaintance2}
+\end{figure}
+
+
+
+
 \newpage
 \begin{python}
 	componentDidMount(){
@@ -315,26 +322,17 @@ sikeres visszajelzést.
 
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=15truecm, height=7truecm]{images/newRoad2.png}\\
-		\textbf{\textsc{Supervisor Approve lépés}}
-\end{center}}
 
 
+Telefon,vagy egyéb kisebb eszközön a design \ref{fig:responsive} 
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=7.5truecm, height=14truecm]{images/Responsive.png}\\
+	\caption{A responsive megjelenése az igénylő forumnak}
+	\label{fig:responsive}
+\end{figure}
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		
-		\vglue 1truecm
-		\includegraphics[width=7.5truecm, height=14truecm]{images/Responsive.png}\\
-		\textbf{\textsc{Az oldal responsive, bármilyen készülékről jól átlátható}}
-\end{center}}
 
 \begin{python}
 	   handleSubmit(event){
