@@ -12,7 +12,7 @@ A korábbi workflow rendszerek csak az üzleti folyamatok leképezését tették
 Ezek a következő szakaszokban kerülnek kifejtésre.
 \cite{Bene}
 \Section{Elvárások}
-
+Egy folyamat modellezőnek a következő képességekkel kell rendelkezniük:
 \begin{itemize}
 \item Mérések: Lehetőséget ad arra, hogy a folyamatokat valós időben átláthassuk.
 \item Modellezés: Workflow-k és feladatok tervezése, informatikai eszközökkel.
@@ -20,29 +20,10 @@ Ezek a következő szakaszokban kerülnek kifejtésre.
 \item Mobilitás: Reszponzív felület, bármilyen képernyőn nyomon követhető.
 \item Metaadatok : Leírja a folyamatokhoz tartozó jellemezőket.
 \item Szimuláció: A folyamatmodell alkalmazásával különféle forgatókönyv és input adatok szerinti vizsgálata a munkafolyamatnak.
-\item Analízis: Elemzések, jelentések.
+\item Analízis: Elemzések, jelentések.\cite{Bene}
 \end{itemize}
 
-Egy olyan matematikai modell létrehozása a cél, amely az analízis szempontjából minden fontos jellemzőt magában
-hordoz:
-formális szemantika, \\
-nagy kifejezőerő, \\
-könnyen értelmezhető, áttekinthető (grafikus), \\
-explicit állapot- és eseményreprezentáció.
 
-Integráció: Emberek, információs rendszerek, szolgáltatások és egyéb folyamatok
-összekapcsolása. \\
-Végrehajtás: Valós idejű igényekhez igazítva. \\
-\\
-Folyamatmenedzsment (workflow management, WF) alkalmazásoknak azon rendszereket
-nevezzük, melyek a szervezeti tevékenységek folyamattá szervezését és a folyamat vezérlését
-segítik. Tipikusan a következő szolgáltatásokat nyújtják: \\
-Munkafolyamatok tervezése;\\
-működési szabályok előírása;\\
-folyamatok vezérlése működés közben; \\
-folyamatok monitorozása, nyomon követése;
-kiértékelése.
-\cite{Bene}
 
 \Section{Folyamatgráf}
 
@@ -58,15 +39,11 @@ Egy  UML-hez hasonló workflow leíró eszköz, amely könnyen értelmezhető gr
 jelölésrendszer biztosít az üzleti folyamatok ábrázolásához.  A grafikus jelölés
 segítségével kiküszöbölhetőek a résztvevők között felmerülő kommunikáció nehézségek. Szabványos eszköznek számít az
 üzleti folyamatok, valamint a webes szolgáltatások modellezéséhez. \\
-Két fő célja van :
-Első,  hogy az XML alapú nyelvek, amiket az üzleti folyamatok végrehajtására terveznek, azok vizualizálhatók legyenek egy szabványos jelölőrendszerrel. \cite{Bene} \\
-Második, hogy egy olyan üzleti folyamat jelölőrendszer tudjon biztosítani, ami bármely stakeholder számára
-értelmezhető, az üzleti elemzőktől kezdve a szoftverfejlesztőkön át a vállalati vezetőkig, ezáltal
-a kommunikációt nagyban megkönnyítve.\\
+
 
 A BPMN folyamat-orientált megközelítéssel dolgozik. Három alapobjektumát a tevékenységek, események , és az átjáró jelentik. \\
 
-A BPMN üzleti folyamat modellező standarddá vált. Népszerűségét könnyű elsajátíthatóságának és értelmezhetőségének köszönheti.
+A BPMN üzleti folyamat modellező szabvánnyá vált. Népszerűségét könnyű elsajátíthatóságának és értelmezhetőségének köszönheti.
 
 Egy BPMN folyamatábra leképezhető P-gráffá is.
 \cite{BPMN}
@@ -104,7 +81,7 @@ $
 
 % TODO: A nemdeterminisztikus modelleknek milyen jelentősége lesz a későbbiekben? (Nem teljesen tünne indokoltnak ilyen formában a témához.) (A Későbbiekben nem lesz jelentősége, viszont az első két folyamat nem determinisztukus, hiszen két bemente van. Talán azt itt ki lehet hangsúlyozni.)
 
-Az első két ábrán látható folyamatábra nem determinisztikus volt, mivel mindkettőnél két bemenet volt, az egyik a Draft, a másik pedig a Start lépést. A start lépést a Draft lépés követi.
+Az első két ábrán \ref{fig:Demand_Process} \ref{fig:maintane_process} látható folyamatábra nem determinisztikus volt, mivel mindkettőnél két bemenet volt, az egyik a Draft, a másik pedig a Start lépést. A start lépést a Draft lépés követi.
 
 A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
 várakozás vizsgálatával foglalkozik. Definíció szerint a sorbanállás-elmélet különböző
@@ -112,8 +89,8 @@ folyamatok eseményeivel kapcsolatos várakozási sorokat, sorbanállási időke
 kiszolgálásra, és ezek összefüggéseit tárgyalja az alkalmazott matematikai eszközeivel. \cite{Sorba} \\ 
 
 A folyamat során várakozó sor keletkezhet, ha a kiszolgáló egységekbe történő áramlás
-időköze, és a kiszolgálás időtartama szabálytalan. Sorbanállás keletkezhet akkor is a
-beáramlás időköze kisebb, mint a kiszolgálás időtartama, ekkor a tároló térben a beáramló
+időköze, és a kiszolgálás időtartama szabálytalan. Sorbanállás keletkezhet akkor is, a
+beáramlás időköze kisebb, mint a kiszolgálás időtartama. Ekkor a tároló térben a beáramló
 várakozó anyagmennyiség, azaz várakozó sor folyamatosan növekszik. \\
 
 A gyakorlati életben a beérkezés időköze, és a kiszolgálás ideje nem meghatározott, hanem
@@ -237,8 +214,8 @@ IDEF10: Megvalósítási architektúra modellezése
 IDEF11: Információs tárgyak modellezése \\
 IDEF12: Szervezeti modellezés \\
 IDEF13: Három séma leképezési tervezés -  az üzleti kényszerfelfedezés integrált meghatározása arra szolgál, hogy segítsen az üzleti rendszerbeli korlátok felderítésében és elemzésében. \\
-IDEF14  : Hálózat tervezése - a számítógépes és kommunikációs hálózatok modellezését és tervezését célozza \\
-\cite{Bene}
+IDEF14  : Hálózat tervezése - a számítógépes és kommunikációs hálózatok modellezését és tervezését célozza \cite{Bene} \\
+
 \SubSection{Event Driven Process Chain}
 
 Az EPC (Event Driven Process Chain) események és funkciók irányított gráfja.
@@ -307,5 +284,5 @@ analízis, tervezés, felülvizsgálat és jóváhagyás területén nyújt tám
 tulajdonképpen az UML kiterjesztett változata. \\
 
 A folyamat, algoritmusok leírását a mérnöki/műszaki tudományok területén kezdték
-formalizálni az 1930-as években.
+formalizálni az 1930-as években. \cite{Bohacs}
 

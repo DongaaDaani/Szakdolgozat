@@ -3,7 +3,7 @@
 
 \section{Az alkalmazás bemutatása}
 
-Az fentebb említett problémára, egy olyan vállalati folyamatmodellezési rendszer készítése, amelyben végig lehet követni az elindított folyamatokat, lehetőség lesz új folyamatokat lehet elindítani, az elindított folyamatok állapotát megtekinteni, a meglévő folyamatokat nyomon követni, ezzel megkönnyítve a cég üzleti folyamatainak menedzselését.
+Az fentebb említett problémára, egy olyan vállalati folyamatmodellezési rendszer készítése a cél, amelyben végig lehet követni az elindított folyamatokat, lehetőség lesz új folyamatokat lehet elindítani, az elindított folyamatok állapotát megtekinteni, a meglévő folyamatokat nyomon követni, ezzel megkönnyítve a cég üzleti folyamatainak menedzselését.
 
 A folyamatnak egy aktuális lépésében lehetőség van annak a továbbítása, amellyel a következő illetékes személyhez fog kerülni a feladat. (Ez akár egy feltételes elágazás is lehet, valamilyen megadott paraméter alapján).
 
@@ -11,31 +11,33 @@ Lehetőség van elutasításra, ha valamilyen hiba lépett fel, akár egy nem me
 
 A folyamatot a vezetőknek lesz jogosultsága elindítani, és a vállalat alkalmazottai közül lehet majd választani, hogy kinek szeretné kiadni a feladatot. A folyamat elindításához szükséges kitölteni a feladat pontos leírását, az elvégzési határidőt, illetve kiválasztani az illetékes személyt.
 
-Az alkalmazásban több különböző jogosultsági szinthez tartozó \textit{igénylési fórum} lesz megvalósítva. A korábban modellezett folyamatok közül, a Road Transportation Maintancere kitérően, 4 különböző fórum lesz létrehozva.
+Az alkalmazásban több különböző jogosultsági szinthez tartozó \textit{igénylési fórum} lesz megvalósítva. A korábban modellezett folyamatok közül, a Road Transportation Maintancere kitérően, 4 különböző fórum lesz létrehozva. \ref{fig:draft} \ref{fig:maintranceDraft}
 
 % TODO: Az előbbit valahogy magyarosabban is ki lehetne fejezni.
 
 Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva.
 \ref{fig:login}
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\vglue 1truecm
-		\includegraphics[width=7.8truecm, height=6.8truecm]{images/login.png}\\
-		\textbf{\textsc{Bejelentkező felület}}
-		\label{fig:login}	
-\end{center}}
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		
-		\vglue 1truecm
-		\includegraphics[width=10.8truecm, height=6.8truecm]{images/SignUp.png}\\
-		\textbf{\textsc{Regisztrációs felület}}
+
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=7.8truecm, height=6.8truecm]{images/login.png}
+	\caption{Bejelentkező felület}
+	\label{fig:login}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10.8truecm, height=6.8truecm]{images/SignUp.png}
+	\caption{Regisztrációs felület}
 		\label{fig:register}
-		
-\end{center}}
+	
+\end{figure}
+
+
+
 
 
 %A belépést követően a vezetőségnek, és az alkalmazottaknak is másféle weboldal fog megjelenni.
@@ -63,11 +65,11 @@ Minden Részlegnek lesz egy vezetője, aki képes lesz listázni a részlegen l�
 
 
 \section{Megvalósítás}
-Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \textit{CompanyDB}-ben létre lesz hozva több különböző táblázat, mint például Employee, Leader, Task, illetve Részleg. \\
+Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \textit{CompanyDB}-ben létre lesz hozva több különböző tábla, mint például Employee, Leader, Task, illetve Részleg. \\
 % TODO: Az előbbihez nem feltétlenül kell példa, hogy ha utána egyébként is teljes részletességgel be lesz majd mutatva.
 % TODO: Minden táblának és mezőnek kellene név. A részleg esetében példának beírtam, hogy a mező nevét és a típusát hogy lehet például megadni.
 
-A részleg táblázatban
+A részleg tábla
 \begin{itemize}
 	\item \texttt{id}: A részleghez tartozó egyedi azonosító. (Elsődleges Kulcs)
 	\item \texttt{name}: A részleg pontos megnevezése, amelyhez az Id tartozik. (Szöveg)
@@ -81,10 +83,10 @@ A Task táblához fog az alábbi rekordok fognak tartozni:
 	\item Határidőt tartalmazó mező. (Dátum)
 \end{itemize}
 
-Employee Táblázatban:
+Employee tábla:
 \begin{itemize}
 	\item Id, Az alkalmazott egyedi azonosítója. (Elsődleges Kulcs)
-	\item Az alkalmazott pontos neve. (Vezetéknév + Keresztnév)
+	\item Az alkalmazott pontos neve. (Szöveg)
 	\item Életkora (Egész érték)
 	\item Neme (Szöveg)
 	\item Lakcíme (Szöveg)
@@ -95,7 +97,7 @@ Employee Táblázatban:
 	\item A részleg neve, amelyhez a megadott Id tartozik. (Egész érték)
 \end{itemize}
 
-Leader Táblázatban:
+Leader tábla:
 \begin{itemize}
 	\item Leader pontos neve, ez tartalmazza a keretnevét, illetve a vezetéknevét. Összetett rekord lesz. (Szöveg)
 	\item Részleg kódja, amely részlegen az adott személy vezető. (Egész érték)
@@ -103,7 +105,7 @@ Leader Táblázatban:
 	\item Egy dátum mező, hogy pontosan mióta vezető az adott részlegen. (Dátum)
 \end{itemize}
 
-Egy Department tartalmazó táblázat:
+Department tábla:
 \begin{itemize}
 	\item Id, A részleg egyedi azonosítószáma (Elsődleges kulcs)
 	\item Name, a részleg pontos megnevezése (Szöveg)
@@ -116,12 +118,12 @@ Egy Task-ot tartalmazó táblázat:
 	\item Kezdő idő , amikor a feladat létre lett hozva. (Dátum)
 	\item Befejezési idő, hogy a feladat meddig végezhető el. (Dátum)
 \end{itemize}
-Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a következő kibővített Er modellen ez látható : \\
+Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a következő kibővített ER modellen ez látható : \\
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{images/ER.png}
-	\caption{A táblázatokat és a közüttük lévő kapcsolatot az alábbi diagramm reprezentálja}
+	\caption{Az elemek és a köztük lévő kapcsolat.}
 	\label{fig:ER}
 \end{figure}
 
@@ -131,11 +133,11 @@ Az adatbázisban a kapcsolatok kialakítása, és a feltételekhez kötött list
 
 \section{Funkciók}
 
-Az applikációban megvalósításra kerülnek az alábbiak:
+Az applikációban az alábbi funkciók kerülnek megvalósításra.
 \begin{enumerate}
-	\item Felhasználók kilistázása részlegek szerint, amelyre vezetőknek van jogosultsága.  Ez egy különálló view page-n fog megjelnni.
-	\item Lehetőségük lesz egy adott alkalmazott megkeresésére, majd az alkalmazattok adatainak részleges lekérésére.
-	\item Az olyan kiosztott feladatokat lehet kilistázni, amelyeket az aktuális vezető indított el . A feladatnak megtekinteni a feladatok státuszát,  mikor lett kiosztva , ki kapta meg a feladatot stb.
+	\item Felhasználók kilistázása részlegek szerint, amelyre csak a vezetőknek van jogosultsága.  Ez egy különálló lapon fog megjelenni.
+	\item Lehetőségük lesz egy adott alkalmazott megkeresésére, majd az alkalmazottak adatainak részletes lekérésére.
+	\item Az olyan kiosztott feladatokat lehet listázni, amelyeket az aktuális vezető indított el . A feladatnak megtekinteni a feladatok státuszát,  mikor lett kiosztva , ki kapta meg a feladatot stb.
 	\item Alkalmazottak adatainak módosítása, esetleges alkalmazottak törlése, hozzáadása.
 	\item Feladat elindítása, itt egy felugró ablak lesz, amelyben a szükséges adatokat kell kitölteni a vezetőnek. (Validálással).
 	\item A kiosztott feladatot az alkalmazott belépve megtekinthet, majd ha elvégezte a feladatot, akkor továbbíthatja a következő felhasználónak, visszaküldheti a vezetőnek. A feladat utolsó lépésben mindig a vezetőhöz kerül vissza az elvégzett folyamat.

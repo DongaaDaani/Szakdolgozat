@@ -1,8 +1,20 @@
 \Chapter{Petri hálók}
-
-\Section{Bevezetés}
+A petri háló az automataelmélet általánosításának nevezhető, mivel az ábrázol ezzel a módszerrel, egy időben lezajló események megjelenítésére alkalmas. 
 
 A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először \cite{wikipedia}.
+
+
+\Section{Működése és felépítése}
+
+irányított, súlyozott, páros gráf
+
+Két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.
+
+Van egy állapotjelölő token, amely fekete pötty a hely körébe rajzolva.
+A hely állapota pedig a bennelévő tokenek száma.
+
+\vskip 0.3 true cm
+
 A Petri háló (\textit{Petri Net}, \textit{PN}) egy súlyozott, irányított élű páros gráf, melynek élei kétféle csomópontot köthetnek össze:
 \begin{itemize}
 	\item a körrel jelölt helyeket (places), illetve
@@ -18,7 +30,9 @@ Formálisan a Petri hálók olyan $<P, T, E, \delta, m_{0}>$ ötös, ahol
 
 A tokenek eloszlását egy $m: P \rightarrow \mathbb{N}$ függvénnyel jellemezhetjük, amely tehát a helyeken megjelenő tokenek számát adja meg.
 
-Jelölje $m_{0}$ a kezdeti token eloszlást, az-az ez a hálózat kezdeti állapota.
+
+
+Jelölje $m_{0}$ a kezdeti token eloszlást, ez a hálózat kezdeti állapota.
 
 A tranzíciót egy rövid vízszintes vonallal reprezentált csúcs. \cite{Szeged}
 
@@ -94,14 +108,6 @@ Az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, 
 % TODO: Ez is egy automata. Itt melyikkel történik a szembeállítás? (Nem lényeges rész.)
 %hogy az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, az %automataelmélet általánosításának tekinthető. Előnye az autómatával szemben, hogy sokkal %szemléletesebben fejezi ki a szinkronizációt, illetve kompakt módon fejezi ki az %állapotot.
 
-\Section{Működése és felépítése}
-
-irányított, súlyozott, páros gráf
-
-Két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.
-
-Van egy állapotjelölő token, amely fekete pötty a hely körébe rajzolva.
-A hely állapota pedig a bennelévő tokenek száma.
 
 % TODO: A leírás így redundáns, és nem teljesen következetes. Érdemes az ábrázolással kapcsolatos részeket átszervezni, hogy a jelölésrendszer, tokenek definiálása egy helyre kerüljön.
 

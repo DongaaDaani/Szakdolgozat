@@ -1,112 +1,17 @@
-\Chapter{Implementálás}
+\Chapter{A folyamatkezelő rendszer implementálása}
 \section{Tervezés}
 
 A projekt felépítése több komponensből tevődik össze.
 Model rész, ahol az adatbázisnak megfelelő osztályok implementációja történik.
 \\ A Controller rész, amelyben a szerver felé irányuló kérések implementációja kerül.
-\\Pár alapvető kérés, mint a Post , amelyel egy új rekordot viszünk fel,  PUT amelyel egy meglévő adatot módosítunk , Delete amelyel törlünk , Get amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nemlétező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
+\\Pár alapvető kérés, mint a Post , amelyel egy új rekordot viszünk fel,  PUT amelyel egy meglévő adatot módosítunk , Delete amelyel törlünk , Get amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nem létező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
 Data részben vannak az adatbázisban lévő kapcsolatok kialakítva, az itt definiált osztály, a DbSet osztályból származik.
-Migration, amely a projekt sikeres Build-elése , a nuget consolbe beírt  'Add-Migration Initial' + 'Update-Database' parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. (A connectionStringben megadott Serveren, a megadott adatbázis névvel)
+Migration, amely a projekt sikeres Build-elése , a NuGet consolbe beírt  'Add-Migration Initial' + 'Update-Database' parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. (A connectionStringben megadott Serveren, a megadott adatbázis névvel)
 
 A jelszavak, és egyéb bizalmasan tárolt adatoknál a .net Framework Authentication Hash Algoritmust használt a titkosításhoz.      \\
 
 
-Üzleti folyamat menedzselése: \\
-Vállalati folyamatok automatizálása: Arra a célra szolgál, hogy egy adott szerveretben történő
-tevékenységek gördülékenyebben és sokkal hatékonyabban menjenek. \\
-Üzleti folyamatnak tekintjük az alábbiakat : \\ egy vagy több tevékenység, amely értéket növel
-úgy, hogy egy bemenetkészletet átalakít a kimenetek készletévé.
-„Tenner és DeToro” \\
-Ez alapján üzleti folyamat lehet akár egy kevés lépésből álló, nem túl bonyolul folyamat, mint
-például egy kisebb alkatrész legyártása, vagy az is, hogy valaki éppen egy elemzéshez
-összesíti két táblázat adatait, így a vezetőség válláról levéve a terhet, ezáltal marad ideje
-potenciálisan nagyobb értékű feladatokra. Egy üzleti folyamat akár előző példáknál lehet
-sokkal komplexebb lépéssorozat, például egy nagyobb szervezetnél történő eszköz,
-szolgáltatás előállítása is.  \\
 
-A BPM platform folyamatosan próbálja meg tökéletesíteni a folyamatokat. Épp ezért
-„folyamatoptimalizációs folyamatként” is lehet értelmezni. \\
-
-Előnye, hogy segít abban, hogy könnyebben tudjanak változni, mint egy minőségét tekintve
-hagyományos, hierarchikus kezelési módszer. Továbbá, a költségcsökkenés mellett,
-környezetvédelmi okokból is fontos a feleslegesen használt erőforrások minimalizálása, mint
-az irodákban a papírmentesség \\
-
-Az üzleti folyamatok optimalizálásának 5 alapvető építő köve van. \\
-1. fázisban a Tervezés, amelyben magába foglalja a meglévő folyamatok beazonosítását
-illetve a későbbiekben lehetségesen létrehozandó folyamatok tervezését. \\ Esetünkben 2 ilyen
-rendszerbe integrált folyamatról lesz szó. Egy karbantartási, és egy Személygépjármű
-igénylési folyamatról.\\
-
-A megfelelően megtervezett rendszertervezés csökkenti a hibák számát a folyamat használata
-során.\\
-
-(Esetlegesen rossz jóváhagyóhoz kerül a folyamat, vagy egy végtelen ciklusba, mivel egy
-elágazás vagy ciklusnál nem megfelelően, strukturáltan lett megtervezve. ) \\
-
-Tehát ennek a lépésnek az célja, hogy biztosítsa, hogy egy korrekt és hatékony elméleti
-tervezés van elkészítve.\\
-
-
-2. fázisban a Modellezés kap szerepet, amelynek a lényege, hogy a meglévő modellezést
-alapul veszi az elméleti tervezést majd ezt követően beleveszi a változók kombinációját. Itt a
-jövőbe történő elemzések is szóba jöhetnek, mint például milyen lehet az, hogyha az
-erőforrások bizonyos százaléka ugyanazt a feladatot hajtja végre stb. \\
-
-
-3. fázisban a végrehajtás\\
-Mivel a gyakorlatban ritkán hajtják végre egy folyamat során az összes utasítást, ezért olyan
-alkalmazások fejlesztése, amely a szükséges lépéseket elvégzi.
-Megközelítés lehet az, hogy a szoftverek és emberek együttműködnek, viszont ez a
-dokumentációt bonyolultabbá teszi. \\
-
-
-4. fázisban a Monitorozás vagy ellenőrzés, ahol a különböző folyamatok nyomon követését ,
-és állapotát lehet tudjuk megtekinteni. \\
-
-Az 5. fázis \\ Az Optimalizálás szerepe hogy alkalmazza a potenciális vagy aktuális
-torlódásokat illetve információk nyerjen ki a különböző fáziskból, mint például a modellezési
-vagy a monitorozási fázisból folyamat tervezésében ezeket az információkat felhasználja. \\
-
-A folyamatos teljesítmény ellenőrzés során észlelt realizált és elvárt eredmények közötti
-különbségek csökkentésére helyezzük a hangsúlyt az optimalizálás lépésének során.\\
-
-A BPM projekt elkészítéséhez álltalában valamilyen külső, erre szakosodott tanácsadót, vagy
-egy elemzőt szoktak alkalmazni, akik felmérik a működését, majd javaslatokat tesznek a
-változtatásokra. Erre azért van szükség, mivel ő nem része a cégnek, így objektíven tudja
-elemezni a rábízott műveleteket. \\
-
-A felmérést követően a folyamatokból rengeteg (végtelen) fajtát , költségűt és méretűt lehetne
-felrajzolni, ám ez nagyban függ a megbízó cég stratégiájától, vágyaitól, költségvetésétől,
-illetve azoktól a szoftverektől , amelyeket használ. \\
-
-A különböző vállalati folyamatoknak 2 féle osztályozása van. \\
-Első a Portel Model, amelyben az iparági versenyt öt fontos tényező határozza meg , mint az
-új belépők, a helyettesítő termékek fenyegetése, a vevők alkupozíciója, a szállítók alku ereje,
-valamint a meglévő versenytársakkal folytatott versengés. A második megközelítés az APQC
-folyamatkategorizálási séma. \\
-
-Fontos megemlíteni a folyamatban használt grafikus leírását, amiért a JBPM felelős, amely
-Java nyelvben íródott. Egy folyamat több tevékenységből áll, amelyeket átmenetek kapcsolnak
-össze. A folyamat grafikus leírása a fejlesztő és a megrendelő közötti kommunikációt segíti. \\
-
-Egyéb, hasonló rendszerként szokták említeni a CRM rendszert (Customer Relationship
-Management) , amely egy cég saját partnerei felé irányuló folyamatainak leírására
-vonatkozik. \\
-CRM szoftver célja, hogy ezeket a folyamatokat támogassa, illetve a jelenlegi és potenciális
-ügyfelekkel kapcsolatos információkat tárolja. \\
-
-
-CRM rendszert használunk az ügyfelekkel fenntartott kapcsolatok kezelésére.
-Irányítson egy értékesítési csatornát, készítsen értékesítési célokat, hasonlítsa össze
-az értékesítési csapatokat, kövesse nyomon a támogatási kérdéseket, kezelje az
-SLA-kat stb. A CRM általában bármit tartalmaz, amely kapcsolatban áll az ügyféllel,
-ezért a neve: Ügyfélkapcsolat-kezelő rendszer. \\
-A BPM rendszer mind a folyamatokra, mind a szoftverekre vonatkozik, a CRM-hez
-képest egy sokkal átfogóbb alkalmazást foglal magában, amelyben az ügyfelek
-számára meghatározott alkalmazásra utal. \\ Úgy hasonlíthatnánk össze őket, hogy a
-BPM egy ház, amíg a CRM egy szoba. A BPM szoftver tartalmazhat CRM funkciót,
-fordítva nem. \\
 
 Az üzleti folyamatok kezelésére BPM rendszert (Business Process Management
 system) használnak. Kétféle típus létezik: \\
@@ -316,7 +221,7 @@ Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, íg
 Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
 További a .remove , .hasFirstDefault stb.. \\
 
-Egy példa, a controllerek között egy Post methodust megtekinve : \\
+Egy példa, a controllerek között egy POST methodust megtekinve : \\
 \begin{python}
 	[HttpPost] 
 	public async Task<ActionResult<Department>> 
