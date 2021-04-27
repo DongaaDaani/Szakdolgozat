@@ -3,7 +3,7 @@
 Az első üzleti folyamat, amely a személygépkocsi igénylése, tulajdonképpen egy
 elég egyszerű (2 lépéses folyamat), itt talán felugró mezők okozzák a
 legnagyobb kihívást.\\
-A folyamat első, draft lépése így nézne ki :\\
+A folyamat első, draft lépése így nézne ki :   \ref{fig:draft} \\
 {\large
 	\begin{center}
 		\vglue 1truecm
@@ -11,6 +11,7 @@ A folyamat első, draft lépése így nézne ki :\\
 		\vglue 1truecm
 		\includegraphics[width=11.8truecm, height=7.5truecm]{images/road1.png}\\
 		\textbf{\textsc{Draft page}}
+		\label{fig:draft}
 \end{center}}
 
 Az igénylés típusát kiválasztva, olyan mezők adódnak hozzá a folyamathoz, amelyek a jelenlegi
@@ -40,17 +41,15 @@ ahol az adatokat kérjük le. \\
 Ez szintén egy új táblázat lesz (Road Transportation Demand DTL), amelyből 1 folyamathoz, akár több
 is tartozhat. \\
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=11.8truecm, height=7truecm]{images/road3.png}\\
-		\textbf{\textsc{Felugró ablak }}
-	
-\end{center}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=11.8truecm, height=7truecm]{images/road3.png}
+	\caption{Felugró ablak}
+	\label{fig:popUp}
+\end{figure}
 
-Itt az Utas neve, egy szintén felugró ablak, amelyből kiválaszthat a cég alkalmazottak közül egyet. \\
+
+Itt az Utas neve, egy szintén felugró ablak, amelyből kiválaszthat a cég alkalmazottak közül egyet. \ref{fig:popUp} \\
 Az utasok a User táblából lesznek Listázva, amelyben nyilván van tartva a cég összes alkalmazottja,
 annyi eltéréssel, hogy az utasnak nem lesz költség helyi kódja. \\
 Tetszőleges számú utast adhatunk hozzá, illetve tudjuk törölni is őket. \\
@@ -62,18 +61,16 @@ követően véget is ért. \\
 
 \section{Road Transportation Maintance}
 
- második üzleti folyamat, amely egy karbantartási folyamat. \\
+ második üzleti folyamat, amely egy karbantartási folyamat. \ref{fig:maintranceDraft} \\
 Ez egy komplexebb folyamat, itt több lépés van, mint az előzőben, illetve itt is
 megtalálhatóak a Checkbox szerinti kiválasztással felugró mezők. \\
 Az első lépést, az-az a draft-ot itt láthatjuk : \\
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Road Transportation Maintance első lépése}}\\
-		\vglue 1truecm
-		\includegraphics[width=11.8truecm, height=4.5truecm]{images/road4.png}\\
-		\textbf{\textsc{Draft page}}
-\end{center}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=11.8truecm, height=4.5truecm]{images/road4.png}
+	\caption{Maintance draft page}
+	\label{fig:maintranceDraft}
+\end{figure}
 
 
 \begin{python}
@@ -176,50 +173,47 @@ szintén egy külön tábla lesz, hiszen több rendszámot kell nyilvántartani,
 további adatokat is, mivel a keresés gomra kattintva, automatikusan kitöltődnek a readonly mezők
 értékei, mint a Márka, típus, Üzemóra , Futott Kilométer stb. \\
 Ezután a probléma leírása rész következik, ahol egy tetszőleges leírást adhat az igénylő felhasználó.
-Ezt követően a második (Approve) lépésben az alábbi rész jelenik meg: \\
+Ezt követően a második (Approve) lépésben az alábbi rész jelenik meg: \ref{fig:maintanceSupervisor} \\
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Road Transportation Maintance harmadik lépése}}\\
-		\vglue 1truecm
-		\includegraphics[width=14.8truecm, height=6truecm]{images/road6.png}\\
-		\textbf{\textsc{Approve page}}
-\end{center}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=11.8truecm, height=6.5truecm]{images/road6.png}
+	\caption{Road Transportation Maintance Supervisor Approve}
+	\label{fig:maintanceSupervisor}
+\end{figure}
+
 
 
 Itt a kiolvasott adatok mellett megjelenik egy újabb kitöltő mező, amelyben a Supervisor Descripont
 kell megadni. \\
 A következő 3. lépésben pedig azt kell megadni, hogy a probléma típusát, amely lehet Személyes,
-Belső, vagy külső probléma. \\
+Belső, vagy külső probléma.  \ref{fig:coordinatorApprove} \\
 Amennyiben a probléma típusa Belső, vagy Külső, akkor egy újabb mező ugrik fel, amelyben szintén a
 meglévő alkalmazottak közül kell kiválasztani azt, hogy a folyamat kihez megy tovább, ki lesz érte a
 felelős. \\
 A megjelenő oldalt itt láthatjuk :  \\
 \newpage
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Road Transportation Maintance negyedik lépése}}\\
-		\vglue 1truecm
-		\includegraphics[width=14.8truecm, height=6.5truecm]{images/road7.png}\\
-		\textbf{\textsc{Approve page}}
-\end{center}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14.8truecm, height=6.5truecm]{images/road7.png}
+	\caption{Road Transportation Maintance Coordinator Approve}
+	\label{fig:coordinatorApprove}
+\end{figure}
+
 
 
 \section{KÉP}
 
-Tesztelésként kiválasztjuk az Internált, majd továbbítjuk, akkor az általunk megadott Ownerhez fog a
+Tesztelésként kiválasztjuk az Internált, majd továbbítjuk, akkor az általunk megadott External \ref{fig:mechanicalApprove}, fog a
 folyamat tovább menni.  \\
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Road Transportation Maintance ötödik lépése}}\\
-		\vglue 1truecm
-		\includegraphics[width=14.8truecm, height=6.5truecm]{images/road8.png}\\
-		\textbf{\textsc{Approve page}}
-\end{center}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14.8truecm, height=6.5truecm]{images/road8.png}
+	\caption{Road Transportation Maintance Coordinator Approve}
+	\label{fig:mechanicalApprove}
+\end{figure}
+
 
 
 Ezután, az illetékes az alábbi formot fogja látni : \\
