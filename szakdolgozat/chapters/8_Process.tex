@@ -22,14 +22,17 @@ Ez egy külön adatbázis tábla lenne, amelyben a cégnél nyilvántartott szer
 majd a felugró ablakban, ezekből lehet választani. \\
 Több mező is a felhasználó álltál kiválasztott Checkbox szerint jelenik majd meg, és tűnik el.
 Vegyük példaként azt, ha a felhasználó kiválasztja az igénylés típusánál a „Járművezetővel ellátott
-személygépkocsit” : \\
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\vglue 1truecm
-		\includegraphics[width=11.8truecm, height=7.5truecm]{images/road2.png}\\
-		\textbf{\textsc{Draft page}}
-\end{center}}
+személygépkocsit” : \ref{fig:roadtransportationdemand} \\
+
+
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=11.8truecm, height=7.5truecm]{images/road2.png} \\
+	\caption{Road Transportation Demand Draft Page}
+	\label{fig:roadtransportationdemand}
+\end{figure}
+
 
 Ekkor megjelenik egy új kiválasztós mező, amelyben az Oda út és visszaútról kérdez, illetve négy
 további mező, amely a gépjármű elvitelének és a gépjármű leadásának az idejéről, illetve a gépjármű
@@ -156,17 +159,18 @@ Az első lépést, az-az a draft-ot itt láthatjuk : \\
 	</el-form-item> 
 	</el-col>
 	</el-row>
+	
 \end{python}
 
-Itt az első kiválasztott érték esetén, ha az nem jármű, akkor az alábbi mezőt kapjuk meg:\\
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=15.5truecm, height=2.7truecm]{images/road5.png}\\
-	
-\end{center}}
+Itt az első kiválasztott érték esetén, ha az nem jármű, akkor az alábbi mezőt kapjuk meg: \ref{fig:realestate} \\
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15.5truecm, height=2.7truecm]{images/road5.png} \\
+	\caption{Real Estate checked}
+	\label{fig:realestate}
+\end{figure}
 
 Amennyiben a folyamatban a Jármű kerül kiválasztásra, akkor egy rendszámot kell beírni, amely
 szintén egy külön tábla lesz, hiszen több rendszámot kell nyilvántartani, és a gépjárművekhez tartozó

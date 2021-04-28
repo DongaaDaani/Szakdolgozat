@@ -88,13 +88,13 @@ telepítjük. Ezt a facebook fejlesztése, hogy mindenféle bonyolult konfigurá
 elkezdeni a fejlesztést, mivel ezt már alapból megcsinálja. \\
 A tartalmát később részletezzük
 
-npx-create-react-app application-name , ezzel létrehozzuk magát, a projektünk mappáját, és a
+npx-create-react-app application-name , ezzel létrehozzuk magát, a projektünk \\ mappáját, és a
 bennelévő node modulokat. \\
 A mappába belépve, az „npm start” parancsot kiadva tudjuk szerveren elindítani a projektet. \\
 A node$\_$modules csomagokat a package.json mappában lévő 3 fő függőség (react , react-dom
 , react-scripts) alapján telepíti fel. \\
 
-A package.json-ben vannak korábban említett, már előre megírt scriptek (start,build, test,
+A package.json-ben vannak korábban említett, már előre megírt scriptek \\ (start,build, test,
 eject) \\
 Start (npm start) – Ezzel a parancsal lehet a szerveren elindítani a projektet. \\
 Build (npm run build)- a végleges változatot fordítja le, ezzel egy olyan állapothoz lehet jutni,
@@ -156,7 +156,7 @@ A render methódusban pedig a tagre az alábbi módon hivatkozhatunk :
 Amennyiben egy sima komponenst hozunk létre, több különböző beépített metódust tudunk
 használni. (Ezek az ős komponensből származnak ) \\
 Ilyenek például az alábbiak : \\
-ComponentWillMounth- A metódusban definiált tevékenységek lefutnak a Render függvény
+ComponentWillMounth- A metódusban definiált tevékenységek lefutnak a \\ Render függvény
 előtt. \\
 ComponentDidMounth- A metódusban definiált tevékenységek, a Render függvény után
 futnak majd le. \\
@@ -185,7 +185,8 @@ Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott 
 	public DbSet<Duty> Task { get; set; } 
 	public DbSet<Leader> Leader { get; set; } 
 	
-	protected override void OnModelCreating(ModelBuilder modelBuilder) 
+	protected override void OnModelCreating
+	(ModelBuilder modelBuilder) 
 	{
 		
 		base.OnModelCreating(modelBuilder); 
@@ -274,7 +275,7 @@ Egy feltételekhez kötött listázás szintaktikája is tovább egyszerüsödik
 tablename where feltétel helyett használhatjauk a listanév.where(feltétel) parancsot. \\
 
 További sajátosságai, jelentősen megkönnyítik a szerver oldali implementációt, a kliens
-oldallal történő kommunikáció használatára pedig json (Javascript Object Notation)-t
+oldallal történő kommunikáció használatára pedig json \\ (Javascript Object Notation)-t
 használunk, amely tulajdonképpen rendezett érték lista amely , egy név és érték párok
 gyüjteménye dupla idézőjel párok között megadva. \\
 
@@ -304,7 +305,7 @@ be kell tartaniuk \\
 2. A CTS, amely a CLI azon része, ahol a típusokat, és azoknak a memóriaban történő
 reprezentációját illetve egymással való kapcsolatait írja le. \\
 3. CLR, amely a CLI nyelven megírt programok betöltéséért és végrehajtásáért felel. \\
-
+\cite{net}
 
 A gyors alkalmazás fejlesztéshez használt módszertan 3 fő elemből tevődik össze: \\
 Ciklikus fejlesztés, működő prototípusok létrehozása, és a szoftverfejlesztést támogató

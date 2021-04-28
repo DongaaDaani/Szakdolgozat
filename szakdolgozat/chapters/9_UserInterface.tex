@@ -126,7 +126,7 @@ Ez az alábbi képen tekinthető meg :  \ref{fig:editEmployeees} \\
 
 
 Mivel két különböző szerveren fut a Backend és a Frontend, így a
-kommunikációt Json formátum segítségével lesz megoldva, amelyben a
+kommunikációt Json formátum segítségével lesz megoldva \ref{fig:backendget}, amelyben a
 Backend oldalon az alábbi rész kerül implementációra. \\
 Ahhoz hogy a két server kommunikálni tudjon egymással, és ne írjon hibát, fel
 kell oldani egy Cors problémát a .net résznél, hogy ez megvalósuljon. \\
@@ -157,19 +157,16 @@ A department részleg esetén :
 Az employee részleg esetén : 
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
 
-		\vglue 1truecm
-		\includegraphics[width=15truecm, height=5truecm]{images/EmployeeJson.png}\\
-		\textbf{\textsc{Backend szerveren futó Get lekérdezés}}
-	
-\end{center}}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15truecm, height=5truecm]{images/EmployeeJson.png}\\
+	\caption{Backend szerveren futó GET lekérdezés}
+	\label{fig:backendget}
+\end{figure}
 
 
-
-A Cliens oldali részről, ahhoz hogy ezt a Json formátumot használhatóvá tudjuk
+A Cliens oldali részről, ahhoz hogy ezt a Json formátumot használhatóvá tudjuk \ref{fig:fetchapi}
 tenni, a ComponentDidMount függvényen belül definiálni kell a \\
 fetch('https://localhost:44315/api/Department')
 illetve a \\
@@ -179,21 +176,21 @@ Különböző kéréseket adhatunk meg a függvényen belül, (Post, Put, Get, D
 Amelyek az alábbi szintaktikával kerülnek implementálásra:  \\
 
 
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\vglue 1truecm
-		\includegraphics[width=8.8truecm, height=6.5truecm]{images/vsCodeJson.png}\\
-			\textbf{\textsc{Json kezelés fetch api-val frondent oldalon, react használatával}}
-	
-\end{center}}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8.8truecm, height=6.5truecm]{images/vsCodeJson.png}\\
+	\caption{JSON kezelés Fetch api segítségével, react használatával}
+	\label{fig:fetchapi}
+\end{figure}
+
 
 
 
 
 
 Amíg a Kliens oldali rész nem került implementálásba, addig az alapvető CRUD
-metódusok tesztelése a Postman segítségével történt, ahol kiválaszthatjuk hogy
+metódusok tesztelése a Postman segítségével történt \ref{fig:postman} , ahol kiválaszthatjuk hogy
 Post / Delete / Update / Delete methodust szeretnék végrehajtani , az adott
 URL-en.
 
@@ -202,14 +199,17 @@ a kivételkezelés kifejezetten fontos, így hibás adat esetén nem kaptunk vol
 sikeres visszajelzést.
 
 	
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\vglue 1truecm
-		\includegraphics[width=15truecm, height=5truecm]{images/PostmanJson.png}\\
-			\textbf{\textsc{Tesztelés postmanben}}
-	
-\end{center}}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15.5truecm, height=4.5truecm]{images/PostmanJson.png}\\
+	\caption{Postmanban történő tesztelés}
+	\label{fig:postman}
+\end{figure}
+
+
+
 \newpage
 
 \begin{lstlisting}[language=html]
@@ -415,6 +415,11 @@ Dr. Sztrik János,
 \bibitem{Wikixpdl} 
 Wikipédia,
 \textit{XPDL}
+
+	\bibitem{net} 
+Wikipédia, 
+\textit{.NET keretrendszer}
+
 
 	 
 
