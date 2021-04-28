@@ -1,9 +1,9 @@
 \Chapter{Folyamatok matematikai leírása}
 A fejezet bemutatja, hogy a folyamatok modellezésére milyen
-matematikai jelölések és modellek állnak rendelkezésre.
+matematikai jelölések és modellek állnak rendelkezésre. Ebben a részben leginkább a strukturális programgráf, és a folyamatokhoz megfeleltetett automatákról, és azok megtervezéséről lesz szó lesz részletesebben szó.
 \Section{Véges Determinisztikus automaták}
 
-Véges számú állapotból, ésa közöttük lévő átmenetekből (tranzíciókból) áll, amelynek szakaszait úgynevezett input szimbólumok jellemzik, amelyek ugyanabból a véges $\Sigma$ ábécéből vannak kiválasztva. 
+Véges számú állapotból, és a közöttük lévő átmenetekből (tranzíciókból) áll, amelynek szakaszait úgynevezett input szimbólumok jellemzik, amelyek ugyanabból a véges $\Sigma$ ábécéből vannak kiválasztva. 
 
 Két kitüntetett állapot van: A kezdő állapot, jele : $q_{0}$, és a végállapot halmaza, amelynek a jele $F$. (Ezek a \textit{Start} és a \textit{Stop} elemnek tekinthetők egy folyamat modellezése esetén.
 A \textit{Start} jelzi a folyamatábrán a \textit{draft} lépést, ahonnan elindul maga az üzleti folyamat. A végső lépés, az utolsó jóváhagyó, \textit{approve} lépés pedig a végállapot, amely megfeltethető az $F$-nek.)
@@ -21,7 +21,7 @@ A matematikai modell pontosan megfeleltethető annak, hogy egy folyamat esetén 
 
 \Section{Egyszerű átmeneti rendszerek}
 
-A folyamatok egy másik reprezentálási módját adják az átmeneti rendszerek [].
+A folyamatok egy másik reprezentálási módját adják az átmeneti rendszerek.
 Legyen $A = (S, T, \alpha, \beta)$, ahol
 \begin{itemize}
 	\item $S$: az állapotok véges, vagy végtelen halmaza,
@@ -33,7 +33,7 @@ A modell ebben az esetben is egy irányított gráf, ahol a csúcsok állapotoka
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=7.8truecm, height=7.8truecm]{images/AllapotAtmenet.png}
+	\includegraphics[width=8.5truecm, height=8.5truecm]{images/AllapotAtmenet.png}
 	\caption{A 3.lépésben járó üzleti folyamat}
 	\label{fig:3lepesben}
 \end{figure}
@@ -55,14 +55,14 @@ Jó példa egy egyszerű átmeneti rendszer egy italautómata, amelybe egy rögz
 A két modellezett üzleti folyamatokhoz tartozó folyamatábra pontos lépéseit az alábbi két ábra jelöli \ref{fig:Demand_Process} \ref{fig:maintane_process}. Itt pontosan látszik, hogy milyen jóváhagyási lépések lesznek szükségesek.
 \begin{figure}[h!]
 \centering
-\includegraphics[width=6.8truecm, height=6.8truecm]{images/Demand_Process.png}
+\includegraphics[width=7.5truecm, height=7.5truecm]{images/Demand_Process.png}
 \caption{Road Transportation Demand}
 \label{fig:Demand_Process}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=6.8truecm, height=6.8truecm]{images/Maintance_Process.png}
+\includegraphics[width=7.5truecm, height=7.5truecm]{images/Maintance_Process.png}
 \caption{Road Transportation Maintance}
 \label{fig:maintane_process}
 \end{figure}
@@ -71,7 +71,7 @@ A két modellezett üzleti folyamatokhoz tartozó folyamatábra pontos lépései
 
 
 
-
+\newpage
 \Section{Folyamat megtervezése}
 
 A folyamat tervezésénél fontos szerepe van a strukturáltságnak, ellenkező esetben nagy problémák is adódhatnak, mint egy  végtelen ciklus, esetleg több input bemenet.
@@ -115,14 +115,14 @@ Legyen adott egy $N = (Q, \Sigma, \rho, q_{0}, F) $ véges nondeterminisztikus a
 \begin{equation}
 	A=(P(q),\Sigma,\rho^{'},[q_{0}],F' )
 \end{equation}
-Ahol $Q$ a részhalmazok összessége, $F'$ pedig a $Q$ mindazon részhalmazai, amelyek legalább egy $F$ beli állapotot tartalmaznak. (Végállapothoz vezetnek)
+Ahol $Q$ a részhalmazok összessége, $F'$ pedig a $Q$ mindazon részhalmazai, amelyek legalább egy $F$ beli állapotot tartalmaznak (végállapothoz vezetnek).
 
 \begin{align*}
 	&& \rho'  \text{ így értelmezhetünk, minden } a\in\Sigma \\
 	&&  \rho'([q_{1},q_{2},\dots,q_{n}],a) = \rho(q_{1},a) \cup \rho(q_{2},a) \cup \dots \cup \rho(q_{k},a)
 \end{align*}
 
-Egy $A$ determinisztikus autómata és az N nemdszereminisztikus autómata által elfogadott nyelv ugyanaz, $\alpha(A) = \alpha(N)$.
+Egy $A$ determinisztikus autómata és az N nem determinisztikus autómata által elfogadott nyelv ugyanaz, $\alpha(A) = \alpha(N)$.
 
 \Section{Folyamatmodellezés}
 
@@ -131,8 +131,8 @@ A modell, a való világ egy részének egyszerűsített példánya.
 % TODO: Hogy ha a modellről ilyen formában szó esik, akkor azt érdemes korábban megtenni. (Előrébb hoztam, a második részhez.)
 
 A modellezés célja az, hogy felmérjük, majd  elemezhessük és javíthassuk a
-folyamatainkat.Esetünkben azt célszerű vizsgálni, milyen jóváhagyási lépések szükségesek , és melyek azok amelyek elhagyhatóak, redundánsak. Az elmezés során több szempontot érdemes szemügyre venni. Például felhasználók kérését, az erőforrások kezelését.  A folyamatmodellek különböző információkat hordozhatnak és változó lehet a befogadó fél is, így nem mindegy, hogy milyen szemszögéből nézve készítjük el őket. Tehát a különböző nagy részlegeknek más-más célja lesz az adott folyamattal. Különböző megjelenési formákat kell biztosítani, más változókkal, mezőkkel , adatbázissal, és erőforásokkal. A folyamatmodellek alapvetően két csoportra bonthatóak. Léteznek As-Is
-modellek, amik a jelenlegi helyzetet mutatják be, és To-Be modellek, amik a kívánt
+folyamatainkat.Esetünkben azt célszerű vizsgálni, milyen jóváhagyási lépések szükségesek , és melyek azok amelyek elhagyhatóak, redundánsak. Az elmezés során több szempontot érdemes szemügyre venni. Például felhasználók kérését, az erőforrások kezelését.  A folyamatmodellek különböző információkat hordozhatnak és változó lehet a befogadó fél is, így nem mindegy, hogy milyen szemszögéből nézve készítjük el őket. Tehát a különböző nagy részlegeknek más-más célja lesz az adott folyamattal. Különböző megjelenési formákat kell biztosítani, más változókkal, mezőkkel , adatbázissal, és erőforrásokkal. A folyamatmodellek alapvetően két csoportra bonthatóak. Léteznek \textit{As-Is}   
+modellek, amik a jelenlegi helyzetet mutatják be, és \textit{To-Be} modellek, amik a kívánt
 szituáció ábrázolását takarják.  \\
 A folyamatok leírására több lehetőség van. Legtöbbször ezek
 kombinációját használják a felelős személyek, ahelyett, hogy egyetlen egyhez
@@ -146,11 +146,11 @@ magában hordoz a módszer, mégpedig azt, hogy a többféle ábrázolási módb
 nehezen értelmezhető modellek jöhetnek létre. Ennek kiküszöbölésére azonban már
 bevezetésre kerültek olyan modellező nyelvek, szoftverek, melyek egységesítik az
 ábrázolás módját, ilyenek például az UML (Unified Modeling Language) szabvány. 
-Az UML szabványos,  általános célú modellező nyelv, üzleti elemzők, rendszertervezők, szoftvermérnökök számára.
+Az UML szabványos,  általános célú modellező nyelv, üzleti elemzők, rendszertervezők, szoftvermérnökök számára. \cite{xml}
 
-Segítségével tervezni  illetve dokumentálni lehet a szoftvereket. Az UML-ben modellek és diagramok adhatók meg, különböző nézetekben.
-Az üzleti feladatok nem csupán a szereplőkkel lehetnek kapcsolatban, hanem más feladatokkal is kapcsolatban állhatnak. Gyakran állnak elő összefüggések különféle üzleti részfolyamatok illetve használati esetek között. Az UML két lehetséges függőségi kapcsolatot definiál a használati esetek között, ezek a beillesztés és a kiterjesztés.
-Az UML a jelöléseknek gazdag választékát kínálja, mely segítségével a szoftverfejlesztés összesfázisamodellezhető. \\
+Segítségével tervezni és dokumentálni lehet a szoftvereket, folyamatokat. Az UML-ben modellek és diagramok adhatók meg, különböző nézetekben.
+Az UML két lehetséges lehetőséget definiál a használati esetek között, az egyik a beillesztés a másik pedig a kiterjesztés.
+Az UML a jelöléseknek gazdag választékát kínálja, mely segítségével a szoftverfejlesztés összes fázisa modellezhető. \\
 
 Az üzleti folyamatok modellezésével az üzleti stratégia és az informatikai
 rendszerek között olyan kapcsolat hozható létre, ami nagyban hozzájárulhat üzleti
@@ -199,4 +199,4 @@ Alternatív megvalósítások esetén melyik modell képes azonos idő alatt tö
 
 A folyamat során bizonyos lépéseknél, elemzéseket végezve, az erőforrásokat különféleképpen is feloszthatjuk, hiszen lehet, hogy egy elágazás során az egyik részbe az esetek $90 \% $-ban lép be, így erre a részre nagyobb erőforrást teszünk, mint a maradék $10 \% $ részre.
 Az adatokat megvizsgálva következtethetünk, becsülhetünk.
-Egy  egy Diszkrét valószínűségi változó lesz, hiszen véges számú adatokat vizsgálunk.
+Ez egy Diszkrét valószínűségi változó lesz, hiszen véges számú adatokat vizsgálunk.

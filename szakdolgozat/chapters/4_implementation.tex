@@ -1,8 +1,8 @@
 \Chapter{Üzleti folyamatok}
-
+Egy vállalat élete során rengeteg problémával néz szembe, akár napi szinten. Ez lehetnek egyszerű, vagy teljesen komplex feladatok is. Ahhoz, hogy egy vállalat zökkenő mentesen működjön, fontos ezeket a feladatokat könnyedén, hatékonyan megoldani.
 \Section{Workflow rendszerek}
 
-Üzleti folyamatoknál gyakran emlegetik a {\bf workflow} (munkafolyamat) kifejezést,\\ amelynek a jelentése olyan tevékenységek sorozata, amelyeket az gépek vagy az emberek végrehajtanak, egy logikai terv szerint, valamilyen cél elérése érdekében.
+Üzleti folyamatoknál gyakran emlegetik a {\bf workflow} (munkafolyamat) kifejezést,\\ amelynek a jelentése olyan tevékenységek sorozata, amelyeket az gépek vagy az emberek végrehajtanak, egy logikai terv szerint, valamilyen cél elérése érdekében. 
 Magában foglalja az üzleti folyamatok definiálását, végrehajtását és automatizálását, ahol a feladatok, információ vagy dokumentumok kerülnek átadásra egy résztvevőtől egy másikhoz, az eljárás szabályainak
 megfelelően.
 
@@ -52,31 +52,7 @@ Egy BPMN folyamatábra leképezhető P-gráffá is.
 A nagy szoftverek kisebb részekből állnak. A kisebb részek szintén úgy épülnek fel, hogy mégkisebb programrészeket használnak fel. Egy-egy programrészről tudjuk, hogy mely adathalmazt és objektum összességet használja és ezekből milyen adatokat állít elő.\\
 A tervezés fontos része ezen komponensek összeillesztése, illetve összehozása.
 
-\SubSection{Struktúrális modell}
-
-Jelölje $\phi(H)$ egy tetszőleges H halmaz nem üres részhalmazát. Legyen M és O $ \subset \phi^{'}(M) \times \phi^{'}(M) $ véges, nem üres diszjunkt halmazok.
-Az M elemei az anyagok, míg az O elemei a műveleti egységek, melyek segítségével bizonyos bemenő anyagokból nyerünk előírt módon egy kimeneti anyaghalmazt.\\
-
-Az $(M, O)$ párhoz egyértelműen hozzárendelhető egy gráf, amit folyamatgráfnak nevezünk: PG(M,O) = $M\cup O , A_{1} \cup A_{2} $
-ahol az élhalmaz kétféle típusból áll :
-\begin{align*}
-	A_{1} & = \{ (X,Y):Y = (\alpha,\beta) \in O \text{ és } X \in \alpha \}\\
-	A_{2} & =  \{ (Y,X):Y = (\alpha,\beta) \in O \text{ és } X \in \beta \}  
-\end{align*}
-
-Egy $(V',E')$ gráf egy PG(M,O) folyamatgráf részgráfja, ha :
-
-\begin{align*}
-	V' & = M' \cup O' , M' \subseteq M  , O'\subseteq O\\
-	O' & \subseteq  \phi '(M') \times \phi ' (M')  \\
-	\\
-	E'&= A_{1}' \cup A_{2}' \text{ ahol }
-\end{align*}
-$A_{1}  = \{ (X,Y):Y = (\alpha,\beta) \in O \text{ és } X \in \alpha \} \text{ és }
-A_{2}  =  \{ (Y,X):Y = (\alpha,\beta) \in O \text{ és } X \in \beta \}
-$
-
-
+\newpage
 \Section{Folyamatmodellezés és szimuláció}
 
 % TODO: A nemdeterminisztikus modelleknek milyen jelentősége lesz a későbbiekben? (Nem teljesen tünne indokoltnak ilyen formában a témához.) (A Későbbiekben nem lesz jelentősége, viszont az első két folyamat nem determinisztukus, hiszen két bemente van. Talán azt itt ki lehet hangsúlyozni.)
@@ -217,13 +193,13 @@ IDEF13: Három séma leképezési tervezés -  az üzleti kényszerfelfedezés i
 IDEF14  : Hálózat tervezése - a számítógépes és kommunikációs hálózatok modellezését és tervezését célozza \cite{Bene} \\
 
 \SubSection{Event Driven Process Chain}
-
-Az EPC (Event Driven Process Chain) események és funkciók irányított gráfja.
+Előfordulhat, hogy ugyanazt az üzleti folyamatot egyszerre több ember vagy gép végzik. Akár több független igénylés is érkezhet, ami több összetett lépésből áll. Ez lehet több egyszerre történő módosítás egy nagy gyárban, stb. Ilyenkor meg kell különböztetni ezeknek a folyamatokat, párhuzamosan kell tudni kezelni.
+Erre szolgál az EPC, vagy az Event Driven Process Chain, amely az események és funkciók irányított gráfja.
 Különböző logikai kapcsolatok
-hozhatók létre benne, melynek révén alkalmas alternatív vagy párhuzamos lefutású
+hozhatók benne létre, amelynek révén alkalmas alternatív vagy párhuzamos lefutású
 folyamatok modellezésére. Ezekhez olyan logikai operátorokat használ, mint az OR, AND
 és a XOR. \\
-XOR, vagy másnéven kizáró vagy az alábbi formátummal adható meg : $ ( \bar{x} \land y  ) \lor ( x \land \bar{y} )$ \\
+XOR, vagy más néven kizáró vagy az alábbi formátummal adható meg : $ ( \bar{x} \land y  ) \lor ( x \land \bar{y} )$ \\
 Az EPC felhasználható a vállalati erőforrás-tervezés végrehajtásának konfigurálására és az üzleti folyamatok fejlesztésére. \\
 Irányított gráf definíciója : \\
 A $G=(V,E)$ rendezett párt irányított gráfnak (digráfnak) nevezzük. A
@@ -254,12 +230,7 @@ A fejlett erőforrás-elosztási részek támogatása, beleértve a négy szem e
 A munkafolyamat-modellek dinamikus adaptálásának támogatása. \\
 Kifinomult munkafolyamat-modell érvényesítési funkciók (Holtpont észlelés a tervezési időben) \\
 
-\SubSection{Business Process Diagram}
 
-Irányított folyamatok ír le BPMN elemekkel. Alkalmas vállalati tevékenységek leírására. A
-folyamatok történhetnek szervezetek között (kollaboráció), szervezeti szinten, vagy kisebb
-egységen belül, ezeket munkafolyamatoknak is hívjuk. A különböző szintű BPD
-diagramokat érdemes külön ábrázolni, mert a diagram nehezen érhetővé válhat. \\
 
 \SubSection{BPEL}
 
