@@ -50,16 +50,17 @@ Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét 
 Az alkalmazott a folyamatokat, amiket neki osztottak ki, megtekintheti egy erre specializált menüpontban, itt kiválasztva a folyamatot, megtekintheti a hozzá tartozó információkat. 
 (Ezekről a későbbiekben még részletesebben szó lesz.)
 
+\newpage
 \section{Működése}
 
 A felhasználó képes lesz arra, hogy a kapott feladatot továbbítsa, esetleg vissza küldje attól a felhasználótól (Vezetőségtől), akitől megkapta.
 
 Egy feladat az alábbi információkat tartalmazza:
 \begin{enumerate}
-	\item feladat pontos leírása,
-	\item elvégzési határidő,
-	\item kitől kapta (Név + Részleg),
-	\item mikor kapta .
+	\item Feladat pontos leírása.
+	\item Elvégzési határidő.
+	\item Kitől kapta (Név + Részleg).
+	\item Mikor kapta .
 \end{enumerate}
 Minden Részlegnek lesz egy vezetője, aki képes lesz listázni a részlegen lévő alkalmazottakat, itt megtudja tekinteni ki lenne aktuálisan megfelelő a feladat elvégzésére. Az egyes alkalmazottakra kattintva, lehetőség lesz az alkalmazott adatainak részleges megjelentésére. Ez a mód csak vezetőként belépve lesz elérhető. Itt tudunk majd egy feladatot elindítani.
 
@@ -69,13 +70,13 @@ Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \te
 % TODO: Az előbbihez nem feltétlenül kell példa, hogy ha utána egyébként is teljes részletességgel be lesz majd mutatva.
 % TODO: Minden táblának és mezőnek kellene név. A részleg esetében példának beírtam, hogy a mező nevét és a típusát hogy lehet például megadni.
 
-A részleg tábla
+\textbf{Részleg tábla}
 \begin{itemize}
 	\item \texttt{id}: A részleghez tartozó egyedi azonosító. (Elsődleges Kulcs)
 	\item \texttt{name}: A részleg pontos megnevezése, amelyhez az Id tartozik. (Szöveg)
 \end{itemize}
 
-A Task táblához fog az alábbi rekordok fognak tartozni:
+\textbf{Task tábla}
 \begin{itemize}
 	\item Egy részleg vezetőéhez tartozó egyedi azonosító, hogy melyik vezető indította el a task-ot. (Elsődleges Kulcs)
 	\item Egy időpont, hogy mikor lett elindítva a feladat. (Dátum)
@@ -83,7 +84,7 @@ A Task táblához fog az alábbi rekordok fognak tartozni:
 	\item Határidőt tartalmazó mező. (Dátum)
 \end{itemize}
 
-Employee tábla:
+\textbf{Employee tábla}
 \begin{itemize}
 	\item Id, Az alkalmazott egyedi azonosítója. (Elsődleges Kulcs)
 	\item Az alkalmazott pontos neve. (Szöveg)
@@ -97,26 +98,26 @@ Employee tábla:
 	\item A részleg neve, amelyhez a megadott Id tartozik. (Egész érték)
 \end{itemize}
 
-Leader tábla:
+\textbf{Leader tábla}
 \begin{itemize}
 	\item Leader pontos neve, ez tartalmazza a keretnevét, illetve a vezetéknevét. Összetett rekord lesz. (Szöveg)
 	\item Részleg kódja, amely részlegen az adott személy vezető. (Egész érték)
 	\item Elérhetősége , amely egy email cím formát fog jelenteni, validálással megfeleltve. (Szöveg)
 	\item Egy dátum mező, hogy pontosan mióta vezető az adott részlegen. (Dátum)
 \end{itemize}
-
-Department tábla:
+\newpage
+\textbf{Department tábla}
 \begin{itemize}
 	\item Id, A részleg egyedi azonosítószáma (Elsődleges kulcs)
 	\item Name, a részleg pontos megnevezése (Szöveg)
 \end{itemize}
 
-Egy Task-ot tartalmazó táblázat:
+\textbf{Task tábla}
 \begin{itemize}
 	\item Egy Id, amely a task-ot azonosítja. (Elsődleges kulcs)
 	\item Description, a feladat pontos leírása. (Szöveg)
-	\item Kezdő idő , amikor a feladat létre lett hozva. (Dátum)
-	\item Befejezési idő, hogy a feladat meddig végezhető el. (Dátum)
+	\item Start Time , amikor a feladat létre lett hozva. (Dátum)
+	\item End Time, hogy a feladat meddig végezhető el. (Dátum)
 \end{itemize}
 Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a következő kibővített ER modellen ez látható : \\
 
@@ -130,7 +131,7 @@ Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a kö
 A kapcsolatok \aref{fig:ER}. ábrán látható diagram szerint lettek kialakítva.
 
 Az adatbázisban a kapcsolatok kialakítása, és a feltételekhez kötött listázások .NET keretrendszerben lévő \textit{Entity Framework}-kel lesz kialakítva, Visual Studio-ban implementálva, ASP.NET Core-t használva.
-
+\newpage
 \section{Funkciók}
 
 Az applikációban az alábbi funkciók kerülnek megvalósításra.

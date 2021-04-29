@@ -76,90 +76,115 @@ találkozni, a dátum formátumra egy külön, React Bootstrapbe beépített ré
 helytelen formátum megadás elkerülésének érdekében. Továbbá az Érvénytelen számot adott
 meg és hasonlók. \\
 
-\section{Technológiák részletesebb bemutatása} 
-Frontend részről használt technológia bemutatása : \\
--React : A react js egy Javascript könyvtár, amelyet a Facebook, Community és egyéb hasonló
-vállalatok tartanak fent. \\
-Az egyik különlegessége, hogy egy bizonyos „jsx” típussal tér vissza, amely egy html kód. \\
-Ahhoz, hogy létrehozzunk egy React projektet az alábbi parancsok szükségesek: \\
-Első fontos parancs: npm create-react-app , vagy npm install –g create-react-app . \\
+\section{React.js technológia részletesebb bemutatása} 
+ A \textit{React.js} egy Javascript könyvtár, amelyet a \textit{Facebook}, \textit{Community} és egyéb hasonló
+vállalatok tartanak fent. 
+Az egyik különlegessége, hogy egy bizonyos \textit{„jsx”} típussal tér vissza, amely egy html kód. 
+ \subsubsection{Futáshoz szükséges indítóparancsok} 
+
+\begin{itemize}
+	\item npm create-react-app
+	\item npm install –g create-react-app
+\end{itemize}
+ 
 Egy react csomagot kell telepíteni, mivel ez is egy node package, ezzel a paranccsal
-telepítjük. Ezt a facebook fejlesztése, hogy mindenféle bonyolult konfiguráció nélkül tudjuk
+telepítjük. Ez a facebook fejlesztése, hogy mindenféle bonyolult konfiguráció nélkül tudjuk
 elkezdeni a fejlesztést, mivel ezt már alapból megcsinálja. \\
-A tartalmát később részletezzük
 
-npx-create-react-app application-name , ezzel létrehozzuk magát, a projektünk \\ mappáját, és a
-bennelévő node modulokat. \\
+\subsubsection{A következő lépésben létrehozzuk a projektet}
+
+\begin{itemize}
+	\item npx-create-react-app application-name
+\end{itemize}
+Tartalmazza a node modulokat, és a hierarchikus mappaszerkezetet.
+
 A mappába belépve, az „npm start” parancsot kiadva tudjuk szerveren elindítani a projektet. \\
-A node$\_$modules csomagokat a package.json mappában lévő 3 fő függőség (react , react-dom
-, react-scripts) alapján telepíti fel. \\
+A node$\_$modules csomagokat a package.json mappában lévő 3 fő függőség
 
-A package.json-ben vannak korábban említett, már előre megírt scriptek \\ (start,build, test,
-eject) \\
-Start (npm start) – Ezzel a parancsal lehet a szerveren elindítani a projektet. \\
-Build (npm run build)- a végleges változatot fordítja le, ezzel egy olyan állapothoz lehet jutni,
-amit fel lehet tenni a szerverre. \\
-Test (npm test)-A tesztet fogja lefuttatni \\
-eject (npm run eject)– A konfigurációs fájlokat át lehet írni, de ezt már nem lehet visszavonni
-a parancs után, ha nincs verzió kezelve a projektet. Alapvetően nem ajánlott. \\
+\begin{itemize}
+	\item react
+	\item react-dom
+	\item react-scripts
+\end{itemize}
+ alapján telepíti fel. \\
 
-Mint a legtöbb Javascript keretrendszerben, a src mappában vannak js kiterjesztésű , fő fileok. \\
-ES6 szintaktikát használ a React, hiszen a különböző komponenseket importáljuk be, majd ez
-automatikusan átfordul egy korábbi scriptre, hogy a böngészőkön könnyebben futhassanak. \\
-Több komponenst különböztetünk meg. \\
+A package.json-ben vannak korábban említett, már előre megírt scriptek.
+\begin{itemize}
+	\item Start, \textbf{npm start} - Ezzel a parancsal lehet a szerveren elindítani a projektet.
+	\item Build,  \textbf{npm run build} - A végleges változatot fordítja le, ezzel egy olyan állapothoz lehet jutni.
+	\item Test, \textbf{npm test} - A tesztet futtatja le.
+	\item eject \textbf{npm run eject} - A konfigurációs fájlokat át lehet írni, de ezt már nem lehet visszavonni.
+\end{itemize}
+
+
+
+
+Mint a legtöbb Javascript keretrendszerben, a \textit{./src} mappában vannak js kiterjesztésű , fő fájlok. 
+\textit{ES6} szintaktikát használ a \textit{React}, hiszen a különböző komponenseket importáljuk be, majd ez
+automatikusan átfordul egy korábbi scriptre, hogy a böngészőkön könnyebben futhassanak. 
+Több komponenst különböztetünk meg. 
 Minden Komponensnek kötelező jelleggel van egy Render() függvénye, amelynek a
 visszatérési értéke egy „html” , amely úgynevezett JSX. \\
 
 
 Ennek az előnye az, hogy átláthatóbbá és könnyebbé teszi a kódolást. \\
-react dom kezelés: \\
-Szintaktikája: \\
+\subsubsection{React dom kezelés szintaktikája} 
+
 Az egyik legáltalánosabb metódusa a .render , amely 2 bemeneti paramétert vár. \\
 Az első bemeneti paraméter, az maga a JSX kód, a második pedig az, hogy hova generálja az
 adott kódot. \\
-Minta :\\
-ReactDom.render(JSX , (document.getElementById(’Id’)) ) \\
+
+\begin{python}
+ReactDom.render(JSX ,(document.getElementById('Id'))) 
+\end{python}
+
 Vannak bizonyos komponensek, ahol nem szükséges a Render methódus, ez az úgynevezett
 Stateless Komponens, amely Önmagában egy függvény. \\
 \begin{python}
-const Vehicle =()=>{ \\
-	return ( \\
-	<div> Text </div> \\
-	) \\
-}\\
-export default Vehicle; \\
+const Vehicle =()=>{ 
+	return ( 
+	<div> Text </div> 
+	) 
+}
+export default Vehicle; 
 \end{python}
 Ki kell adni (Exportálni), hogy ezt a komponenst további helyekre is belehessen importálni, a
 következő paranccsal: \\
 
+\begin{python}
+import Vehicle from './path' 
+\end{python}
 
-import Vehicle from ’./path’ \\
 Az importálást követően, ha hivatkozni szeretnénk a komponensen belül a Vehicle
-függvényre, akkor azt a Render metóduson belül, html Tag-ként hivatkozhatunk , <Vehicle/>
+függvényre, akkor azt a Render metóduson belül, html Tag-ként hivatkozhatunk , \textbf{<Vehicle/>}
 szintaktikával tehetjük meg. \\
 Amennyiben a stateless komponensnek tulajdonságokat szeretnénk átadni, akkor azt a
 paraméter listában kell jelölnünk, ekkor az alábbira módosul a függvényünk. \\
 
-\begin{python}
-	const Vehicle =(props)=>{ 
-		return ( 
-		<div> {props.type}</div> 
+\begin{cpp}
+const Vehicle =(props)=>{ 
+	return ( 
+		<div>
+			 {props.type}
+		</div> 
 		) 
 	} 
 export default Vehicle; 
-\end{python}
+\end{cpp}
 A függvény kifogja írni a beérkező props-nak a type-ját. 
 A render methódusban pedig a tagre az alábbi módon hivatkozhatunk : 
-<Vehicle type=”opel” /> 
+\textit{<Vehicle type=”opel” />} 
 
 
 Amennyiben egy sima komponenst hozunk létre, több különböző beépített metódust tudunk
 használni. (Ezek az ős komponensből származnak ) \\
-Ilyenek például az alábbiak : \\
-ComponentWillMounth- A metódusban definiált tevékenységek lefutnak a \\ Render függvény
-előtt. \\
-ComponentDidMounth- A metódusban definiált tevékenységek, a Render függvény után
-futnak majd le. \\
+Ilyenek például az alábbiak : 
+\begin{itemize}
+	\item \textbf{ComponentWillMounth} - A metódusban definiált tevékenységek lefutnak a Render függvény előtt.
+	\item \textbf{ComponentDidMounth} - A metódusban definiált tevékenységek, a Render függvény után
+	futnak le.
+\end{itemize}
+ 
 További előnyei, hogy a komponensen belül létre tudunk hozni construktort illetve state-et és
 egyéb más dolgokat. \\
 \section{Adatbázis használatának bemutatása}
@@ -172,7 +197,7 @@ Amikor elkezdünk objektum orientált nyelvben programozni, akkor az adatkezelé
 álltalában az objektumok módosításával végezzük.
 Ez az úgynevezett Object-relational mapping (ORM).\\
 
-Entity Framework rövid bemutatása : \\
+\subsubsection{Entity Framework rövid bemutatása }
 
 Létre kell hozni egy ConnectionStrings-et , amelyben a Servert nevét, és az Adatbázis nevét kell megadni, $+$ egy Truested Connection értéket. \\
 
@@ -180,66 +205,53 @@ Létre kell hozni egy ConnectionStrings-et , amelyben a Servert nevét, és az A
 Az adatbázisban lévő kapcsolatok az alábbi methodus felüldefiniálásával lettek megadva.
 Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli DbSet listát hozunk létre. \\
 \begin{python}
-	public DbSet<Employee> Employee { get; set; }  
-	public DbSet<Department> Department { get; set; } 
-	public DbSet<Duty> Task { get; set; } 
-	public DbSet<Leader> Leader { get; set; } 
+public DbSet<Employee> Employee { get; set; }  
+public DbSet<Department> Department { get; set; } 
+public DbSet<Duty> Task { get; set; } 
+public DbSet<Leader> Leader { get; set; } 
 	
-	protected override void OnModelCreating
-	(ModelBuilder modelBuilder) 
-	{
+protected override void OnModelCreating(ModelBuilder modelBuilder) 
+{
 		
-		base.OnModelCreating(modelBuilder); 
-		modelBuilder.Entity<Employee>() 
-		.HasOne(p => p.Deprartment) 
-		.WithMany(b => b.Employee) 
-		.HasForeignKey(ug => ug.DepartmentId) 
-		.OnDelete(DeleteBehavior.NoAction); 
-		modelBuilder.Entity<Duty>() 
-		.HasKey(bc => new { bc.EmployeeId, bc.LeaderId }); 
-		modelBuilder.Entity<Duty>() 
-		.HasOne(bc => bc.Employee)
-		.WithMany(b => b.Tasks)
-		.HasForeignKey(bc => bc.EmployeeId); 
-		modelBuilder.Entity<Duty>() 
-		.HasOne(bc => bc.Leader) 
-		.WithMany(c => c.Tasks) 
-		.HasForeignKey(bc => bc.LeaderId); 
-		modelBuilder.Entity<Department>() 
-		.HasOne(a => a.Leader).WithOne(b => b.Department) 
-		.HasForeignKey<Leader>(e => e.DepartmentId); 
-	}
+	base.OnModelCreating(modelBuilder); 
+	modelBuilder.Entity<Employee>() 
+	.HasOne(p => p.Deprartment) 
+	.WithMany(b => b.Employee) 
+	.HasForeignKey(ug => ug.DepartmentId) 
+	.OnDelete(DeleteBehavior.NoAction); 
+	...
+}
 \end{python}
 
 Az osztály amelyben ezt a methódus megtalálható, egy DbContext osztályból származik le, amely implementálja az Entity Framework sajátosságait.
-
 Fontos az 1:N kapcsolat kialakításánál, hogy az osztály adattagjaként felvegyük egy osztálytípusú listát, amelyből a több származik az egy felé.
 
-\vskip 0.3 true cm
+\newpage
 
 Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
 Az Entity Framework sajátossága, hogy listaként kezeljük az adatbázist, így egy "Select * from DbName" parancs helyett elég meghívni a listának a .toList() methódusát.
 Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a a lista.add() methodussal lehet megtenni.
 További a .remove , .hasFirstDefault stb.. \\
+Az Entity Frameworkhoz való hozzáférés a nyelvbe integrált (linq) segítségével történik.
+\subsubsection{HTTP POST kérés szintaktikája} 
 
-Egy példa, a controllerek között egy POST methodust megtekinve : \\
 \begin{python}
-	[HttpPost] 
-	public async Task<ActionResult<Department>> 
-	PostDepartment(Department department) 
-	{ 
-		_context.Department.Add(department); 
-		await _context.SaveChangesAsync(); 
-		return CreatedAtAction("GetDepartment",
-		new { id = department.DepartmentId }, department); 
-	}  
-	tartalom...
+[HttpPost] 
+public async Task<ActionResult<Department>>
+PostDepartment(Department department) 
+{ 
+	_context.Department.Add(department); 
+	await _context.SaveChangesAsync(); 
+	return CreatedAtAction("GetDepartment",
+	new { id = department.DepartmentId }, department); 
+}  
+
 \end{python}
 
 Látható, hogy a Department rekordot feltölti a kapott Department osztálytípusú department nevű objektummal a  
 \begin{python}
 	
-	_context.Department.Add(department); 
+_context.Department.Add(department); 
 \end{python}
 résznél.
 
@@ -249,40 +261,63 @@ mennyiségét, objektumorientált nyelv és relációs adatbázis közötti adat
 Az ORM hátrányos az olyan területeken, rendszerekben ahol az adatbázist jelentősen
 optimalizálják speciális technikák alapján.  \\
 
-Ahhoz, hogy az Entity Frameworköt használatba tudjunk fenni, különböző szükséges toolokat kell telepíteni a programba, amelyeket a visual studióban megtalálunk, mint például: \\
+Ahhoz, hogy az Entity Frameworköt használatba tudjunk fenni, különböző szükséges \textit{NuGet} csomagokat kell telepíteni a programba, amelyeket a visual studióban megtalálunk, mint például: \\
 \begin{python}
-	Microsoft.EntityFrameworkCore 
-	Microsoft.EntityFrameworkCore.Design 
-	Microsoft.EntityFrameworkCore.SqlServer 
-	Microsoft.EntityFrameworkCore.Design 
-	Microsoft.EntityFrameworkCore.Tools 
+Microsoft.EntityFrameworkCore 
+Microsoft.EntityFrameworkCore.Design 
+Microsoft.EntityFrameworkCore.SqlServer 
+Microsoft.EntityFrameworkCore.Design 
+Microsoft.EntityFrameworkCore.Tools 
 	
 \end{python}
 
 Az Entity Framework előnye, hogy az adatbázisban lévő adatokat lista szerkezetként tudjuk
 kezelni, így a megszokott adatbázis parancsokat felcserélhetjük, egy egyszerűbb
 szintaktikával rendelkező kódolásra. \\
+\newpage
+\subsubsection{Hagyományos SQL és az Entity Framework összehasonlítása} 
+\subsubsection{Listázás}
+\begin{python}
+	Select * from TableName 	// SQL
+	listName.toList()		//Entity Framework
+\end{python}
+Egy listázást az alábbi módon tudjuk megtenni, mind sql-ben , mind Entity Frameworköt használva.\\
 
-Összehasonlítva : \\
-Egy listázást az alábbi módon tudjuk megtenni, mind sql-ben , mind Entity Frameworköt
-használva. \\
-Select * from TableName helyett használhatjuk a listanév.toList() szintaktikával tehetjük
-meg. \\
-Az adatbázisba történő beszúrás, egy Insert Into TableName values parancs helyett
-könnyedén alkalmazhatunk egy .Add() metódust, ahol a paraméter listába az adatbázisnak
-megfelelően egy osztály példánya kerül. \\
-Egy feltételekhez kötött listázás szintaktikája is tovább egyszerüsödik, hiszen a Select *from
-tablename where feltétel helyett használhatjauk a listanév.where(feltétel) parancsot. \\
+\subsubsection{Beszúrás}
+\begin{python}
+	Insert Into TableName values	// SQL
+	listName.Add()			//Entity Framework
+\end{python}
+Az adatbázisba történő beszúrás, egy  parancs helyett
+könnyedén alkalmazhatunk egy  metódust, ahol a paraméter listába az adatbázisnak megfelelően egy osztály példánya kerül. \\
+
+
+\subsubsection{Keresés}
+\begin{python}
+	 Select *from tablename where condition 	// SQL
+	listName.where(condition)		//Entity Framework
+\end{python}
+Egy feltételekhez kötött listázás szintaktikája is tovább egyszerűsödik. \\
+
+\subsubsection{Törlés}
+\begin{python}
+	DELETE FROM table_name WHERE condition     //SQL
+	listname.delete(condition)		/Entity Framework
+\end{python}
 
 További sajátosságai, jelentősen megkönnyítik a szerver oldali implementációt, a kliens
 oldallal történő kommunikáció használatára pedig json \\ (Javascript Object Notation)-t
 használunk, amely tulajdonképpen rendezett érték lista amely , egy név és érték párok
 gyüjteménye dupla idézőjel párok között megadva. \\
 
-Általános szintaktikája : \\
-{ "name":"value", \\
-	"name2":"value2" \\
-} \\
+Általános szintaktikája : 
+\begin{python}
+{
+	"name":"value", 
+	"name2":"value2" 
+	...
+} 
+\end{python}
 Kezdetben a szerver oldali tesztelés, adatok felvitele, listázása és egyéb alapvető funkciók a
 Postman nevű alkalmazásban történik. \\
 Mivel a Json sokkal könyebben értelmezhető, mint az xml, ezért esett erre a választás. \\
@@ -299,13 +334,14 @@ fejlesztés (RAD, Rapid application development). \\
 \section{Platformfüggetlenség}
 A CLI rendszerek leírják nyelvfüggetlen fejlesztői környezetet, a futtatókörnyezetet,
 típusrendszert. \\
-Négy fő része van : \\
-1. A CLS, amely azokat a szabályokat írja le, amelyeket a CLI-kompatibilis nyelveknek
-be kell tartaniuk \\
-2. A CTS, amely a CLI azon része, ahol a típusokat, és azoknak a memóriaban történő
-reprezentációját illetve egymással való kapcsolatait írja le. \\
-3. CLR, amely a CLI nyelven megírt programok betöltéséért és végrehajtásáért felel. \\
-\cite{net}
+Három fő része van : \\
+\begin{itemize}
+	\item A \textit{CLS}, amely azokat a szabályokat írja le, amelyeket a \textit{CLI}-kompatibilis nyelveknek	be kell tartaniuk
+	\item  A \textit{CTS}, amely a \textit{CLI} azon része, ahol a típusokat, és azoknak a memóriaban történő reprezentációját illetve egymással való kapcsolatait írja le.
+	\item  \textit{CLR}, amely a \textit{CLI} nyelven megírt programok betöltéséért és végrehajtásáért felel. \cite{net}
+\end{itemize}
+
+
 
 A gyors alkalmazás fejlesztéshez használt módszertan 3 fő elemből tevődik össze: \\
 Ciklikus fejlesztés, működő prototípusok létrehozása, és a szoftverfejlesztést támogató
