@@ -35,9 +35,7 @@ npm install react-bootstrap bootstrap
 	css/bootstrap.min.css" integrity="sha384- 
 	9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZ
 	l5MYYxFfc+NcPb1dKGj7Sk" 
-	crossorigin="anonymous" 
-	/> 
-	
+	crossorigin="anonymous" /> 
 \end{python}	
 	
 
@@ -133,14 +131,21 @@ kommunikációt Json formátum segítségével lesz megoldva \ref{fig:backendget
 Backend oldalon az alábbi rész kerül implementációra. \\
 Ahhoz hogy a két server kommunikálni tudjon egymással, és ne írjon hibát, fel
 kell oldani egy Cors problémát a .net résznél, hogy ez megvalósuljon. \\
+\newpage
 Mivel a frontend a 3000-as porton érhető el így az implementációja az alábbi
 formátumban lesz, a nuget csomagok telepítése után :  \\
+\begin{python}
+	config.EnableCors(new
+	 EnableCorsAttribute("http://localhost:3000", "*", "*")); 
+\end{python}
 
-config.EnableCors(new EnableCorsAttribute("http://localhost:3000", "*", "*")); \\
+A json formátummá alakításhoz pedig : 
+\begin{python}
+	config.Formatters.JsonFormatter.SupportedMediaTypes.Add( 
+	new MediaTypeHeaderValue("text/html")); 
+\end{python}
 
-A json formátummá alakításhoz pedig : \\
-config.Formatters.JsonFormatter.SupportedMediaTypes.Add( \\
-new MediaTypeHeaderValue("text/html")); \\
+
 Így ha a fentebbi listát tekintjük meg Backend oldalon , akkor az alábbi Json \\
 formátumot fogjuk látni :  \\
 
@@ -153,7 +158,7 @@ A department részleg esetén \ref{fig:backendgetDepartment} :
 	\label{fig:backendgetDepartment}
 \end{figure}
 
-\newpage
+
 Az employee részleg esetén \ref{fig:backendget} : 
 
 \begin{figure}[h!]
@@ -171,20 +176,24 @@ fetch('https://localhost:44315/api/Department')
 fetch('https://localhost:44315/api/Employee')
 \end{python}
 
-részeket. \\
-Különböző kéréseket adhatunk meg a függvényen belül, (Post, Put, Get, Delete) \\
-Amelyek az alábbi szintaktikával kerülnek implementálásra:  \\
+ A modellezett üzleti folyamatot a felhasználó kétféleképpen tudja ábrázolni az alkalmazásban. \ref{fig:fetchapi}
 
 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8.8truecm, height=6.5truecm]{images/vsCodeJson.png}\\
-	\caption{JSON kezelés Fetch api segítségével, react használatával}
+	\includegraphics[width=\textwidth]{images/businessprocessDraw.png}\\
+	\caption{Road Transportation Maintance ábrázolása az alkalmazásban.}
 	\label{fig:fetchapi}
 \end{figure}
+A következő ábrázolásban a lépések közötti sorrend, és az elágazások jobban átláthatóak.
 
-
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8truecm, height=12truecm]{images/2nd process diagram.png}\\
+	\caption{Folyamatábra készítése a Road Transportation Maintance-hoz.}
+	\label{fig:roadtransporationdemand2ndabra}
+\end{figure}
 
 
 
