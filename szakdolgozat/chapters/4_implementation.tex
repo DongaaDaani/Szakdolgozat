@@ -1,5 +1,5 @@
 \Chapter{Üzleti folyamatok}
-Egy vállalat élete során rengeteg problémával néz szembe, akár napi szinten. Ez lehetnek egyszerű, vagy teljesen komplex feladatok is. Ahhoz, hogy egy vállalat zökkenő mentesen működjön, fontos ezeket a feladatokat könnyedén, hatékonyan megoldani.
+Egy vállalat élete során rengeteg problémával néz szembe, akár napi szinten. Ezek lehetnek egyszerű, vagy teljesen komplex feladatok is. Ahhoz, hogy egy vállalat zökkenő mentesen működjön, fontos ezeket a feladatokat könnyedén, hatékonyan megoldani.
 \Section{Workflow rendszerek}
 
 Üzleti folyamatoknál gyakran emlegetik a {\bf workflow} (munkafolyamat) kifejezést,\\ amelynek a jelentése olyan tevékenységek sorozata, amelyeket az gépek vagy az emberek végrehajtanak, egy logikai terv szerint, valamilyen cél elérése érdekében. 
@@ -9,8 +9,9 @@ megfelelően.
 % TODO: A BPM rövidítést ki kellene írni, és be kellene hivatkozni. (Más, hasonló hivatkozások is jól jöhetnek ide.) 
 
 A korábbi workflow rendszerek csak az üzleti folyamatok leképezését tették lehetővé vizualizációs eszközök segítségével. A Business Process Management azóta sokat fejlődött és a támogató szoftvercsomagok sokkal több lehetőséget nyújtanak már.
-Ezek a következő szakaszokban kerülnek kifejtésre.
+Ilyenek lehetnek a Process Designerbe integrált plusz funkciók, mint a folyamatokhoz tartozó folyamatábra, a folyamat lépéseihez tartozó űrlapok megtekintése, és az, hogy az egyes mezők mögött milyen metódus hívások , és adatbázis van. Az összes üzleti folyamatot egy helyen lehet tárolni. 
 \cite{Bene}
+
 \Section{Elvárások}
 Egy folyamat modellezőnek a következő képességekkel kell rendelkezniük:
 \begin{itemize}
@@ -27,45 +28,30 @@ Egy folyamat modellezőnek a következő képességekkel kell rendelkezniük:
 
 \Section{Folyamatgráf}
 
-A folyamatgráf (\textit{Process Graph}, \textit{P-Graph}) egyik nagy előnye a folyamatok gráf alapú szemléltetésének, hogy a gráfelmélet eredmények és algoritmusok alkalmazhatóak  a vizsgálat során. \\
+A folyamatgráf (\textit{Process Graph}, \textit{P-Graph}) egyik nagy előnye a folyamatok gráf alapú megközelítésnek, mivel a gráfelméleti algoritmusok alkalmazhatóak a vizsgálat során.  \\
 A folyamat-gráf, egy speciális irányított páros gráf optimalizálási feladatok hatékony megoldásához, vagy épp
 workflow modellezéshez. \cite{Bene}  \\
 
-BPMN (Business Process Modelling Notation ) fogalma:
-A BPMN szabványosított grafikus jelölési mód, mely lehetőséget ad az üzleti élet
-szereplőinek, hogy folyamataikat standardizált formában tehessék közzé. \cite{Bohacs}
 
-Egy  UML-hez hasonló workflow leíró eszköz, amely könnyen értelmezhető grafikus
-jelölésrendszer biztosít az üzleti folyamatok ábrázolásához.  A grafikus jelölés
-segítségével kiküszöbölhetőek a résztvevők között felmerülő kommunikáció nehézségek. Szabványos eszköznek számít az
-üzleti folyamatok, valamint a webes szolgáltatások modellezéséhez. \\
-
-
-A BPMN folyamat-orientált megközelítéssel dolgozik. Három alapobjektumát a tevékenységek, események , és az átjáró jelentik. \\
-
-A BPMN üzleti folyamat modellező szabvánnyá vált. Népszerűségét könnyű elsajátíthatóságának és értelmezhetőségének köszönheti.
-
-Egy BPMN folyamatábra leképezhető P-gráffá is.
-\cite{BPMN}
 \Section{Folyamatszintézis}
 
 A nagy szoftverek kisebb részekből állnak. A kisebb részek szintén úgy épülnek fel, hogy mégkisebb programrészeket használnak fel. Egy-egy programrészről tudjuk, hogy mely adathalmazt és objektum összességet használja és ezekből milyen adatokat állít elő.\\
 A tervezés fontos része ezen komponensek összeillesztése, illetve összehozása.
 
-\newpage
+
 \Section{Folyamatmodellezés és szimuláció}
 
 % TODO: A nemdeterminisztikus modelleknek milyen jelentősége lesz a későbbiekben? (Nem teljesen tünne indokoltnak ilyen formában a témához.) (A Későbbiekben nem lesz jelentősége, viszont az első két folyamat nem determinisztukus, hiszen két bemente van. Talán azt itt ki lehet hangsúlyozni.)
 
 Az első két ábrán \ref{fig:Demand_Process} \ref{fig:maintane_process} látható folyamatábra nem determinisztikus volt, mivel mindkettőnél két bemenet volt, az egyik a Draft, a másik pedig a Start lépést. A start lépést a Draft lépés követi.
 
-A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
+A legtöbb korszerű workflow rendszer főbb szolgáltatásai alkalmasak a munkafolyamatok között eltelt idő, várakozási és sorbaállási idők csökkentésére, és minimalizálására. A sorbaállási modell nem elhanyagolható, mivel gyakran felhasználják üzleti döntéseknél, ahol az erőforrások becslése nem elhanyagolható. \cite{sorbanallaswikipedia} Könnyen előfordulhat ugyanis nagyobb mértékű feltolódás egy bizonyos erőforráson, amely nagy kapacitást igényel. A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
 várakozás vizsgálatával foglalkozik. Definíció szerint a sorbanállás-elmélet különböző
 folyamatok eseményeivel kapcsolatos várakozási sorokat, sorbanállási időket a
 kiszolgálásra, és ezek összefüggéseit tárgyalja az alkalmazott matematikai eszközeivel. \cite{Sorba} \\ 
 
 A folyamat során várakozó sor keletkezhet, ha a kiszolgáló egységekbe történő áramlás
-időköze, és a kiszolgálás időtartama szabálytalan. Sorbanállás keletkezhet akkor is, a
+időköze, és a kiszolgálás időtartama szabálytalan. Sorbaállás keletkezhet akkor is, a
 beáramlás időköze kisebb, mint a kiszolgálás időtartama. Ekkor a tároló térben a beáramló
 várakozó anyagmennyiség, azaz várakozó sor folyamatosan növekszik. \\
 
@@ -232,21 +218,13 @@ Kifinomult munkafolyamat-modell érvényesítési funkciók (Holtpont észlelés
 
 
 
-\SubSection{BPEL}
-
-A BPEL olyan szabványos leíró nyelv, amely üzleti partnerek folyamatainak leírásara
-alkalmas, és webszolgátatáson keresztül segíti a folyamatok összehangolását, végrehajtását.
-Megjelenítési nyelve az XML, de grafikus ábrázolást nem tesz lehetővé és nem rendelkezik
-szabványosított folyamattervezési metodikával. Az egyes aktivitások végrehajtása egy
-külső, kiegészítő nyelven elkészített parancs meghívásával jár, ami leggyakrabban Java. \cite{BMEIK} \\
-
 \SubSection{XML Process Definition Language}
 
 Az XPDL (XML Process Definition Language) a WfMC (Wokflow Management Coalition)
 által szabványosított leírónyelv. Az XPDL egy olyan XML sémát definiál, ami alkalmas a
 különböző leíró és modellezési eszközök közötti információcserére. Fontos kiemelni, hogy
 az XPDL a folyamat leírása mellett a folyamat végrehajtására is tartalmaz információkat.
-Ezzel szemben a BPEL csak a végrehajtásra koncentrál.
+
 \cite{Wikixpdl}
 \SubSection{SysML}
 

@@ -1,6 +1,6 @@
 \Chapter{Folyamatok matematikai leírása}
 A fejezet bemutatja, hogy a folyamatok modellezésére milyen
-matematikai jelölések és modellek állnak rendelkezésre. Ebben a részben leginkább a strukturális programgráf, és a folyamatokhoz megfeleltetett automatákról, és azok megtervezéséről lesz szó lesz részletesebben szó.
+matematikai jelölések és modellek állnak rendelkezésre. Ebben a részben leginkább a strukturális programgráf, és a folyamatokhoz megfeleltetett automatákról, és azok megtervezéséről lesz részletesebben szó.
 \Section{Véges Determinisztikus automaták}
 
 Véges számú állapotból, és a közöttük lévő átmenetekből (tranzíciókból) áll, amelynek szakaszait úgynevezett input szimbólumok jellemzik, amelyek ugyanabból a véges $\Sigma$ ábécéből vannak kiválasztva. 
@@ -13,7 +13,8 @@ Minden állapotban minden egyes bemeneti szimbólumhoz pontosan egy következő 
 \Section{Formális definíció}
 
 Egy véges determinisztikus autómatát a következőképpen definiálunk.
-Legyen $A = (Q, \Sigma, \rho, q_{0}, F)$, ahol $Q$ az állapotok halmaza, $\Sigma$ a véges ábécé, $\Sigma \notin \emptyset$, továbbá $\rho$ a tranzíciós függvény, a  $q_{0}$ a kezdő állapot, $q_{0} \in Q $  $F$ a végállapot. $F \notin \emptyset$.
+Legyen $A = (Q, \Sigma, \rho, q_{0}, F)$, ahol $Q$ az állapotok halmaza, $\Sigma$ a véges ábécé, $\Sigma \notin \emptyset$, továbbá $\rho$ a tranzíciós függvény, a  $q_{0}$ a kezdő állapot, $q_{0} \in Q $  $F$ a végállapot. $F \notin \emptyset$.\\
+Esetünkben a $Q$ halmaz elemei a jóváhagyó lépéseket tartalmazza, a $q_{0}$ a kezdő Draft lépést, az $F$ pedig az utolsó jóváhagyó lépést.
 
 Könnyen belátható, hogy $F \in Q$.
 
@@ -92,16 +93,15 @@ minden nem strukturált program átírható vele ekvivals strukturált program f
 % TODO: Ennél a Böhm-Jacopini tételt lehet hivatkozni. (Így emlékszem, a jegyzetet nem találom)
 Minden valódi program átalakítható vele ekvivalens strukturált program formájába.
 
-A Road Transportation Maintance folyamathoz tartozó jelölés a 3 alapvető elem segítségével :
 
 
 \Section{Nem determinisztikus autómata}
 
-Nondeterminisztic Finite Automation (NFA) esetén, viszon egy adott $q_{i}$ állapothoz és egy $a\in \Sigma$ jelhez több output is tartozhat, vagy egy sem.
+Nondeterminisztic Finite Automation (NFA) esetén, viszon egy adott $q_{i}$ állapothoz és egy $a\in \Sigma$ jelhez több output is tartozhat, vagy egy sem. Ez egy üzleti folyamat esetén azt eredményezné, hogy egy bizonyos jóváhagyó lépés után nincs vége a folyamatnak, de nincs tovább, mintha elakadt volna. Ez leginkább a szoftver implementációs problémájára vezethető vissza, vagy éppen egy rosszul megtervezett folyamatmodellre.
 \vskip 0.3 true cm
 Tehát lehetséges olyan belső állapota, amiből a beolvasott szimbólum hatására több lehetséges állapot egyikébe mehet át.\\
-Láthatjuk , hogy a véges állapotú autómaták megfeleltethetőek a modellezett folyamatoknak.
-Egy strukturálatlan alapelemekből felépülő folyamat, megfelel egy nemdeterminisztikus automatának.
+Láthatjuk , hogy a véges állapotú automaták megfeleltethetőek a modellezett folyamatoknak.
+Egy strukturálatlan alapelemekből felépülő folyamat, megfelel egy nem determinisztikus automatának.
 A strukturált elemekből felépülő modellezés pedig egy véges állapotú, determinisztikus automatának.
 
 Mint ahogy a Struktúrált programozánál is említettük, hogy bármely nem struktúrált program átírható, vele ekvivalens struktúrált programmá, ez szintén jellemző a véges állapotú, nondetermenisztikus autómatákra.
@@ -167,7 +167,7 @@ Mik számítanak lényeges paraméterek? \\
 Milyen erőforrásokat bővítsünk? (emberi vagy gépi)? \\
 Mi történik, ha a modellparaméterek nem pontosak? 
 
-Az érzékenységvizsgálat során az optimális erőforrások paramétereinek a megvizsgálása, hogy azok megváltoztatása milyen hatással lenne az optimális megoldásra.\\
+Az érzékenységvizsgálat során az optimális erőforrások paramétereinek a megvizsgálása, hogy azok megváltoztatása milyen hatással lenne az optimális megoldásra. Egy vállalatnak nem jó, ha egy feladatra,folyamatra túl sok embert bíz meg, hiszen ez nem költséghatékony. Ellenkező esetben a túl kevés , alul tervezett költségek sem vezetnek jó irányban, hiszen tolódhat a folyamat megtervezésének ideje, esetleg hiányos, rossz lesz. Meg kell találni az optimális megoldást, akár különböző módszerek segítségével.\\
 A szerkezet változatlan a marad.
 
 

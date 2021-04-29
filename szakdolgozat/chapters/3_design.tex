@@ -6,12 +6,14 @@ A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először \
 
 \Section{Működése és felépítése}
 
-irányított, súlyozott, páros gráf
+A petri háló egy irányított, súlyozott, páros gráf, ahol a csúcsok az átmeneteket (tranzíciókat) és az állapotokat reprezentálják. Ezek az irányított élek leírják az átmenetek és az állapotok között fennálló kapcsolatokat.
+Kétféleképpen mutathatnak, az első állapotból átmenetbe, vagy a második lehetőség, hogy átmenetből állapotba. \cite{petriworkflow}
 
-Két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.
+Tehát két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.
 
 Van egy állapotjelölő token, amely fekete pötty a hely körébe rajzolva.
-A hely állapota pedig a bennelévő tokenek száma.
+A hely állapota a benne lévő tokenek száma.\\
+Egy hely engedélyezett, ha minden input helyén van legalább egy token.
 
 \vskip 0.3 true cm
 
@@ -23,8 +25,8 @@ A Petri háló (\textit{Petri Net}, \textit{PN}) egy súlyozott, irányított é
 Formálisan a Petri hálók olyan $<P, T, E, \delta, m_{0}>$ ötös, ahol
 \begin{itemize}
 	\item $P$: a $p_{i}$ helyek véges halmaza,
-	\item $T$: a $t_{i}$ tranzíciók véges halmaza, $P \cap T = \emptyset$,
-	\item $E: (P \times T ) \cup (T \times P)$ a helyeket és tranzíciókat összekötő élek halmaza,
+	\item $T$: a $t_{i}$ tranzíciók (átmenetek) véges halmaza, $P \cap T = \emptyset$,
+	\item $E: (P \times T ) \cup (T \times P)$ a helyeket és tranzíciókat összekötő élek halmaza (irányított élek halmaza),
 	\item $\delta: E \rightarrow \mathbb{N}^{+}$ súlyfüggvény.
 \end{itemize}
 
