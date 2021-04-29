@@ -21,10 +21,13 @@ hajlamos a lassúságra, illetve az esetleges összeomlásra. Ezért az egyes fu
 tapasztalatainak megfeleljenek. A React.js alapvető bootstrapjét használjuk a
 projekt implementálásánál, amelyet a következő parancs telepítése után vehetünk
 igénybe.
-\begin{center}
-	npm install react-bootstrap bootstrap \\
+
+\begin{python}
+npm install react-bootstrap bootstrap 
+\end{python}
+	
 	majd beimportáljuk a projektbe. 
-\end{center}
+
 \begin{python}
 	<link \\
 	rel="stylesheet" 
@@ -78,7 +81,7 @@ A törlés gomb megnyomásával egy Alert rész ugrik fel, rákérdez arra, hogy
 Ugyanezen a formon lehetőségünk van egy részleg hozzáadására, az Id
 automatikusan incrementálódik, tehát a felhasználónak csak magát a részleg
 nevét kell megadnia. \\
-\newpage
+
 Az Alkamazottak felülete \ref{fig:alkalmazottak} : \\
 
 
@@ -141,36 +144,33 @@ new MediaTypeHeaderValue("text/html")); \\
 Így ha a fentebbi listát tekintjük meg Backend oldalon , akkor az alábbi Json \\
 formátumot fogjuk látni :  \\
 
-A department részleg esetén : 
-
-
-{\large
-	\begin{center}
-		\vglue 1truecm
-	
-		\vglue 1truecm
-		\includegraphics[width=15truecm, height=5truecm]{images/DepartmentJson.png}\\
-		\textbf{\textsc{Backend szerveren futó Get lekérdezés}}
-\end{center}}
-
-
-Az employee részleg esetén : 
-
-
+A department részleg esetén \ref{fig:backendgetDepartment} : 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=15truecm, height=5truecm]{images/EmployeeJson.png}\\
+	\includegraphics[width=\textwidth]{images/DepartmentJson.png}\\
+	\caption{Backend szerveren futó Get lekérdezés}
+	\label{fig:backendgetDepartment}
+\end{figure}
+
+\newpage
+Az employee részleg esetén \ref{fig:backendget} : 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{images/EmployeeJson.png}\\
 	\caption{Backend szerveren futó GET lekérdezés}
 	\label{fig:backendget}
 \end{figure}
 
 
 A Cliens oldali részről, ahhoz hogy ezt a Json formátumot használhatóvá tudjuk \ref{fig:fetchapi}
-tenni, a ComponentDidMount függvényen belül definiálni kell a \\
+tenni, a \textit{ComponentDidMount} függvényen belül definiálni kell a \\
+\begin{python}
 fetch('https://localhost:44315/api/Department')
-illetve a \\
-fetch('https://localhost:44315/api/Employee) \\
+fetch('https://localhost:44315/api/Employee')
+\end{python}
+
 részeket. \\
 Különböző kéréseket adhatunk meg a függvényen belül, (Post, Put, Get, Delete) \\
 Amelyek az alábbi szintaktikával kerülnek implementálásra:  \\
@@ -210,12 +210,10 @@ sikeres visszajelzést.
 
 
 
-\newpage
 
-	\newpage
 
 Az új igénylő első lépése megtekinthető a \ref{fig:newMaintance} , az első jóváhagyó lépése pedig a \ref{fig:newMaintance2} képeken tekinthető meg.
-
+\newpage
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=15truecm, height=7truecm]{images/newRoad1.png}\\
@@ -230,9 +228,6 @@ Az új igénylő első lépése megtekinthető a \ref{fig:newMaintance} , az els
 	\label{fig:newMaintance2}
 \end{figure}
 
-
-
-
 \newpage
 \begin{python}
 	componentDidMount(){
@@ -243,14 +238,8 @@ Az új igénylő első lépése megtekinthető a \ref{fig:newMaintance} , az els
 		fetch('https://localhost:44315/api/Draft')
 		.then(response=> response.json())
 		.then(data=>{ 
-			this.setState({draft:data});
-		});
-	}
-	
+			this.setState({draft:data});  }); }
 \end{python}
-
-
-
 
 
 Telefon,vagy egyéb kisebb eszközön a design \ref{fig:responsive} 
@@ -263,39 +252,3 @@ Telefon,vagy egyéb kisebb eszközön a design \ref{fig:responsive}
 \end{figure}
 
 
-\begin{python}
-	   handleSubmit(event){
-		event.preventDefault();
-		
-		fetch('https://localhost:44315/api/Draft',{
-			method:'POST',
-			headers:{
-				'Accept':'application/json',
-				'Content-Type':'application/json',
-			},
-			body:JSON.stringify({
-		    	DraftID:null,
-				LicensePlatenumber:event.target
-						.licensePlate.value,
-				Brand :event.target.brand.value,
-				Type :event.target.type.value,
-				Model :event.target.model.value,
-				Km :event.target.km.value,
-				OpHours :event.target.opHours.value,
-				ProblemType :event.target
-						.problemType.value
-			})
-		})
-		.then(res=>res.json())
-		.then((result)=>{
-			// alert(result);   
-			this.setState({snackbaropen:true,
-				snackbarmsg:result})
-		},
-		(error)=>{
-			this.setState({snackbaropen:true,
-				snackbarmsg:'fail'})
-		}
-		)
-	}
-\end{python}

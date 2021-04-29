@@ -4,15 +4,16 @@ Az első üzleti folyamat, amely a személygépkocsi igénylése, tulajdonképpe
 elég egyszerű (2 lépéses folyamat), itt talán felugró mezők okozzák a
 legnagyobb kihívást.\\
 A folyamat első, draft lépése így nézne ki :   \ref{fig:draft} \\
-{\large
-	\begin{center}
-		\vglue 1truecm
-		\textbf{\huge\textsc{Road Transportation Demand első lépése}}\\
-		\vglue 1truecm
+
+
+\begin{figure}[h]
+	\centering
 		\includegraphics[width=11.8truecm, height=7.5truecm]{images/road1.png}\\
-		\textbf{\textsc{Draft page}}
+	\caption{Road Transportation Demand Draft Page}
 		\label{fig:draft}
-\end{center}}
+\end{figure}
+
+
 
 Az igénylés típusát kiválasztva, olyan mezők adódnak hozzá a folyamathoz, amelyek a jelenlegi
 képernyő fotón nem látszódnak. \\
@@ -76,92 +77,6 @@ Az első lépést, az-az a draft-ot itt láthatjuk : \\
 \end{figure}
 
 
-\begin{python}
-	<el-row :gutter="20">
-	<el-col :span="12">
-	<el-form-item :label="$t('BCSMRTMI18.demandType')" 
-	prop="demandType">
-	<el-radio-group v-model=BCSMRTM.whBtBcRtm.demandType"
-	 @change="onVegicleChange">
-	<el-radio v-for="item in BCSMRTM.selectList-demandType" 
-	:key="item.relationKey" :label="item.relationKey">
-	{{item.value_}}
-	 </el-radio>
-	</el-radio-group>
-	</el-form-item>
-	</el-col>
-	</el-row>	
-	
-	<el-row :gutter="20" v-if="vehicleFieldVisible===true">
-	<el-col :span="12">
-	<el-form-item :label="$t('BCSMRTMI18.lplate')" 
-	prop="lplate">
-	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.lplate"
-	 placeholder="XXX-123">
-	<el-button slot="append" @click="licensePlateClick()" 
-	style="width:40px" size="small icon="el-search-icon"> 
-	</el-button>
-	</el-input>
-	</el-form-item>
-	</el-col>
-	<el-col :span=12>
-	<el-form-item :label="$t('BCSMRTMI18.brand')" 
-	prop="brand">
-	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.brand" readonly>
-	</el-input>
-	</el-form-item> 
-	</el-col>
-	</el-row>
-
-	<el-row :gutter="20" v-if="vehicleFieldVisible===true">
-	<el-col :span=12>
-	<el-form-item :label="$t('BCSMRTMI18.type')" 
-	prop="type">
-	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.type"
-	 readonly>
-	</el-input>
-	</el-form-item> 
-	</el-col>
-	<el-col :span=12>
-	<el-form-item :label="$t('BCSMRTMI18.model')" 
-	prop="model">
-	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.model"
-	 readonly>
-	</el-input>
-	</el-form-item> 
-	</el-col>
-	</el-row>
-	
-	<el-row :gutter="20" v-if="vehicleFieldVisible===true">
-	<el-col :span=12>
-	<el-form-item :label="$t('BCSMRTMI18.totalMileage')"
-	 prop="totalMileage">
-	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.totalMileage"
-	 readonly></el-input>
-	</el-form-item> 
-	</el-col>
-	<el-col :span=12>
-	<el-form-item :label="$t('BCSMRTMI18.totalUsage')"
-	 prop="totalUsage">
-	<el-input type="text" v-model="BCSMRTM.whBtBcRtm.totalUsage"
-	 readonly></el-input>
-	</el-form-item> 
-	</el-col>
-	</el-row>
-	
-	<el-row :gutter="20>
-	<el-col :span="24">
-	<el-form-item :label="$t('BCSMRTMI18.propertyDesc')" 
-	prop="propertyDesc">
-	<el-input type="textare"
-	 v-model="BCSMRTM.whBtBcRtm.propertyDesc">
-	</el-input>
-	</el-form-item> 
-	</el-col>
-	</el-row>
-	
-\end{python}
-
 Itt az első kiválasztott érték esetén, ha az nem jármű, akkor az alábbi mezőt kapjuk meg: \ref{fig:realestate} \\
 
 
@@ -181,7 +96,7 @@ Ezt követően a második (Approve) lépésben az alábbi rész jelenik meg: \re
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=11.8truecm, height=6.5truecm]{images/road6.png}
+	\includegraphics[width=\textwidth]{images/road6.png}
 	\caption{Road Transportation Maintance Supervisor Approve}
 	\label{fig:maintanceSupervisor}
 \end{figure}
@@ -195,8 +110,7 @@ Belső, vagy külső probléma.  \ref{fig:coordinatorApprove} \\
 Amennyiben a probléma típusa Belső, vagy Külső, akkor egy újabb mező ugrik fel, amelyben szintén a
 meglévő alkalmazottak közül kell kiválasztani azt, hogy a folyamat kihez megy tovább, ki lesz érte a
 felelős. \\
-A megjelenő oldalt itt láthatjuk :  \\
-\newpage
+A megjelenő oldalt itt láthatjuk :  
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=14.8truecm, height=6.5truecm]{images/road7.png}
