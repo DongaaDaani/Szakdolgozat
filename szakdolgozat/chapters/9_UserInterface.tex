@@ -149,24 +149,41 @@ A json formátummá alakításhoz pedig :
 Így ha a fentebbi listát tekintjük meg Backend oldalon , akkor az alábbi Json \\
 formátumot fogjuk látni :  \\
 
-A department részleg esetén \ref{fig:backendgetDepartment} : 
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{images/DepartmentJson.png}\\
-	\caption{Backend szerveren futó Get lekérdezés}
-	\label{fig:backendgetDepartment}
-\end{figure}
+A department részleg esetén 
 
 
-Az employee részleg esetén \ref{fig:backendget} : 
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{images/EmployeeJson.png}\\
-	\caption{Backend szerveren futó GET lekérdezés}
-	\label{fig:backendget}
-\end{figure}
+\begin{python}
+	{
+		"$id": "1",
+		"departmentId": 1005,
+		"name": "Beszallitas",
+		"leader": "John bill"
+	},
+
+\end{python}
+
+
+Az employee részleg esetén : 
+
+
+\begin{python}
+	
+	{
+		"$id": "2",
+		"employeeId": 1030,
+		"fistName": "Steve",
+		"lastName": "Jon",
+		"adress": "Budapest",
+		"phoneNumber": "06701112222",
+		"email": "steve@gmail.com",
+		"position": "Accountant",
+		"deprartment": null,
+		"departmentId": 1005,
+		"tasks": null
+	},
+
+\end{python}
 
 
 A Cliens oldali részről, ahhoz hogy ezt a Json formátumot használhatóvá tudjuk \ref{fig:fetchapi}
