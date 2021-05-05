@@ -1,0 +1,378 @@
+\Chapter{A folyamatkezelő rendszer implementálása}
+
+\Section{Az alkalmazás komponensei}
+
+A projekt felépítése több komponensből tevődik össze.
+Model rész, ahol az adatbázisnak megfelelő osztályok implementációja történik.
+
+A \textit{Controller} rész, amelyben a szerver felé irányuló kérések implementációja kerül.
+
+Pár alapvető kérés, mint a POST, amelyel egy új rekordot viszünk fel, PUT amelyel egy meglévő adatot módosítunk , DELETE amelyel törlünk , GET amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nem létező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
+
+A \textit{Data} részben vannak az adatbázisban lévő kapcsolatok kialakítva, az itt definiált osztály, a DbSet osztályból származik.
+
+\textit{Migration}, amely a projekt sikeres \textit{build}-elése, a NuGet konzolba beírt
+\begin{python}
+Add-Migration Initial
+Update-Database
+\end{python}
+parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. \\
+(A \texttt{connectionString}-ben megadott szerveren, a megadott adatbázis névvel.)
+
+A jelszavak, és egyéb bizalmasan tárolt adatoknál a .net \textit{Framework Authentication Hash} algoritmust használt a titkosításhoz.
+
+Az üzleti folyamatok kezelésére BPM rendszert (\textit{Business Process Management
+system}) használnak. Kétféle típus létezik:
+\begin{itemize}
+	\item BPM rendszer: az üzleti folyamatok tervezésére, szimulálására és optimalizálására
+	szolgáló rendszer. Ezek elsősorban az információ elemzők, építészek stb. Eszközei.
+	Alig kapcsolódnak közvetlenül a vállalkozás működési szintjéhez.
+	\item BPMS: olyan rendszer, amely lehetővé teszi az üzleti folyamatok tervezését, de ezen
+	folyamatok végrehajtását is (más néven munkafolyamat). Ezeket a rendszereket az
+	egész társaságban lehet használni. Az építészet szintjétől az operatív szintig.
+\end{itemize}
+
+Maga az kezelő felület megjelenése teljesen dinamikus. A statikus tartalom itt azokat a
+tartalmakat jelenti, amelyeket az oldalon nem változnak vagy csak ritka esetben változnak,
+ilyen például folyamatok megnevezése, és a hozzájuk tartozó view pagen lévő mezők, illetve
+a különböző kilistázási és módosító műveletek, vagy esetleg a céget bemutató szöveg, cég
+logó.
+
+Ezek az adatok közvetlen a React HTML (JSX) fájlaiban szerepelnek. A dinamikus tartalmak
+pedig az adatbázisból töltődnek az oldal felületére, ilyenek például a felhasználók által felvitt
+értékek egy folyamat során, akár az adatok betöltődésénél egy kiolvasási rész, akár egy
+adatbázisba történő beszúrás, az első lépésben. A különböző dolgozó menedzselése, amely
+során az adataikat lehet változtatni, esetleg törölni az adatbázisból, vagy egy új dolgozót
+hozzáadni ahhoz.
+
+Ami pedig a dinamikus megjelenést illeti, amelyben a React JS elterjedt Bootstrap-je nyújt
+segítséget, ebben az esetben azt jelenti, hogy a felhasználó bármilyen készülékről is
+használja a vállalati alkalamzást (akár egy kisebb irodai laptop, akár egy nagy monitorral
+rendelkező számítógép, Tablet), a tartalom átláthatóan és érthetően, a készülék méretéhez
+igazítva jelenik meg. Nem lát kevesebb tartalmat és nem korlátozottabb az alkalmazás
+használatában, egyszerűen csak egy más elrendezésű felületet kap, ami az adott készülékhez
+igazodik.
+
+A React JS Bootstrap-jében rengeteg előre definiált stílusú objektumot tudtunk felhasználni,
+amelyektől a weboldal sokkal felhasználó barátabb lesz a dolgozók számára.
+
+Maga a felület a minimalista megjelenésre törekszik a könnyebb és átláthatóbb tartalom
+közvetítése és használhatósága végett.
+
+A vállalat dolgozóinak lehetősége van bejelentkezni a programba. Ezt email címük és jelszó
+segítségével tudják megtenni. Ezután fogja tudni ténylegesen használni a programot.
+Amennyiben hibás adatokkal próbál valaki belépni, egy hibaüzenet ugrik fel: "\emph{Érvénytelen
+adatok. Adjon meg egy meglévő dolgozó adatait, vagy vegye fel a kapcsolatot az
+ügyfélszolgálattal.}".
+
+Bejelentkezés követően a felhasználó megtekintheti a kapott feladatokat egy külön erre
+szolgáló menüpontban. Továbbá amennyiben jogosult rá, lehetősége van a rendszerbe
+implementált folyamatok közül elindítani egyet. Két alapvető folyamat lesz definiálva a
+rendszerben, egy személy gépjármű igénylő és egy karbantartási folyamat.
+
+Több felhasználót különböztet meg a rendszer.
+\begin{itemize}
+	\item Erős felhasználó: Egy cégnél dolgozó felhasználó, akinek a szándéka a program tényleges
+	használata, a feladatok megtekintése, esetleg folyamatok elindítása.
+	\item Vezető: ő a programot egész átfogóan használja, annak minden egyes funkciójával együtt.
+	Lehetősége van a cégben dolgozó személyek adatainak módosítására, törlésére, különböző
+	lekérdezéskre.
+\end{itemize}
+
+A rendszer további előnye a felhasználóbarát szemléletnek köszönhetően különösebb
+betanulási időt nem igényel, legfeljebb 5 perc alatt mindenki képes lesz elérni a kívánt
+tartalmat, folyamatot elindítani, a feladatokat megtekinteni.
+
+A folyamat elindításához szükség van az előre implementált draft űrlap minden kötelező
+mezőjének a kitöltése, majd a \textit{submit} gombra kattintva elküldheti a felhasználó a következő
+illetékes személynek a folyamatot.
+Ezután a program az adatokat lementi az adatbázisba, hogy a következő jóváhagyónál ezt
+kiolvassa, és megjelenítse neki a felvitt adatokat, ha mentési hiba történne, akkor azt egy
+hibajelző üzenettel a felhasználó tudomására adná a program. Hibaüzenettel alapvetően nem
+találkozni, a dátum formátumra egy külön, React Bootstrapbe beépített rész lesz alkalmazva, a
+helytelen formátum megadás elkerülésének érdekében. Továbbá az Érvénytelen számot adott
+meg és hasonlók.
+
+\Section{React.js technológia részletesebb bemutatása}
+
+ A \textit{React.js} egy Javascript könyvtár, amelyet a \textit{Facebook}, \textit{Community} és egyéb hasonló
+vállalatok tartanak fent. 
+Az egyik különlegessége, hogy egy bizonyos \textit{„jsx”} típussal tér vissza, amely egy HTML kód. 
+
+\SubSection{Futáshoz szükséges indítóparancsok} 
+
+Egy React csomagot kell telepíteni, mivel ez is egy Node csomag, ezzel a paranccsal
+telepítjük.
+\begin{python}
+npm create-react-app
+npm install -g create-react-app
+\end{python}
+Utóbbi azért szükséges, hogy mindenféle bonyolult konfiguráció nélkül tudjuk
+elkezdeni a fejlesztést, mivel ezt már alapból megcsinálja.
+
+A következő lépésben létrehozzuk a projektet.
+\begin{python}
+npx-create-react-app application-name
+\end{python}
+Tartalmazza a node modulokat, és a hierarchikus mappaszerkezetet.
+
+A mappába belépve, az \texttt{npm start} parancsot kiadva tudjuk szerveren elindítani a projektet.
+
+A \texttt{node\_modules} csomagokat a \texttt{package.json} mappában lévő 3 fő függőség: \textit{react}, \texttt{react-dom} és \texttt{react-scripts}
+alapján telepíti fel.
+
+A \texttt{package.json}-ben vannak korábban említett, már előre megírt scriptek.
+\begin{itemize}
+\item \texttt{npm start} -- Ezzel a parancsal lehet a szerveren elindítani a projektet.
+\item \texttt{npm run build} -- A végleges változatot fordítja le, ezzel egy olyan állapothoz lehet jutni.
+\item \texttt{npm test} -- A tesztet futtatja le.
+\item \texttt{npm run eject} -- A konfigurációs fájlokat át lehet írni, de ezt már nem lehet visszavonni.
+\end{itemize}
+
+Mint a legtöbb Javascript keretrendszerben, a \textit{./src} mappában vannak \texttt{js} kiterjesztésű, fő fájlok. 
+\textit{ES6} szintaktikát használ a \textit{React}, hiszen a különböző komponenseket importáljuk be, majd ez
+automatikusan átfordul egy korábbi szkriptre, hogy a böngészőkön könnyebben futhassanak. 
+Több komponenst különböztetünk meg. 
+Minden Komponensnek kötelező jelleggel van egy Render() függvénye, amelynek a
+visszatérési értéke egy HTML, amely úgynevezett JSX.
+
+Ennek az előnye az, hogy átláthatóbbá és könnyebbé teszi a kódolást.
+
+\SubSection{React dom kezelés szintaktikája} 
+
+Az egyik legáltalánosabb metódusa a \texttt{render}, amely 2 bemeneti paramétert vár.
+\begin{itemize}
+	\item Az első bemeneti paraméter, az maga a JSX kód,
+	\item a második pedig az, hogy hova generálja az
+	adott kódot.
+\end{itemize}
+Például a következő módon hívható:
+\begin{python}
+ReactDom.render(JSX ,(document.getElementById('Id'))) 
+\end{python}
+
+Vannak bizonyos komponensek, ahol nem szükséges a \texttt{Render} methódus, ez az úgynevezett
+\textit{Stateless} Komponens, amely önmagában egy függvény.
+\begin{python}
+const Vehicle = () => { 
+  return ( 
+  <div> Text </div> 
+  ) 
+}
+export default Vehicle; 
+\end{python}
+Ki kell adni (Exportálni), hogy ezt a komponenst további helyekre is belehessen importálni, a
+következő paranccsal:
+\begin{python}
+import Vehicle from './path' 
+\end{python}
+
+Az importálást követően, ha hivatkozni szeretnénk a komponensen belül a Vehicle
+függvényre, akkor azt a Render metóduson belül, html Tag-ként hivatkozhatunk, \textbf{<Vehicle/>}
+szintaktikával tehetjük meg.
+
+Amennyiben a stateless komponensnek tulajdonságokat szeretnénk átadni, akkor azt a
+paraméter listában kell jelölnünk, ekkor az alábbira módosul a függvényünk.
+\begin{cpp}
+const Vehicle = (props) => { 
+  return ( 
+    <div>
+    {props.type}
+    </div> 
+  ) 
+} 
+export default Vehicle; 
+\end{cpp}
+A függvény kifogja írni a beérkező \texttt{props}-nak a \texttt{type}-ját. 
+A \texttt{render} methódusban pedig a \textit{tag}-re az alábbi módon hivatkozhatunk:
+\begin{python}
+<Vehicle type="opel" />
+\end{python}
+
+Amennyiben egy sima komponenst hozunk létre, több különböző beépített metódust tudunk
+használni. (Ezek az ős komponensből származnak.)
+Ilyenek például az alábbiak: 
+\begin{itemize}
+	\item \texttt{ComponentWillMounth} -- A metódusban definiált tevékenységek lefutnak a \\
+	\texttt{Render} függvény előtt.
+	\item \texttt{ComponentDidMounth} -- A metódusban definiált tevékenységek, a \texttt{Render} függvény után
+	futnak le.
+\end{itemize}
+További előnyei, hogy a komponensen belül létre tudunk hozni construktort illetve state-et és
+egyéb más dolgokat.
+
+\Section{Adatbázis használatának bemutatása}
+
+Az implementáció során a \textit{Microsoft Sql Server} adatbázis-kezelő szerverre jutott a döntés,
+mivel az \textit{Entity Framework}-kel törénő adatbázis kezelés egy magas szintű absztakciót nyúlt,
+programozási technika adatok konvertálására Visual Studioban, nem beszélve a kiváló
+támogatottságáról, illetve a gyorsasága és megbízhatóságáról. Az ingyenes verzióban pedig
+minden szükséges funkció elérhető a programunk működtetéséhez.
+
+Amikor elkezdünk objektum orientált nyelvben programozni, akkor az adatkezelési feladatot
+álltalában az objektumok módosításával végezzük.
+Ez az úgynevezett \textit{Object-Relational Mapping} (ORM).
+
+\SubSection{Entity Framework rövid bemutatása}
+
+A használatához létre kell hozni egy \texttt{ConnectionStrings}-et, amelyben a szerver nevét, és az adatbázis nevét kell megadni, továbbá egy \textit{Truested Connection} értéket.
+
+Az adatbázisban lévő kapcsolatok az alábbi metódus felüldefiniálásával lettek megadva.
+Létrehoztuk az adatbázisban lévő táblákat osztályonként, majd egy adott osztálybeli DbSet listát hozunk létre.
+\begin{python}
+public DbSet<Employee> Employee { get; set; }  
+public DbSet<Department> Department { get; set; } 
+public DbSet<Duty> Task { get; set; } 
+public DbSet<Leader> Leader { get; set; } 
+	
+protected override void OnModelCreating(ModelBuilder modelBuilder) 
+{
+    base.OnModelCreating(modelBuilder); 
+    modelBuilder.Entity<Employee>() 
+    .HasOne(p => p.Deprartment) 
+    .WithMany(b => b.Employee) 
+    .HasForeignKey(ug => ug.DepartmentId) 
+    .OnDelete(DeleteBehavior.NoAction); 
+    ...
+}
+\end{python}
+
+Az osztály amelyben ez a methódus megtalálható, egy \texttt{DbContext} osztályból származik le, amely implementálja az \textit{Entity Framework} sajátosságait.
+Fontos az 1:N kapcsolat kialakításánál, hogy az osztály adattagjaként felvegyük egy osztálytípusú listát, amelyből a több származik az egy felé.
+
+Az adatbázishoz tartozó rekordokat osztályként hozzuk létre.
+Az \textit{Entity Framework} egy sajátossága, hogy listaként kezeljük az adatbázist, így egy
+\begin{python}
+SELECT * FROM DbName
+\end{python}
+parancs helyett elég meghívni a listának a \texttt{.toList()} metódusát.
+
+Hasonló módon, ha egy rekordot szeretnél az adatbázisba felvinni, akkor a \\
+\texttt{lista.add()} metódussal lehet megtenni.
+További a \texttt{.remove}, \texttt{.hasFirstDefault} metódusok szintén elérhetőek.
+
+Az Entity Frameworkhoz való hozzáférés a \textit{nyelvbe integrált lekérdezés} (LINQ) segítségével történik.
+
+\SubSection{HTTP POST kérés szintaktikája} 
+
+Egy HTTP protokoll szerinti POST kérést kezelő végpont definícióját láthatjuk a következő kódrészben.
+\begin{python}
+[HttpPost] 
+public async Task<ActionResult<Department>>
+PostDepartment(Department department) 
+{ 
+    _context.Department.Add(department); 
+    await _context.SaveChangesAsync(); 
+    return CreatedAtAction("GetDepartment",
+    new { id = department.DepartmentId }, department); 
+}  
+\end{python}
+Látható, hogy a \texttt{Department} rekordot feltölti a kapott \texttt{Department} osztálytípusú \\
+\texttt{department} nevű objektummal a  
+\begin{python}
+_context.Department.Add(department); 
+\end{python}
+résznél.
+
+Összehasonlítva a hagyományos módszerrel, az ORM gyakran lecsökkenti a megírandó kód
+mennyiségét, objektumorientált nyelv és relációs adatbázis közötti adatcsere esetén.
+
+Az ORM hátrányos az olyan területeken, rendszerekben ahol az adatbázist jelentősen
+optimalizálják speciális technikák alapján.
+
+Ahhoz, hogy az Entity Framework-öt használatba tudjunk fenni, különböző szükséges \textit{NuGet} csomagokat kell telepíteni a programba, amelyeket a visual studióban megtalálunk, mint például:
+\begin{python}
+Microsoft.EntityFrameworkCore 
+Microsoft.EntityFrameworkCore.Design 
+Microsoft.EntityFrameworkCore.SqlServer 
+Microsoft.EntityFrameworkCore.Design 
+Microsoft.EntityFrameworkCore.Tools 
+\end{python}
+
+Az Entity Framework előnye, hogy az adatbázisban lévő adatokat lista szerkezetként tudjuk
+kezelni, így a megszokott adatbázis parancsokat felcserélhetjük, egy egyszerűbb
+szintaktikával rendelkező kódolásra.
+
+\SubSection{Összevetés a direkt SQL-es eléréssel}
+
+A következőkben egymás alatt láthatjuk, hogy a szabványos SQL-es lekérdezésekhez milyen megoldás érhető el az Entity Framework-ben.
+
+\medskip
+
+\noindent \textbf{Listázás}
+
+\begin{python}
+SELECT * FROM TableName;   -- SQL
+listName.toList()          // Entity Framework
+\end{python}
+
+\noindent \textbf{Beszúrás}
+
+Az adatbázisba történő beszúrás, egy  parancs helyett
+könnyedén alkalmazhatunk egy  metódust, ahol a paraméter listába az adatbázisnak megfelelően egy osztály példánya kerül.
+
+\begin{python}
+INSERT INTO TableName VALUES ...;    -- SQL
+listName.Add(...);                   // Entity Framework
+\end{python}
+
+\noindent \textbf{Keresés}
+
+Egy feltételekhez kötött listázás szintaktikája is tovább egyszerűsödik.
+
+\begin{python}
+SELECT * FROM tablename WHERE condition;    -- SQL
+listName.where(condition);                  // Entity Framework
+\end{python}
+
+\subsubsection{Törlés}
+\begin{python}
+DELETE FROM table_name WHERE condition;    -- SQL
+listname.delete(condition)                 // Entity Framework
+\end{python}
+
+További sajátossága, ami jelentősen megkönnyítik a szerver oldali implementációt, hogy a kliens
+oldallal történő kommunikáció használatára  JSON (\textit{JavaScript Object Notation})-t
+használhatunk, amely tulajdonképpen rendezett érték lista amely, egy név és érték párok
+gyüjteménye dupla idézőjel párok között megadva.
+
+Egy objektum általános szintaktikája: 
+\begin{python}
+{
+    "name":"value", 
+    "name2":"value2" 
+    ...
+} 
+\end{python}
+A fejlesztés során kezdetben a szerver oldali tesztelés, adatok felvitele, listázása és egyéb alapvető funkciók a
+\textit{Postman} nevű alkalmazásban történt.
+Mivel a JSON sokkal könyebben értelmezhető, mint az XML, ezért esett erre a választás.
+
+További lényeges implementáció szükséges a szerver oldalon ahhoz, a frontend értelmezni
+tudja a kapott értékeket.
+
+Az alapvető \textit{Request}-eket a Microsoft által készített .NET keretrendszerben kerültek
+implementálásra.
+
+A keretrendszer előnyei közé tartozik szintén a megfelelő támogatottság, hiszen egy
+Microsoft és a Xamarin áll mögötte, Mivel .NET Framework alapját a CLI, vagyis a \textit{Common
+language Interface} képezi, ezért a platformfüggetlenség, illetve a gyors alkalmazás
+fejlesztés (RAD, Rapid application development).
+
+\SubSection{Platformfüggetlenség}
+
+A CLI rendszerek leírják nyelvfüggetlen fejlesztői környezetet, a futtatókörnyezetet,
+típusrendszert.
+
+Három fő része van:
+\begin{itemize}
+	\item A \textit{CLS}, amely azokat a szabályokat írja le, amelyeket a \textit{CLI}-kompatibilis nyelveknek	be kell tartaniuk
+	\item  A \textit{CTS}, amely a \textit{CLI} azon része, ahol a típusokat, és azoknak a memóriában történő reprezentációját, illetve egymással való kapcsolatait írja le.
+	\item  \textit{CLR}, amely a \textit{CLI} nyelven megírt programok betöltéséért és végrehajtásáért felel \cite{net}.
+\end{itemize}
+
+A gyors alkalmazás fejlesztéshez használt módszertan 3 fő elemből tevődik össze, úgy mint a ciklikus fejlesztés, működő prototípusok létrehozása, és a szoftverfejlesztést támogató
+számítógépes programok intenzív használata.
+
+Előnye, hogy az alkalmazások elkészítése egyszerűbbé válik, amelyhez hozzátartozik egy
+felhasználóbarát kezelőfelület, illetve egy uniformizált platform megjelenése.

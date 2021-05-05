@@ -1,0 +1,173 @@
+\Chapter{Folyamatok matematikai leírása}
+A fejezet bemutatja, hogy a folyamatok modellezésére milyen
+matematikai jelölések és modellek állnak rendelkezésre. Ebben a részben elsősorban a strukturális programgráf, és a folyamatokhoz megfeleltetett automatákról, és azok megtervezéséről lesz részletesebben szó.
+\Section{Véges Determinisztikus automaták}
+
+Véges számú állapotból, és a közöttük lévő átmenetekből (tranzíciókból) áll, amelynek szakaszait úgynevezett input szimbólumok jellemzik, amelyek ugyanabból a véges $\Sigma$ ábécéből kerülnek kiválasztásra. 
+
+Két kitüntetett állapot típus van: a kezdő állapot (jele: $q_{0}$), és a végállapotok halmaza (jele: $F$). (Ezek a \textit{Start} és a \textit{Stop} elemnek tekinthetők egy folyamat modellezése esetén.
+A \textit{Start} jelzi a folyamatábrán a \textit{draft} lépést, ahonnan elindul maga az üzleti folyamat. A végső lépés, az utolsó jóváhagyó, \textit{approve} lépés pedig a végállapot, amely megfeltethető az $F$-nek.)
+
+Mivel itt determinisztikus automatákról beszélünk, ezért minden állapotban minden egyes bemeneti szimbólumhoz pontosan egy következő állapot tartozik. Diagram esetében pontosan ezek az állapotok közötti nyilak \cite{domosi2003formalis}.
+
+\Section{Formális definíció}
+
+Egy véges determinisztikus autómatát a következőképpen definiálunk.
+Legyen $A = (Q, \Sigma, \rho, q_{0}, F)$, ahol $Q$ az állapotok halmaza, $\Sigma$ a véges ábécé, $\Sigma \notin \emptyset$, továbbá $\rho$ a tranzíciós függvény, a  $q_{0}$ a kezdő állapot, $q_{0} \in Q$, $F$ a végállapot, $F \notin \emptyset$.
+
+Esetünkben a $Q$ halmaz elemei a jóváhagyó lépéseket tartalmazza, a $q_{0}$ a kezdő \textit{Draft} lépést, az $F$ pedig az utolsó jóváhagyó lépést. Könnyen belátható, hogy $F \in Q$.
+
+A matematikai modell pontosan megfeleltethető annak, hogy egy folyamat esetén melyik lépésben milyen input adatokat ad meg a felhasználó, mert a következő lépés ezen adatok alapján változik. Például, egy konkrét esetben, ha a felhasználó 300'000 Ft-ot állít be egy becsült költségnek, akkor oda egy igazgatói jóváhagyás szükséges, ellenkező eseben ez a lépés kihagyható. Az ilyen elágazásokat, és ciklusokat követően jutunk el a (modellben $F$-el jelölt) végállapotba.
+
+\Section{Egyszerű átmeneti rendszerek}
+
+A folyamatok egy másik reprezentálási módját adják az átmeneti rendszerek.
+Legyen $A = (S, T, \alpha, \beta)$, ahol
+\begin{itemize}
+	\item $S$: az állapotok véges, vagy végtelen halmaza,
+	\item $T$: az átmentek véges, vagy végtelen halmaza,
+	\item $\alpha, \beta$: $T \rightarrow S$ leképzés $\forall t \in T$-re, amelyben $\alpha(t)$ az átmenet kezdőpontja, $\beta(t)$ pedig a végpontja.
+\end{itemize}
+
+A modell ebben az esetben is egy irányított gráf, ahol a csúcsok állapotokat reprezentálnak, az élek pedig átmeneteket.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{images/AllapotAtmenet.png}
+	\caption{Példa egy üzleti folyamat szemléltetésére, amely a 3. lépésénél tart}
+	\label{fig:3lepesben}
+\end{figure}
+
+\Aref{fig:3lepesben}. ábrán látható egy példaként szemléltetett folyamat, melyben az elvégzett lépéseket zölddel, az aktuális lépést pedig pirossal jelzi a rendszer. Az ehhez tartozó állapothalmaz a következő:
+\begin{gather*}
+S = \{ \text{Draft}, \text{Supervisor Approve}, \text{Maintance Coordinator Approve}, \\
+\text{Mechanical Maintance},
+\text{Maintance Planning}, \text{Maintance Coordinator 2} \}.
+\end{gather*}
+
+% TODO: Megnézni, hogy a következő kommentezett rész milyen formában kerül további felhasználásra! (Csak akkor kell bele, hogy ha később lesz valamilyen jelentősége.) (Erre nincs szükség, mivel nem térek ki sehol utak konkatenációjára.)
+% Az $A=(S,T,\alpha,\beta)$ átmeneti rendszerben $n>0$ hosszú útnak nevezünk egy olyan $t_{1},t_{2},\dots,t_{n}$ sorozatot, ha $\beta(t_{i}) = \alpha(t_{i+1})$ teljesül $\forall i\in \{ 1,\dots ,  n-1 \}$-re. \\
+% Utak konkatenációja, vagy összefűzése $c * c' = t_{1}t_{2}\dots t_{n} g_{1}\dots $ \\
+
+Szintén jó példa egy egyszerű átmeneti rendszer szemléltetésére egy italautómata, amelybe egy rögzített összeget dobva két gombot nyomhat meg a felhasználó.
+
+% TODO: Nem teljesen látszik az FSA-val való kapcsolat.
+
+
+\Section{Üzleti folyamatokhoz tartozó folyamatábrák}
+A két modellezett üzleti folyamatokhoz tartozó folyamatábra pontos lépéseit \aref{fig:Demand_Process}. és \aref{fig:maintane_process}. ábra szemlélteti. Itt pontosan látszik, hogy milyen jóváhagyási lépések lesznek szükségesek.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{images/Demand_Process.png}
+\caption{A \textit{Road Transportation Demand} folyamat}
+\label{fig:Demand_Process}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{images/Maintance_Process.png}
+\caption{A \textit{Road Transportation Maintance} folyamat}
+\label{fig:maintane_process}
+\end{figure}
+
+\Section{Folyamat megtervezése}
+
+A folyamat tervezésénél fontos szerepe van a strukturáltságnak, ellenkező esetben nagy problémák is adódhatnak, mint egy  végtelen ciklus, esetleg több input bemenet.
+Amennyiben több belépési pont lenne (több különböző \textit{draft page}), egy folyamaton belül, akkor az már egy más folyamathoz tartoznak, egy más igényléshez.
+
+A nagyobb és komplexebb folyamatokat, kisebb részekre is bonthatjuk. Erre csak struktúrált programként van lehetőségünk. Ezt az eljárást
+a vezérlőgráf lebontásához hasonlóan végezhetjük.
+A Böhm-Jacopini tétel alapján tudjuk azonban, hogy minden nem strukturált program átírható vele ekvivals strukturált program formájában \cite{prather1977structured}.
+
+Áttérésként a véges determinisztikus autómatákra, egy $a\in \Sigma$ betűhöz, és $q_{i}$ állapothoz, pontosan egy output (nyíl) tartozik.
+Minden valódi program átalakítható vele ekvivalens strukturált program formájába.
+
+\Section{Nem determinisztikus autómata}
+
+Nem determinisztikus autómata (NFA, \textit{Nondeterminisztic Finite Automation}) esetén egy adott $q_{i}$ állapothoz és egy $a\in \Sigma$ jelhez több output is tartozhat, vagy egy sem. Ez egy üzleti folyamat esetén azt eredményezné, hogy egy bizonyos jóváhagyó lépés után nincs vége a folyamatnak, de nincs tovább, mintha elakadt volna. Ez leginkább a szoftver implementációs problémájára vezethető vissza, vagy éppen egy rosszul megtervezett folyamatmodellre. Tehát lehetséges olyan belső állapota, amiből a beolvasott szimbólum hatására több lehetséges állapot egyikébe mehet át.
+
+Láthatjuk, hogy a véges állapotú automaták megfeleltethetőek a modellezett folyamatoknak.
+% Egy strukturálatlan alapelemekből felépülő folyamat, megfelel egy nem determinisztikus automatának.
+A strukturált elemekből felépülő modellezés pedig egy véges állapotú, determinisztikus automatának.
+
+Mint ahogy a Struktúrált programozánál is említettük, hogy bármely nem struktúrált program átírható, vele ekvivalens struktúrált programmá, ez szintén jellemző a véges állapotú, nondetermenisztikus autómatákra.
+Ezt a tranzíciós függvény elkészítésével tudjuk megoldani, amelyben minden olyan állapot, ahonnan egy bizonyos beolvasott szóval több helyre tudunk eljutni, egy új állapotként felvesszük, majd rekurzívan tovább vizsgáljuk.
+
+\Section{DFA és NFA ekvivalenciája}
+
+Legyen adott egy $N = (Q, \Sigma, \rho, q_{0}, F)$ véges nemdeterminisztikus autómata. A nyelve legyen $\alpha(n)$. $n$-ből kiindulva szerkezhetünk egy olyan $A$ véges determinisztikus autómatát, amely ugyanazt az $\alpha(n)$ nyelvet fogadja el.
+\begin{equation*}
+A = (P(q), \Sigma, \rho^{'}, [q_{0}], F'),
+\end{equation*}
+ahol $Q$ a részhalmazok összessége, $F'$ pedig a $Q$ mindazon részhalmazai, amelyek legalább egy $F$-beli állapotot tartalmaznak (végállapothoz vezetnek).
+
+A $\rho'$ minden $a \in \Sigma$ esetén
+\[
+\rho'([q_{1}, q_{2}, \dots, q_{n}],a) = \rho(q_{1}, a) \cup \rho(q_{2}, a) \cup \dots \cup \rho(q_{k}, a).
+\]
+
+Egy $A$ determinisztikus autómata és az N nem determinisztikus autómata által elfogadott nyelv ugyanaz, $\alpha(A) = \alpha(N)$.
+
+\Section{Folyamatmodellezés}
+
+A modell, a való világ egy részének egyszerűsített példánya.
+
+% TODO: Hogy ha a modellről ilyen formában szó esik, akkor azt érdemes korábban megtenni. (Előrébb hoztam, a második részhez.)
+
+A modellezés célja az, hogy felmérjük, majd elemezhessük és javíthassuk a folyamatainkat.
+Esetünkben azt célszerű vizsgálni, milyen jóváhagyási lépések szükségesek, és melyek azok amelyek elhagyhatóak, redundánsak. Az elmezés során több szempontot érdemes szemügyre venni. Például a felhasználók kéréseit, az erőforrások kezelését. A folyamatmodellek különböző információkat hordozhatnak és változó lehet a befogadó fél is, így nem mindegy, hogy milyen szemszögéből nézve készítjük el őket. A különböző nagy részlegeknek más-más célja lesz az adott folyamattal. Különböző megjelenési formákat kell biztosítani, más változókkal, mezőkkel, adatbázissal és erőforrásokkal.
+
+A folyamatmodellek alapvetően két csoportra bonthatóak. Léteznek \textit{As-Is}   
+modellek, amik a jelenlegi helyzetet mutatják be, és \textit{To-Be} modellek, amik a kívánt
+szituáció ábrázolását takarják.
+
+A folyamatok leírására több lehetőség van. Legtöbbször ezek
+kombinációját használják a felelős személyek, ahelyett, hogy egyetlen egyhez ragaszkodnának \cite{Corvin}.
+
+Készülhet szöveges folyamatleírás vagy táblázatos leírás is, de a legcélravezetőbb a grafikus, modell-orientált leírás, amely segítségével
+egyértelmű, és átlátható módon ábrázolhatjuk az adott folyamatokat. Éppen ezért a BPM (\textit{Business Process Modeling}) rendszer grafikus ábrázolást használ, alapvetően folyamatábrákat a jó áttekinthetőség érdekében.
+
+\SubSection{UML szabvány}
+
+Több különböző módszert vehetünk igénybe a grafikus ábrázolás elkészítéséhez, amelyek megkönnyítik az elkészítést. Ez azonban hátrányokat is hordoz magában, mégpedig hogy a többféle ábrázolási módból adódóan
+nehezen értelmezhető, inkompatibilis modellek jöhetnek létre. Ennek kiküszöbölésére azonban már
+bevezetésre kerültek olyan modellező nyelvek, szoftverek, melyek egységesítik az
+ábrázolás módját, ilyenek például az UML (\textit{Unified Modeling Language}) szabvány. Ez egy általános célú modellező nyelv, üzleti elemzők, rendszertervezők, szoftvermérnökök számára \cite{xml}.
+Segítségével tervezni és dokumentálni lehet a szoftvereket, folyamatokat. Az UML-ben modellek és diagramok adhatók meg, különböző nézetekben.
+Az UML két lehetséges lehetőséget definiál a használati esetek között, az egyik a beillesztés a másik pedig a kiterjesztés.
+Az UML a jelöléseknek gazdag választékát kínálja, mely segítségével a szoftverfejlesztés összes fázisa modellezhető.
+
+Az üzleti folyamatok modellezésével az üzleti stratégia és az informatikai
+rendszerek között olyan kapcsolat hozható létre, ami nagyban hozzájárulhat üzleti
+értékünk növeléséhez \cite{Corvin}.
+
+\Section{Folyamatmodellezés részei}
+
+A következő szakaszokban részletesen említésre kerülnek, hogy egy adott üzleti folyamat megtervezésénél mire érdemes odafigyelni. 
+% NOTE: Ez a rész kissé váratlanul jön, főleg annak tükrében, hogy utána ismét állapotgépes modell következik majd.
+
+\SubSection{Érzékenység vizsgálat}
+
+A folyamat tervezésénél érdemes az alábbi kérdéseket megválaszolni.
+\begin{itemize}
+	\item Mi történik, ha rosszul becsljük meg az erőforrásainkat?
+	\item Mik számítanak lényeges paraméterek?
+	\item Milyen erőforrásokat bővítsünk? (Emberi vagy gépi?)
+	\item Mi történik, ha a modellparaméterek nem pontosak?
+\end{itemize}
+
+Az érzékenységvizsgálat során a feladat az optimális erőforrások paramétereinek a megvizsgálása, hogy azok megváltoztatása milyen hatással lenne az optimális megoldásra. Egy vállalatnak nem jó, ha egy feladatra, folyamatra túl sok embert bíz meg, hiszen ez nem költséghatékony. Ellenkező esetben a túl kevés, alul tervezett költségek sem vezetnek jó irányban, hiszen tolódhat a folyamat megtervezésének ideje, esetleg hiányos, rossz lesz. Meg kell találni az optimális megoldást, akár különböző módszerek együttes használatának a segítségével
+
+Az optimalizálás során fontos a célfüggvény együtthatók érzékenységvizsgálata.
+A lineáris optimalizálási problémák esetében kétféle érzékenységvizsgálatot különböztetünk meg \cite{illes2013linearis}.
+\begin{itemize}
+\item A kapacitásokra vontkozó érzékenység vizsgálatot.
+\item Annak vizsgálatát, hogy a $b_{i}$ paraméterek helyett a $b_{i} + \lambda$ szerepel a jobboldalon (kapacitás). Ez esetben az a kérdés, hogy a $\lambda$ milyen értékek közé eshet.
+\end{itemize}
+A megválaszolandó kérdés tehát az, hogy mennyivel tudjuk csökkenteni bizonyos erőforrásokat és mit érünk el vele?
+Egy általános képlet, az $n$-edik erőforrás vizsgálatához:
+\begin{equation*}
+\vec{b}+ \lambda \vec{u}_{n} \geq 0.
+\end{equation*}
+Érdemes mindig azt növelni, ahol az árnyékár magasabb lehet, esetünkben azt, ahol a legjelentősebb erőforrás növekedést tudjuk elérni.
