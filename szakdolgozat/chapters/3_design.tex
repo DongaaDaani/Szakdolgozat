@@ -1,26 +1,30 @@
 \Chapter{Petri hálók}
-A petri háló az automataelmélet általánosításának nevezhető, mivel az ábrázol ezzel a módszerrel, egy időben lezajló események megjelenítésére alkalmas. 
 
+A Petri háló az automataelmélet általánosításának nevezhető. Az egy időben lezajló események ábrázolására és megjelenítésére alkalmas.
 A Petri-hálókat az 1960-as években Carl Adam Petri határozta meg először \cite{wikipedia}.
-
 
 \Section{Működése és felépítése}
 
 A petri háló egy irányított, súlyozott, páros gráf, ahol a csúcsok az átmeneteket (tranzíciókat) és az állapotokat reprezentálják. Ezek az irányított élek leírják az átmenetek és az állapotok között fennálló kapcsolatokat.
-Kétféleképpen mutathatnak, az első állapotból átmenetbe, vagy a második lehetőség, hogy átmenetből állapotba. \cite{petriworkflow}
+Kétféleképpen mutathatnak, az első állapotból átmenetbe, vagy a második lehetőség, hogy átmenetből állapotba \cite{petriworkflow}.
 
-Tehát két típusú csomópontja lehet, egy kör és egy téglalap. A kör esetén egy hely, téglalap esetén egy trazíció.
+Tehát két típusú csomópontja lehet, amelyet körrel és téglalappal szoktak jelölni. A kör egy helyet, a téglalap egy tranzíciót jelöl (\ref{fig:Petri Halo}. ábra).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/Petri.jpg}
+	\caption{Petri Háló}
+	\label{fig:Petri Halo}
+\end{figure}
 
 Van egy állapotjelölő token, amely fekete pötty a hely körébe rajzolva.
-A hely állapota a benne lévő tokenek száma.\\
-Egy hely engedélyezett, ha minden input helyén van legalább egy token.
+A hely állapota a benne lévő tokenek száma.
+Egy hely engedélyezett, ha minden bemenet helyén van legalább egy token.
 
-\vskip 0.3 true cm
-
-A Petri háló (\textit{Petri Net}, \textit{PN}) egy súlyozott, irányított élű páros gráf, melynek élei kétféle csomópontot köthetnek össze:
+A Petri háló (\textit{Petri Net}, \textit{PN}) tehát egy súlyozott, irányított élű páros gráf, melynek élei kétféle csomópontot köthetnek össze:
 \begin{itemize}
-	\item a körrel jelölt helyeket (places), illetve
-	\item a téglalap-alakú állapotátmeneteket (transitions). \ref{fig:Petri Halo}
+	\item a körrel jelölt helyeket (\textit{places}), illetve
+	\item a téglalap-alakú állapotátmeneteket (\textit{transitions}).
 \end{itemize}
 Formálisan a Petri hálók olyan $<P, T, E, \delta, m_{0}>$ ötös, ahol
 \begin{itemize}
@@ -32,19 +36,8 @@ Formálisan a Petri hálók olyan $<P, T, E, \delta, m_{0}>$ ötös, ahol
 
 A tokenek eloszlását egy $m: P \rightarrow \mathbb{N}$ függvénnyel jellemezhetjük, amely tehát a helyeken megjelenő tokenek számát adja meg.
 
-
-
 Jelölje $m_{0}$ a kezdeti token eloszlást, ez a hálózat kezdeti állapota.
-
-A tranzíciót egy rövid vízszintes vonallal reprezentált csúcs. \cite{Szeged}
-
-% TODO: Ide ábra is kellene, hogy ha már említésre került, hogy hogy néz ki.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=10.8truecm, height=6.0truecm]{images/Petri.jpg}
-	\caption{Petri Háló}
-	\label{fig:Petri Halo}
-\end{figure}
+A tranzíciót egy rövid vízszintes vonallal reprezentált csúcs \cite{Szeged}.
 
 Az éleket konstrukcióból adódóan két diszjunkt halmazra bonthatjuk.
 \begin{itemize}
@@ -65,7 +58,7 @@ Hasonlóképpen adódik a kimenő helyek, útódok halmazának meghatározásáh
 \[
 \text{Post(t)} = \{ p \in P \mid (t, p) \in E \}, \quad \forall t \in T.
 \]
-
+Bevezethetjük további a következő jelöléseket.
 \begin{align*}
 	\forall p \in P , \forall t \in T & \text{ esetén } \delta^{-}((p,t)) = \delta((p,t)) \text{ ha } (p,t) \in E \text{ egyébként } \delta^{-}((p,t)) = 0 \\
 	& \delta^{-}((t,p)) = \delta((t,p)) \text{ ha } (t,p) \in E \text{ egyébként } \delta^{-}((t,p)) = 0
@@ -98,11 +91,11 @@ jelenti. A hálózat állapota az egyes helyállapotok összessége. Az állapot
 
 A Petri hálók működése állapotátmenetekkel (trajektória) reprezentálható. Egy állapot megváltozása a tranzíciók tüzelését jelenti.
 
-A Petri hálókat az alábbi rendszerek modellezésében szokták alkalmazni: nemdeterminisztikus, párhuzamos, elosztott, konkurens, asszinkron. \cite{Petri}
+A Petri hálókat az alábbi rendszerek modellezésében szokták alkalmazni: nemdeterminisztikus, párhuzamos, elosztott, konkurens, asszinkron \cite{Petri}.
 
 % TODO: Itt érdemes lehet a felsorolt típusokra, azok viszonyára kitérni! (Egyesek sajnos szinonímaként vagy szimplán helytelenül használják őket, ezért itt sem gond ha hangsúlyozásra kerül, hogy melyik mit jelent.)
 
-A Petri-háló diszkrét elosztott rendszerek matematikai ábrázolása.
+A Petri háló diszkrét elosztott rendszerek matematikai ábrázolása.
 Az áttekinthetőség kedvéért ad egy grafikus reprezentációt, a precizitás és egyértelműség kedvéért pedig egy matematikai reprezentációt.
 Az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, az automataelmélet általánosításának tekinthető.
 
@@ -115,7 +108,7 @@ Az ábrázolás az egy időben lezajló események megjelenítésére alkalmas, 
 
 \Section{Petri hálók jellemzői}
 
-Azonnal tüzelések, Aszinkron tüzelések, nem determinisztikus, két tranzíció nem tüzel egyszerre, nem interpretált.
+A Petri hálókat a következők jellemzik: azonnal tüzelések, Aszinkron tüzelések, nem determinisztikus, két tranzíció nem tüzel egyszerre, nem interpretált.
 
 Bármely $e\in E$ élhez egy $ \delta : E \rightarrow \Re^{+}  $ súlyfüggvényt is hozzárendelhetünk.
 
@@ -124,23 +117,24 @@ A minimális súlyú feszítőfa megtalálására legismertebb algoritmus a moh�
 % TODO: Hogyan kapcsolódik az előzőekhez a feszítőfa? (Kiegészítettem, bár lehet, hogy így sem lesz szükség rá.)
 
 Véges erőforrás esetén, fontos lehet optimalizálni a lépéseket. Akár egy több elágazással, és iterációval rendelkező folyamat esetén mindig fontos lehet megtalálni a költséghatékonyabb megoldást,kihagyni a redundáns, nem strukturált lépéseket.
-Egy $\Gamma = (V,E)$ összefüggő gráf. Legyen $\delta R \rightarrow \Re^{+}$ egy súlyfüggvény. A mohó algoritmus lépésében, kiválasztunk egy olyan $e_{1} \in E$ elemet, amelyre $\delta(e_{1}) \leq \delta(e)  $ ,  $\forall e \in E $ \\ Ha megvan kiválasztottuk az $e_{1} , e_{2}, \dots , e_{k}$  éleket, akkor az $e_{k+1}$-edik élet úgy választjuk, hogy ne alkosson kört
-\begin{equation}
-	e_{k+1} = { e\in E \setminus \{ {e_{1},e_{2},\dots,e_{k}} \} | \text{ az } \{ {e_{1},e_{2},\dots,e_{k},e} \} \text{ élek nem alkotnak kört} }
-\end{equation}
-illetve teljesül az is , hogy $ e_{k+1} < \forall \delta(e)$ \\
+Egy $\Gamma = (V, E)$ összefüggő gráf. Legyen $\delta R \rightarrow \Re^{+}$ egy súlyfüggvény. A mohó algoritmus lépésében, kiválasztunk egy olyan $e_{1} \in E$ elemet, amelyre $\delta(e_{1}) \leq \delta(e)  $ ,  $\forall e \in E$.
 
-Könnyen belátható ez az algoritmus n-1 lépésből áll, ahol \\  $n=|V|, \text{ amely egy } \{ e_{1},e_{2},\dots,e_{n-1} \} $  élsorozatú feszítőfát eredményez.
+Ha kiválasztottuk az $e_{1} , e_{2}, \dots , e_{k}$  éleket, akkor az $e_{k+1}$-edik élet úgy választjuk, hogy ne alkosson kört, tehát
+\begin{equation*}
+	e_{k+1} = { e\in E \setminus \{ {e_{1},e_{2},\dots,e_{k}} \} | \text{ az } \{ {e_{1},e_{2},\dots,e_{k},e} \} \text{ élek nem alkotnak kört} },
+\end{equation*}
+illetve teljesül az is, hogy $ e_{k+1} < \forall \delta(e)$
 
-Egy
-\begin{align*}
-	\Gamma = (V,E)  \text{ gráf feszítőfájának nevezünk egy olyan} \Delta \text{ részgráfot amelyre } \\ \Delta = (V,E) \text{ és } \Delta \subset \Gamma \text{ és } \Delta \text{ fa}
-\end{align*}
+Könnyen belátható ez az algoritmus n-1 lépésből áll, ahol $n = |V|$, amely egy $e_{1},e_{2}, \dots, e_{n-1}$  élsorozatú feszítőfát eredményez.
+
+Egy $\Gamma = (V, E)$ gráf feszítőfájának nevezünk egy olyan $\Delta$ részgráfot amelyre $\Delta = (V, E)$ és $\Delta \subset \Gamma$ és $\Delta$ fa.
 
 % TODO: Ez a rész még itt elég zavaros. (Átfogalmaztam)
 
 Az állapot megváltozása a tranzíciók "tüzelésével" történik.
-A tüzelés végrehajtása az alábbi módon történik: \\
-Az algoritmus megvizsgálja az első lépésben azt, hogy a token elvétele engedélyezett e, majd ezt követően veszi el a tokent a bemeneti helyről, és teszi ki a kimeneti helyre.\\
-Így pedig egy új állapot következik be, megváltozik az úgynevezett Token eloszlás vektor.
-\cite{Petri}
+A tüzelés végrehajtása az alábbi módon történik:
+\begin{itemize}
+	\item Az algoritmus megvizsgálja az első lépésben azt, hogy a token elvétele engedélyezett e, majd
+	\item ezt követően veszi el a tokent a bemeneti helyről, és teszi ki a kimeneti helyre.
+\end{itemize}
+Így pedig egy új állapot következik be, megváltozik az úgynevezett Token eloszlás vektor \cite{Petri}.

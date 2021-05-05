@@ -1,23 +1,21 @@
 \Chapter{Folyamatok modellezése az iparban}
 
-Minden nagyvállalat esetében egyszerre több üzleti, logisztikai folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni.
+Minden nagyvállalat esetében egyszerre több üzleti, logisztikai folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni. Ennek módjait mutatja be a fejezet.
 
 \Section{Business Process Management Bemutatása}
 
 % TODO: Leírni, hogy a megközelítési módok miben különbözhetnek.
 
-A legtöbb nagy cég a BPM (\textit{Business Process Management}) platformot használja a feladatok nyomonkövetésére, menedzselésére . Több különböző, már korábban említett hasonló rendszer létezik, ám azok mégsem terjedtek el. Ennek az alábbi okai vannak, amely előnyben részesíti magát a bpm platformot, a többivel szemben:\\
+A legtöbb nagy cég a BPM (\textit{Business Process Management}) platformot használja a feladatok nyomonkövetésére, menedzselésére. Több különböző, már korábban említett hasonló rendszer létezik, ám azok mégsem terjedtek el. Ennek az alábbi okai vannak, amely előnyben részesíti magát a BMP platformot, a többivel szemben.
 A rendszerben megtalálható \textit{Process Designer} program segítségével minden folyamathoz tartozik egy folyamatábra.
 
-A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli. \ref{fig:Maintance_Process.png}
+A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli (\ref{fig:Maintance_Process.png}. ábra).
 
 % TODO: Ide is kellene egy kisebb ábra, hogy ne csak leírva legyen, hogy mit kellene látni. Process-Designer
 
-
-
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=11.8truecm, height=7.8truecm]{images/Process-Designer.jpg}
+	\includegraphics[width=\textwidth]{images/Process-Designer.jpg}
 	\caption{A process Designer felülete}
 	\label{fig:Maintance_Process.png}
 \end{figure}
@@ -43,7 +41,7 @@ amely a legtöbb esetben egy folyamat azonosítót és egy lépés azonosítót 
 
 % TODO: Az előző résznél eléggé keverednek az áttekintő jellegű fogalmak és a konkrét, implementáció szintű dolgok.
 
-Egy karbantartási folyamat esetén , egy nagyobb cégnél 5 lépésben folyik le:
+Egy karbantartási folyamat esetén, egy nagyobb cégnél 5 lépésben folyik le:
 \begin{itemize}
 	\item Az igénylő kitölti a formot, ahol megadja a gépjármű adatait, a probléma pontos leírását. Továbbítja a folyamatot.
 	\item Az első jóváhagyó (\textit{SupervisorApprove}) ez a formot megkapja, ír hozzá egy megjegyzést, majd eztkövetően a folyamat továbbmegy a coordinátorhoz,

@@ -1,15 +1,13 @@
-\Chapter{User Interface}
-\section{Design}
-\section{Bevezetés a saját program vázának elkészítésébe}
-Ebben a fejezetben bemutatásra kerül a folyamatmenedzsment rendszer
-felhasználói felülete illetve az adatbázis modellje. A felhasználói felületet
-képernyőfotókkal készítve, egy kisebb változatú, de hasonló célú projekttel
-mutatom be, illetve mindegyikhez adunk egy-egy rövid leírást az adott felhasználói
-felület funkcióiról. \\
-A programunkhoz használt adatbázis leírása és bemutatása után pedig részletesen
-bemutatjuk a programunk adatmodelljét, ER és relációs modell segítségével. \\
+\Chapter{A felhasználói felület kialakítása}
 
-\section{2. Felhasználói felület}
+Ebben a fejezetben bemutatásra kerül a folyamatmenedzsment rendszer
+felhasználói felülete. %, illetve az adatbázis modellje.
+A felhasználói felületet
+képernyőfotókkal kiegészítve, egy kisebb változatú, de hasonló célú projekttel
+mutatom be, illetve mindegyikhez adunk egy-egy rövid leírást az adott felhasználói felület funkcióiról.
+% A programunkhoz használt adatbázis leírása és bemutatása után  részletesen bemutatjuk a programunk adatmodelljét, ER és relációs modell segítségével.
+
+\Section{Felületi elemek}
 
 Ebben a fejezetben bemutatásra kerülnek a felhasználói felület elemei, melyeken
 keresztül a felhasználó a programot használni fogja. A felhasználói felület
@@ -20,51 +18,41 @@ hajlamos a lassúságra, illetve az esetleges összeomlásra. Ezért az egyes fu
 úgy próbáltuk megoldani, hogy azok a felhasználó ezen a területen szerzett előzetes
 tapasztalatainak megfeleljenek. A React.js alapvető bootstrapjét használjuk a
 projekt implementálásánál, amelyet a következő parancs telepítése után vehetünk
-igénybe.
-
+igénybe:
 \begin{python}
 npm install react-bootstrap bootstrap 
 \end{python}
-	
-	majd beimportáljuk a projektbe. 
-
+majd beimportáljuk a projektbe. 
 \begin{python}
-	<link \\
-	rel="stylesheet" 
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/
-	css/bootstrap.min.css" integrity="sha384- 
-	9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZ
-	l5MYYxFfc+NcPb1dKGj7Sk" 
-	crossorigin="anonymous" /> 
+<link
+  rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  integrity="sha384- 
+    9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZ
+    l5MYYxFfc+NcPb1dKGj7Sk" 
+  crossorigin="anonymous" /> 
 \end{python}	
-	
+Ezáltal képesek vagyunk reszponzív oldalt létrehozni, illetve felhasználni a
+React JS \textit{Material} komponenseit, amelyeket a következő oldalon találhatunk: \\ \url{https://material-ui.com/components/snackbars/}.
 
-Ezáltal képesek vagyunk responsive oldalt létrehozni, illetve felhasználni a
-React.js material componenseit, amelyeket az alábbi oldalon találhatunk. \\
-https://material-ui.com/components/snackbars/ \\
+\Section{Részlegek kezelése}
 
-A részlegek felülete: \ref{fig:reszlegek} \\
-
-
+A részlegek felülete \aref{fig:reszlegek}. ábrán látható.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=15truecm, height=6.5truecm]{images/ListDepartment.png}\\
+	\includegraphics[width=\textwidth]{images/ListDepartment.png}
 	\caption{Részlegek listázása}
 	\label{fig:reszlegek}
 \end{figure}
 
-
-
-
-
-
 Vezetőként belépve, lehetőségünk van a részlegek megtekintésére, törlésére,
-módosítására. \\
-Edit gomra kattintva, egy felugró ablak jelenik meg, amely kiolvassa, az aktuális
-mezőhöz tartozó adatokat, ezek alapján lehet módosítani. \ref{fig:editreszleg} \\
-A felugró ablak hasonlóképpen néz ki: (A mezőhöz tartozó DepartmentID
-Disabled, hiszen azt nem lehet módosítani) \\
+módosítására.
+
+Az \textit{Edit} gomra kattintva, egy felugró ablak jelenik meg, amely kiolvassa, az aktuális
+mezőhöz tartozó adatokat, ezek alapján lehet módosítani (\ref{fig:editreszleg}. ábra).
+
+A felugró ablak hasonlóképpen, \aref{fig:editreszleg}. ábrán látható módon néz ki. (A mezőhöz tartozó \texttt{DepartmentID} inaktív, hiszen azt nem lehet módosítani.)
 
 \begin{figure}[h!]
 	\centering
@@ -73,33 +61,29 @@ Disabled, hiszen azt nem lehet módosítani) \\
 	\label{fig:editreszleg}
 \end{figure}
 
+A törlés gomb megnyomásával egy \textit{Alert} rész ugrik fel, rákérdez arra, hogy
+,,\textit{Biztosan szeretnéd törölni?}''.
+Ugyanezen a formon lehetőségünk van egy részleg hozzáadására, az \textit{Id} automatikusan incrementálódik, tehát a felhasználónak csak magát a részleg
+nevét kell megadnia.
 
-A törlés gomb megnyomásával egy Alert rész ugrik fel, rákérdez arra, hogy
-„Biztosan szeretnéd törölni”? \\
-Ugyanezen a formon lehetőségünk van egy részleg hozzáadására, az Id
-automatikusan incrementálódik, tehát a felhasználónak csak magát a részleg
-nevét kell megadnia. \\
+\Section{Alkalmazottak adatainak kezelése}
 
-Az Alkamazottak felülete \ref{fig:alkalmazottak} : \\
-
-
+Az Alkamazottak felülete \aref{fig:alkalmazottak}. ábrán látható.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=15.5truecm, height=6.5truecm]{images/ListEmployee.png}\\
+	\includegraphics[width=15.5truecm, height=6.5truecm]{images/ListEmployee.png}
 	\caption{Alkalmazottak listája}
 	\label{fig:alkalmazottak}
 \end{figure}
 
-
-
 A design és a funkciók hasonlóak az előző fórumom láttottakhoz, a tárolt
-adatok különböznek, illetve van még némi különbség. \\
+adatok különböznek, illetve van még némi különbség.
+
 Ha egy új dolgozót szeretnénk felvenni a rendszerbe, akkor a részleg
 kiválasztásnál, a meglévő részlegek közül tudunk választani, egy legördülő
-listában. \ref{fig:addEmployee} (Ezzel korlátozva azt, hogy hibás részleget adjon meg a felhasználó,
-vagy nemlétezőt. ) \\
-
+listában (\ref{fig:addEmployee}. ábra), ezzel korlátozva azt, hogy hibás részleget adjon meg a felhasználó,
+vagy nem létezőt.
 
 \begin{figure}[h!]
 	\centering
@@ -108,94 +92,72 @@ vagy nemlétezőt. ) \\
 	\label{fig:addEmployee}
 \end{figure}
 
-
-
-Az adatbázisban felvett Dátum típus miatt problémák lehetnek azzal, ha
-hibásan kezeljük a forumon leimplementált Dátum mezőt. \\
-Ebből kifolyólag, egy Dátum típusú Form Control lett megadva, a helytelen
-konvenciók miatt. \\
-Ez az alábbi képen tekinthető meg :  \ref{fig:editEmployeees} \\
-
+Az adatbázisban felvett dátum típus miatt problémák lehetnek azzal, ha
+hibásan kezeljük az űrlapon implementált dátum mezőt.
+Ebből kifolyólag, egy dátum típusú \textit{Form Control} lett megadva, a helytelen
+konvenciók miatt.
+Ez \aref{fig:editEmployeees}. ábrán tekinthető meg.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10.8truecm, height=8.5truecm]{images/EditEmployee.png}\\
+	\includegraphics[width=10.8truecm, height=8.5truecm]{images/EditEmployee.png}
 	\caption{Alkalmazott szerkesztésének a felülete}
 	\label{fig:editEmployeees}
 \end{figure}
 
+\Section{Szerver és kliens közötti kommunikáció}
 
+Mivel két különböző szerveren fut a Backend és a Frontend, így a kommunikációt JSON formátum segítségével oldhatjuk meg, amelyben a
+Backend oldalon a következőkben bemutatásra kerülő részek szerepelnek az implementációban.
 
-Mivel két különböző szerveren fut a Backend és a Frontend, így a
-kommunikációt Json formátum segítségével lesz megoldva \ref{fig:backendget}, amelyben a
-Backend oldalon az alábbi rész kerül implementációra. \\
-Ahhoz hogy a két server kommunikálni tudjon egymással, és ne írjon hibát, fel
-kell oldani egy Cors problémát a .net résznél, hogy ez megvalósuljon. \\
-\newpage
+Ahhoz, hogy a két server kommunikálni tudjon egymással, és ne írjon hibát, fel
+kell oldani egy CORS problémát a .NET résznél, hogy ez megvalósuljon.
 Mivel a frontend a 3000-as porton érhető el így az implementációja az alábbi
-formátumban lesz, a nuget csomagok telepítése után :  \\
+formátumban lesz, a NuGet csomagok telepítése után:
 \begin{python}
-	config.EnableCors(new
-	 EnableCorsAttribute("http://localhost:3000", "*", "*")); 
+config.EnableCors(new
+    EnableCorsAttribute("http://localhost:3000", "*", "*")); 
 \end{python}
 
-A json formátummá alakításhoz pedig : 
+A JSON formátummá alakításhoz pedig a következő hívás szükséges:
 \begin{python}
-	config.Formatters.JsonFormatter.SupportedMediaTypes.Add( 
-	new MediaTypeHeaderValue("text/html")); 
+config.Formatters.JsonFormatter.SupportedMediaTypes.Add( 
+    new MediaTypeHeaderValue("text/html")); 
 \end{python}
-
-
-Így ha a fentebbi listát tekintjük meg Backend oldalon , akkor az alábbi Json \\
-formátumot fogjuk látni :  \\
-
-A department részleg esetén 
-
-
-
+Így, ha a fentebbi listát tekintjük meg Backend oldalon, akkor az alábbi JSON formátumot fogjuk látni (például a részleg esetén):
 \begin{python}
-	{
-		"$id": "1",
-		"departmentId": 1005,
-		"name": "Beszallitas",
-		"leader": "John bill"
-	},
-
-\end{python}
-
-
+{
+    "$id": "1",
+    "departmentId": 1005,
+    "name": "Beszallitas",
+    "leader": "John bill"
+},
+\end{python}%$
 Az employee részleg esetén : 
-
-
 \begin{python}
-	
-	{
-		"$id": "2",
-		"employeeId": 1030,
-		"fistName": "Steve",
-		"lastName": "Jon",
-		"adress": "Budapest",
-		"phoneNumber": "06701112222",
-		"email": "steve@gmail.com",
-		"position": "Accountant",
-		"deprartment": null,
-		"departmentId": 1005,
-		"tasks": null
-	},
-
+{
+    "$id": "2",
+    "employeeId": 1030,
+    "fistName": "Steve",
+    "lastName": "Jon",
+    "adress": "Budapest",
+    "phoneNumber": "06701112222",
+    "email": "steve@gmail.com",
+    "position": "Accountant",
+    "deprartment": null,
+    "departmentId": 1005,
+    "tasks": null
+},
 \end{python}
 
-
-A Cliens oldali részről, ahhoz hogy ezt a Json formátumot használhatóvá tudjuk \ref{fig:fetchapi}
-tenni, a \textit{ComponentDidMount} függvényen belül definiálni kell a \\
+A kliens oldali részről, ahhoz hogy ezt a JSON formátumot használhatóvá tudjuk
+tenni, a \textit{ComponentDidMount} függvényen belül definiálni kell a következőket
 \begin{python}
 fetch('https://localhost:44315/api/Department')
 fetch('https://localhost:44315/api/Employee')
 \end{python}
 
- A modellezett üzleti folyamatot a felhasználó kétféleképpen tudja ábrázolni az alkalmazásban. \ref{fig:fetchapi}
-
-
+A modellezett üzleti folyamatot a felhasználó kétféleképpen tudja ábrázolni az alkalmazásban (\ref{fig:fetchapi}. ábra).
 
 \begin{figure}[h!]
 	\centering
@@ -203,7 +165,8 @@ fetch('https://localhost:44315/api/Employee')
 	\caption{Road Transportation Maintance ábrázolása az alkalmazásban.}
 	\label{fig:fetchapi}
 \end{figure}
-A következő ábrázolásban a lépések közötti sorrend, és az elágazások jobban átláthatóak.
+
+\Aref{fig:roadtransporationdemand2ndabra}. ábrán látható ábrázolásban a lépések közötti sorrend, és az elágazások jobban átláthatóak.
 
 \begin{figure}[h!]
 	\centering
@@ -212,20 +175,9 @@ A következő ábrázolásban a lépések közötti sorrend, és az elágazások
 	\label{fig:roadtransporationdemand2ndabra}
 \end{figure}
 
-
-
-
 Amíg a Kliens oldali rész nem került implementálásba, addig az alapvető CRUD
-metódusok tesztelése a Postman segítségével történt \ref{fig:postman} , ahol kiválaszthatjuk hogy
-Post / Delete / Update / Delete methodust szeretnék végrehajtani , az adott
-URL-en.
-
-Itt egy adat kerül hozzáadásra, az Alkalmazottak mezőhöz. A post methodusnál
-a kivételkezelés kifejezetten fontos, így hibás adat esetén nem kaptunk volna
-sikeres visszajelzést.
-
-	
-
+metódusok tesztelése a Postman segítségével történt (\ref{fig:postman}. ábra), ahol kiválaszthatjuk, hogy
+POST / DELETE / UPDATE / DELETE metódust szeretnék végrehajtani az adott URL-en.
 
 \begin{figure}[h!]
 	\centering
@@ -234,47 +186,46 @@ sikeres visszajelzést.
 	\label{fig:postman}
 \end{figure}
 
+Itt egy adat kerül hozzáadásra, az \textit{Alkalmazottak} mezőhöz. A POST methodusnál
+a kivételkezelés kifejezetten fontos, így hibás adat esetén nem kaptunk volna sikeres visszajelzést.
 
+Az új igénylő első lépése megtekinthető \aref{fig:newMaintance}. ábrán, az első jóváhagyó lépése pedig \aref{fig:newMaintance2}. ábrán.
 
-
-
-Az új igénylő első lépése megtekinthető a \ref{fig:newMaintance} , az első jóváhagyó lépése pedig a \ref{fig:newMaintance2} képeken tekinthető meg.
-\newpage
-\begin{figure}[h!]
+\begin{figure}[hb!]
 	\centering
 		\includegraphics[width=15truecm, height=7truecm]{images/newRoad1.png}\\
 	\caption{Az új környezetben lévő Road Transportation Maintance}
 	\label{fig:newMaintance}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[hb!]
 	\centering
 		\includegraphics[width=15truecm, height=7truecm]{images/newRoad2.png}\\
 	\caption{Az új környezetben lévő Maintance Approve lépés}
 	\label{fig:newMaintance2}
 \end{figure}
 
-\newpage
+Az ehhez tartozó implementáció egy részlete az alábbi.
 \begin{python}
-	componentDidMount(){
-		this.refreshList();
-	}
-	
-	refreshList(){
-		fetch('https://localhost:44315/api/Draft')
-		.then(response=> response.json())
-		.then(data=>{ 
-			this.setState({draft:data});  }); }
+componentDidMount() {
+  this.refreshList();
+}
+
+refreshList() {
+  fetch('https://localhost:44315/api/Draft')
+    .then(response => response.json())
+    .then(data => { 
+      this.setState({draft:data});
+    }
+  );
+}
 \end{python}
 
-
-Telefon,vagy egyéb kisebb eszközön a design \ref{fig:responsive} 
+Telefon, vagy egyéb kisebb eszközön az űrlap \aref{fig:responsive}. ábrán látható formában kerül megjelenítésre. 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=7.5truecm, height=14truecm]{images/Responsive.png}\\
+	\includegraphics[width=7.5truecm, height=14truecm]{images/Responsive.png}
 	\caption{A responsive megjelenése az igénylő forumnak}
 	\label{fig:responsive}
 \end{figure}
-
-
