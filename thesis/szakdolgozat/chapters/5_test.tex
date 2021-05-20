@@ -2,11 +2,11 @@
 
 Minden nagyvállalat esetében egyszerre több üzleti, logisztikai folyamat zajlik. Ezeket a folyamatokat többféleképpen nyomon lehet követni. Ennek módjait mutatja be a fejezet.
 
-\Section{Business Process Management Bemutatása}
+\Section{Business Process Management bemutatása}
 
 % TODO: Leírni, hogy a megközelítési módok miben különbözhetnek.
 
-A legtöbb nagy cég a BPM (\textit{Business Process Management}) platformot használja a feladatok nyomonkövetésére, menedzselésére. Több különböző, már korábban említett hasonló rendszer létezik, ám azok mégsem terjedtek el. Ennek az alábbi okai vannak, amely előnyben részesíti magát a BMP platformot, a többivel szemben.
+A legtöbb nagy cég a BPM (\textit{Business Process Management}) platformot használja a feladatok nyomonkövetésére, menedzselésére. Több különböző, már korábban említett hasonló rendszer létezik, ám azok mégsem terjedtek el. Ennek az alábbi okai vannak, amely előnyben részesíti magát a BPM platformot a többivel szemben.
 A rendszerben megtalálható \textit{Process Designer} program segítségével minden folyamathoz tartozik egy folyamatábra.
 
 A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést pirossal, a következő lépéseket pedig szürkével jelöli (\ref{fig:Maintance_Process.png}. ábra).
@@ -16,37 +16,36 @@ A folyamatábrán az elvégzett feladatokat zölddel, az aktuális lépést piro
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{images/Process-Designer.jpg}
-	\caption{A process Designer felülete}
+	\caption{A Process Designer felülete}
 	\label{fig:Maintance_Process.png}
 \end{figure}
 
-A rendszer képes listázni az összes meglévő folyamatot, amelyet el lehet indítani egy cégnél. Ezt a Process Centerre kattintva lehet megtenni.
+A rendszer képes listázni az összes meglévő folyamatot, amelyet el lehet indítani egy cégnél. Ezt a \textit{Process Centerre} kattintva lehet megtenni.
 A folyamatábrán az egyes lépésekre kattintva további részletes információkat tekinthetünk meg, mint a \textit{view page}-en használt mezőket, a mögötte lévő adatbázis mezőket, a felhasznált AJAX szolgáltatásokat. Az \textit{Ajax Service} implementációit lehet megtekinteni. Az egyes elágazásokban lévő döntési változókat lehet megtekinteni. Természetesen a rendszer nem teljesen tökéletes.
 
 \Section{A BPM rendszer korlátai, hátrányai}
 
-Ez a rendszer fizetős, nem érhetőek el ezek a szolgáltatások lokális gépről. A rendszer mivel elég széles körü, így eléggé rugalmatlan is, mivel ha hirtelen egy új üzleti folyamatra lenne szüksége a cégnek, akkor annak az elkészítése akár több hetet is igénybe vehet.
+Ez a rendszer fizetős, nem érhetőek el ezek a szolgáltatások lokális gépről. A rendszer mivel elég széles körű, így eléggé rugalmatlan is, mivel ha hirtelen egy új üzleti folyamatra lenne szüksége a cégnek, akkor annak az elkészítése akár több hetet is igénybe vehet.
 
-Tekintsük példaként az alábbi esetet.
-Egy autógyárban lehet akár egy gyártási folyamat, akár egy karbantartási folyamat, vagy valamilyen eszköz igénylési folyamat, amelyek több lépésben zajlanak.
+Tekintsünk példaként egy autógyárban egy gyártási, karbantartási, vagy valamilyen eszközigénylési folyamatot, amely több lépésben zajlik.
 Különböző jogosultsági szintek vannak egy ilyen folyamatnál, amelyeket meg kell különböztetni. Például, hogy mikor, melyik lépésnél éppen ki a jóváhagyó.
 Ezeket a folyamatokat valahol nyilván kell tartani, kezelni kell őket.
 
-Folyamatok előfordulhatnak ipari vállalatoknál, és  egyéb logisztikával kapcsolatos cégeknél, különböző kereskedelmi szervezeteknél.
+Folyamatok előfordulhatnak ipari vállalatoknál és  egyéb logisztikával kapcsolatos cégeknél, különböző kereskedelmi szervezeteknél.
 A legtöbb nagyipari vállalat az IBM-BPM platformot használja.
 A folyamatok menedzseléséhez, követéséhez hozzátartozik az SAP, amely egy vállalatirányítási rendszer. Gyakran nem egy előre elkészített weboldalról indítanak el folyamatot, hanem SAP-ból.
 
-Ahhoz, hogy egy folyamatot elkészítsünk, amely SAP-ból indul, szükséges a \textit{Process Designer}-ben azt az \textit{Ajax Service} formájában definiálni, és \textit{Postman} segítségével teszteleni,
-amely a legtöbb esetben egy folyamat azonosítót és egy lépés azonosítót ad vissza. Ezeket megkeresve tudjuk az adatbázisba megtekinteni, felhasználni, és a formon kiolvasni az adatokat.
+Ahhoz, hogy egy folyamatot elkészítsünk, amely SAP-ból indul, szükséges a \textit{Process Designer}-ben azt az \textit{Ajax Service} formájában definiálni, és \textit{Postman} segítségével tesztelni,
+amely a legtöbb esetben egy folyamat azonosítót és egy lépés azonosítót ad vissza. Ezeket megkeresve tudjuk az adatbázisban megtekinteni, felhasználni, és a formon kiolvasni az adatokat.
 
 % TODO: Az előző résznél eléggé keverednek az áttekintő jellegű fogalmak és a konkrét, implementáció szintű dolgok.
 
-Egy karbantartási folyamat esetén, egy nagyobb cégnél 5 lépésben folyik le:
+Egy karbantartási folyamat esetén egy nagyobb cégnél 5 lépésben folyik le:
 \begin{itemize}
 	\item Az igénylő kitölti a formot, ahol megadja a gépjármű adatait, a probléma pontos leírását. Továbbítja a folyamatot.
-	\item Az első jóváhagyó (\textit{SupervisorApprove}) ez a formot megkapja, ír hozzá egy megjegyzést, majd eztkövetően a folyamat továbbmegy a coordinátorhoz,
+	\item Az első jóváhagyó (\textit{SupervisorApprove}) ezt a formot megkapja, ír hozzá egy megjegyzést, majd ezt követően a folyamat továbbmegy a koordinátorhoz,
 	amely meghatározza a probléma leírása alapján,a költségeket, a javítás várható idő intervallumát, a helyet stb.
-	\item Amennyiben költség szintje meghaladja az adott értéket, akkor a folyamat folytatásához a Director jóváhagyása kell. Ő dönti el hogy vissza \textit{reject}-eli, vagy továbbítja a folyamatot.
+	\item Amennyiben a költség szintje meghaladja az adott értéket, akkor a folyamat folytatásához a Director jóváhagyása kell. Ő dönti el hogy visszautasítja, vagy továbbítja a folyamatot.
 	\item A feladat visszakerül az igénylőhöz.
 \end{itemize}
 
