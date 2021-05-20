@@ -1,24 +1,24 @@
 \Chapter{Üzleti folyamatok}
 
-Egy vállalat élete során rengeteg problémával néz szembe, akár napi szinten. Ezek lehetnek egyszerű, vagy teljesen komplex feladatok is. Ahhoz, hogy egy vállalat zökkenő mentesen működjön, fontos ezeket a feladatokat könnyedén, hatékonyan megoldani. A fejezet ennek lehetséges módjaival foglalkozik.
+Egy vállalat élete során rengeteg problémával néz szembe, akár napi szinten. Ezek lehetnek egyszerű, vagy teljesen komplex feladatok is. Ahhoz, hogy egy vállalat zökkenőmentesen működjön, fontos ezeket a feladatokat könnyedén, hatékonyan megoldani. A fejezet ennek lehetséges módjaival foglalkozik.
 
 \Section{Workflow rendszerek}
 
-Üzleti folyamatoknál gyakran emlegetik a {\bf workflow} (munkafolyamat) kifejezést, amelynek a jelentése olyan tevékenységek sorozata, amelyeket az gépek vagy az emberek végrehajtanak, egy logikai terv szerint, valamilyen cél elérése érdekében. 
-Magában foglalja az üzleti folyamatok definiálását, végrehajtását és automatizálását, ahol a feladatok, információ vagy dokumentumok kerülnek átadásra egy résztvevőtől egy másikhoz, az eljárás szabályainak
+Üzleti folyamatoknál gyakran emlegetik a {\bf workflow} (munkafolyamat) kifejezést, amelynek a jelentése olyan tevékenységek sorozata, amelyeket az gépek vagy az emberek végrehajtanak egy logikai terv szerint valamilyen cél elérése érdekében. 
+Magában foglalja az üzleti folyamatok definiálását, végrehajtását és automatizálását, ahol a feladatok, információ vagy dokumentumok kerülnek átadásra egy résztvevőtől egy másikhoz az eljárás szabályainak
 megfelelően.
 
 % TODO: A BPM rövidítést ki kellene írni, és be kellene hivatkozni. (Más, hasonló hivatkozások is jól jöhetnek ide.) 
 
 A korábbi workflow rendszerek csak az üzleti folyamatok leképezését tették lehetővé vizualizációs eszközök segítségével. A Business Process Management azóta sokat fejlődött és a támogató szoftvercsomagok sokkal több lehetőséget nyújtanak már.
-Ilyenek lehetnek a \textit{Process Designer}-be integrált plusz funkciók, mint a folyamatokhoz tartozó folyamatábra, a folyamat lépéseihez tartozó űrlapok megtekintése, és az, hogy az egyes mezők mögött milyen metódus hívások, és adatbázis van. Az összes üzleti folyamatot egy helyen lehet tárolni
+Ilyenek lehetnek a \textit{Process Designer}-be integrált plusz funkciók, mint a folyamatokhoz tartozó folyamatábra, a folyamat lépéseihez tartozó űrlapok megtekintése, és az, hogy az egyes mezők mögött milyen metódushívások, és adatbázis van. Az összes üzleti folyamatot egy helyen lehet tárolni
 \cite{Bene}.
 
 \Section{Elvárások}
 
-Egy folyamat modellezőnek a következő képességekkel kell rendelkezniük \cite{Bene}:
+Egy folyamatmodellezőnek a következő képességekkel kell rendelkezniük \cite{Bene}:
 \begin{itemize}
-\item Mérések: Lehetőséget ad arra, hogy a folyamatokat valós időben átláthassuk.
+\item Mérések: Lehetőséget adnak arra, hogy a folyamatokat valós időben átláthassuk.
 \item Modellezés: Workflow-k és feladatok tervezése, informatikai eszközökkel.
 \item Portálok: Egységes felhasználói felületek, webes felület végfelhasználók számára.
 \item Mobilitás: Reszponzív felület, bármilyen képernyőn nyomon követhető.
@@ -31,7 +31,7 @@ Egy folyamat modellezőnek a következő képességekkel kell rendelkezniük \ci
 
 A folyamatgráf (\textit{Process Graph}, \textit{P-Graph}) egyik nagy előnye a folyamatok gráf alapú megközelítésnek, mivel a gráfelméleti algoritmusok alkalmazhatóak a vizsgálat során.
 
-A folyamat-gráf, egy speciális irányított páros gráf optimalizálási feladatok hatékony megoldásához, vagy épp
+A folyamatgráf, egy speciális irányított páros gráf optimalizálási feladatok hatékony megoldásához, vagy épp
 workflow modellezéshez \cite{Bene}.
 
 \Section{Folyamatszintézis}
@@ -43,15 +43,15 @@ A tervezés fontos része ezen komponensek összeillesztése, illetve összehoz�
 
 % TODO: A nemdeterminisztikus modelleknek milyen jelentősége lesz a későbbiekben? (Nem teljesen tünne indokoltnak ilyen formában a témához.) (A Későbbiekben nem lesz jelentősége, viszont az első két folyamat nem determinisztukus, hiszen két bemente van. Talán azt itt ki lehet hangsúlyozni.)
 
-\Aref{fig:Demand_Process}. és \aref{fig:maintane_process} ábrán látható folyamatábra nem determinisztikus volt, mivel mindkettőnél két bemenet volt; az egyik a \textit{Draft}, a másik pedig a \textit{Start} lépést. A \textit{Start} lépést a \textit{Draft} lépés követi.
+\Aref{fig:Demand_Process}. és \aref{fig:maintane_process} ábrán látható folyamatábra nem determinisztikus volt, mivel mindkettőnél két bemenet volt; az egyik a \textit{Draft}, a másik pedig a \textit{Start} lépés. A \textit{Start} lépést a \textit{Draft} lépés követi.
 
-A legtöbb korszerű workflow rendszer főbb szolgáltatásai alkalmasak a munkafolyamatok között eltelt idő, várakozási és sorbaállási idők csökkentésére, és minimalizálására. A sorbaállási modell nem elhanyagolható, mivel gyakran felhasználják üzleti döntéseknél, ahol az erőforrások becslése nem elhanyagolható \cite{sorbanallaswikipedia}. Könnyen előfordulhat ugyanis nagyobb mértékű feltolódás egy bizonyos erőforráson, amely nagy kapacitást igényel. A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
+A legtöbb korszerű workflow rendszer főbb szolgáltatásai alkalmasak a munkafolyamatok között eltelt idő, várakozási és sorbanállási idők csökkentésére, és minimalizálására. A sorbanállási modell nem elhanyagolható, mivel gyakran felhasználják üzleti döntéseknél, ahol az erőforrások becslése nem elhanyagolható \cite{sorbanallaswikipedia}. Könnyen előfordulhat ugyanis nagyobb mértékű feltolódás egy bizonyos erőforráson, amely nagy kapacitást igényel. A sorbanállási modell a hétköznapi életben is előforduló egyik kellemetlen jelenség a
 várakozás vizsgálatával foglalkozik. Definíció szerint a sorbanállás-elmélet különböző
 folyamatok eseményeivel kapcsolatos várakozási sorokat, sorbanállási időket a
-kiszolgálásra, és ezek összefüggéseit tárgyalja az alkalmazott matematikai eszközeivel \cite{Sorba}.
+kiszolgálásra, és ezek összefüggéseit tárgyalja az alkalmazott matematika eszközeivel \cite{Sorba}.
 
 A folyamat során várakozó sor keletkezhet, ha a kiszolgáló egységekbe történő áramlás
-időköze, és a kiszolgálás időtartama szabálytalan. Sorbaállás keletkezhet akkor is, a
+időköze, és a kiszolgálás időtartama szabálytalan. Sorbanállás keletkezhet akkor is, a
 beáramlás időköze kisebb, mint a kiszolgálás időtartama. Ekkor a tároló térben a beáramló
 várakozó anyagmennyiség, azaz várakozó sor folyamatosan növekszik.
 
@@ -60,11 +60,11 @@ valószínűségi változó. Ekkor sztochasztikus folyamatról beszélünk, amel
 bizonyos feltételek mellett analitikusan végrehajtható. A szakirodalom alapján nézzük meg ezek fő definícióit, összefüggéseit és az azokhoz kapcsolódó definíciókat \cite{istvan2009valoszinHusegszamitas}.
 
 A várakozó sorba időegység alatt
-beérkező egységek száma, mint valószínűségi változó leggyakrabban Poisson féle eloszlást
+beérkező egységek száma, mint valószínűségi változó leggyakrabban Poisson-féle eloszlást
 követ, amely egy diszkrét valószínűségi változó, amelynek a definíciója a következő.
 
 Legyen $\lambda > 0$ egy rögzített valós szám. Azt mondjuk, hogy a $\xi$ valószínűségi változó Poisson
-eloszlású $\lambda$ paraméterrel, ha eloszlása:
+-eloszlású $\lambda$ paraméterrel, ha eloszlása:
 \begin{equation}
 	p_{k} = P(\xi = k) = { {\lambda^{k}}\over{k!} } \cdot e^{-\lambda}.
 \end{equation}
@@ -76,9 +76,9 @@ A $\xi$ várható értéke és szórásnégyzete $E(\xi) = D^{2}(\xi)=\lambda$. 
 	a = { \sum_{i=1}^{n} x_{i} \cdot p_{i} \over{\sum_{i=1}^{n} p_{i}} }, \\
 	\sum_{i=1}^{n} p_{i} = 1 \text{ ebből következik } a & = \sum_{i=1}^{n} x_{i} \cdot p_{i}.
 \end{align*}
-Fontos megjegyezni, az $x_{1}, x_{2}, \dots $ hogy $\exists E(\xi) = \sum_{i=1}^{\infty} x_{i} \cdot p_{i}$, ha $\sum_{i=1}^{\infty} \mid x_{i} \cdot p_{i} \mid < + \infty$.
+Fontos megjegyezni, hogy az $x_{1}, x_{2}, \dots $  $\exists E(\xi) = \sum_{i=1}^{\infty} x_{i} \cdot p_{i}$, ha $\sum_{i=1}^{\infty} \mid x_{i} \cdot p_{i} \mid < + \infty$.
 
-A Poisson eloszlás várható értékének a bizonyítása:
+A Poisson-eloszlás várható értékének a levezetése:
 
 \begin{align*}
 	E(\xi) = \sum_{k=0}^{\infty} x_{k} \cdot p(k,\lambda)  = \sum_{k=0}^{\infty} k {\lambda^{k} \over{k!}} \cdot  e^{-\lambda} = \\
@@ -86,17 +86,17 @@ A Poisson eloszlás várható értékének a bizonyítása:
 	= & \lambda \cdot e^{-\lambda} \cdot e^{\lambda} = \lambda.
 \end{align*}
 
-A Poisson eloszlás szórás négyzete $ D^{2}(\xi) = \lambda $ bizonyításához felhasználjuk a \\ $D^{2}(\xi) = E(\xi^{2})-E^{2}(\xi)$ összefüggést. (Ez a második centrális momentum alapján könnyen igazolható, hiszen:
+A Poisson-eloszlás szórás négyzete $ D^{2}(\xi) = \lambda $ levezetéséhez felhasználjuk a \\ $D^{2}(\xi) = E(\xi^{2})-E^{2}(\xi)$ összefüggést. Ez a második centrális momentum alapján könnyen igazolható, hiszen:
 \[
 E( (\xi - E(\xi)^2 ) = E(\xi^2 - 2\xi E(\xi) + E^2(\xi) ).
 \]
-Itt a véges additivátást követően az alábbi képet adódik:
+Itt a véges additivitást követően az alábbi képlet adódik:
 \[
 E(\xi^2) - 2*E(\xi)*E(\xi) + E^2(\xi) =  E(\xi^{2})-E^{2}(\xi)
 \]
 Ezeket az összefüggéseket felhasználva belátható, hogy:
 \begin{align*}
-	E(\xi^2)   = \sum_{k=0}^{} k^{2} \cdot { \lambda^k \over{k!} }  * e^{-\lambda}  = \sum_{k=1}^{\infty} [(k-1)+1]  \\ { \lambda^k \over{(k-1)!} } \cdot e^{-\lambda}  = \sum_{k=2}^{\infty} (k-1){ \lambda^k \over{ (k-1) !} } \cdot e^{-\lambda}   + \\ \sum_{k=1}^{\infty} { \lambda^k \over{(k-1)!} } \cdot e^{-\lambda}   =  \lambda^2 e^{-\lambda} \sum_{k=2}^{\infty} { \lambda^{k-2} \over{ (k-2) ! } } + \lambda e^{-\lambda} \sum_{k(1}^{\infty} { \lambda^{k-1} \over{(k-1)!} } = \lambda^2 + \lambda
+	E(\xi^2)   = \sum_{k=0}^{} k^{2} \cdot { \lambda^k \over{k!} }   e^{-\lambda}  = \sum_{k=1}^{\infty} [(k-1)+1]  \\ { \lambda^k \over{(k-1)!} } \cdot e^{-\lambda}  = \sum_{k=2}^{\infty} (k-1){ \lambda^k \over{ (k-1) !} } \cdot e^{-\lambda}   + \\ \sum_{k=1}^{\infty} { \lambda^k \over{(k-1)!} } \cdot e^{-\lambda}   =  \lambda^2 e^{-\lambda} \sum_{k=2}^{\infty} { \lambda^{k-2} \over{ (k-2) ! } } + \lambda e^{-\lambda} \sum_{k(1}^{\infty} { \lambda^{k-1} \over{(k-1)!} } = \lambda^2 + \lambda
 \end{align*}
 A képletbe helyettesítve adódik, hogy
 \[
@@ -112,7 +112,7 @@ Legyen a $\xi$ abszolút folytonos valószínűségi változó sűrűségfüggv�
 \begin{equation*}
 E(\xi) = \int_{-\infty}^{\infty} x f_{\xi}(x) dx,
 \end{equation*}
-ha az integrál konvergens, az-az $\int_{-\infty}^{\infty} \mid x \mid f_{\xi}(x) < \infty$.
+ha az integrál konvergens, azaz $\int_{-\infty}^{\infty} \mid x \mid f_{\xi}(x) < \infty$.
 
 Az $F(x) = P(\xi < x) $ formulával meghatározott valós függvényt a $\xi$ valószínűségi változó eloszlásfüggvényének nevezzük. \\
 
@@ -128,7 +128,7 @@ A $\xi$ valószínűségi változót $\lambda$ paraméterű exponenciális elosz
 	F(x) & = 0 ,\qquad x \leq 0, \\
 	F(x) & = 1-e^{-\lambda x} \qquad x > 0.
 \end{align*}
-Az $f(x) = F'(x)$ definíció alapján, az exponenciális eloszlás sűrűségfüggvénye:
+Az $f(x) = F'(x)$ definíció alapján az exponenciális eloszlás sűrűségfüggvénye:
 \begin{align*}
 	f(x) & = 0, \qquad x \leq 0, \\
 	f(x) & = \lambda e^{-\lambda x} \qquad x > 0.
@@ -165,12 +165,12 @@ A következő pontokban néhány elterjedt, szabványosított folyamatleírási 
 Az \textit{Integrated Definition} (IDEF) folyamatleíró nyelvet elsősorban folyamatok
 fejlesztéséhez, integrációjához, tervezéséhez és rendszerelemzéshez kapcsolódó tevékenységek leírására használják \cite{Bohacs}.
 
-A modellkészítés első lépése, mivel a
+A modellkészítés első lépése, a
 rendszer alapvető funkciói, tevékenységei közötti kapcsolati feltételeket állapítja meg.
-Ezenfelül részletes leírást ad a rendszer folyamatairól, tevékenységeiről.
+Ezen felül részletes leírást ad a rendszer folyamatairól, tevékenységeiről.
 Részei \cite{Bene}:
 \begin{itemize}
-\item  \textbf{IDEF0}: Funkció modellezés,
+\item  \textbf{IDEF0}: Funkciómodellezés,
 \item \textbf{IDEF1}: Információs modellezés,
 \item \textbf{IDEF1X}: Adatmodellezés,
 \item \textbf{IDEF2}: Szimulációs modelltervezés,
@@ -180,37 +180,21 @@ Részei \cite{Bene}:
 
 \SubSection{Event Driven Process Chain}
 
-Előfordulhat, hogy ugyanazt az üzleti folyamatot egyszerre több ember vagy gép végzi. Akár több független igénylés is érkezhet, ami több összetett lépésből áll. Ez lehet több egyszerre történő módosítás egy nagy gyárban. Ilyenkor meg kell különböztetni ezeknek a folyamatokat, párhuzamosan kell tudni kezelni.
+Előfordulhat, hogy ugyanazt az üzleti folyamatot egyszerre több ember vagy gép végzi. Akár több független igénylés is érkezhet, ami több összetett lépésből áll. Ez lehet több egyszerre történő módosítás egy nagy gyárban. Ilyenkor meg kell különböztetni ezeket a folyamatokat, párhuzamosan kell tudni kezelni.
 Erre szolgál az EPC (\textit{Event Driven Process Chain}), amely az események és funkciók irányított gráfja.
 Különböző logikai kapcsolatok
 hozhatók benne létre, amelynek révén alkalmas alternatív vagy párhuzamos lefutású
 folyamatok modellezésére. Ezekhez olyan logikai operátorokat használ, mint az OR, AND
 és a XOR.
 
-XOR, vagy más néven kizáró vagy az alábbi formátummal adható meg: $ ( \bar{x} \land y  ) \lor ( x \land \bar{y} )$.
+XOR, vagy más néven "kizáró vagy" az alábbi formulával adható meg: $ ( \bar{x} \land y  ) \lor ( x \land \bar{y} )$.
 Az EPC felhasználható a vállalati erőforrás-tervezés végrehajtásának konfigurálására és az üzleti folyamatok fejlesztésére.
 
-Irányított gráf definíciója: A $G=(V,E)$ rendezett párt irányított gráfnak (digráfnak) nevezzük. A
-rendezett pár elemeire tett kikötések: $V$ véges halmaz, a $G$ -beli csúcsok halmaza.
-$ E $ bináris reláció a halmazon, az élek halmaza. \\
-$E=\{ (u,v) \text{ rendezett pár } u\in V , v \in V \} \subset V \times V \text{ hurok megengedett.} $ \\
-A szomszédsági mátrix-t megemlítve az alábbi definíciót fogalmazhatjuk meg vele kapcsolatosan.
-
-Az $A$ egy páros gráf szomszédsági mátrixa, ha a páros gráf partíciói $r$, illetve $s$ csúcsból állnak, a következő alakban felírható formában
-\begin{equation*}
-	A=\left ( \begin{matrix}
-		0_{r,r} & B  \\
-		B^{T} & 0_{s,s}  \\
-	\end{matrix} \right ),
-	\label{eq:elso}
-\end{equation*}
-ahol B egy $r \times s$ mátrix, $0_{r,r}$ és $0_{s,s}$ pedig $r \times r$, illetve $s \times s$ méretű $0$-kból álló mátrixokat jelölnek.
 
 \SubSection{Yet Another Workflow Language}
 
-A YAWL (\textit{Yet Another Workflow Language}) Kezdetben csupán a munkafolyamatokban előforduló tevékenységekre koncentrált, de mára
-már munkafolyamat leírásának teljes eszköztárát támogatja a folyamateditortól a
-folyamatmotoron át a modellező eszközig \cite{Bohacs}.
+A YAWL (\textit{Yet Another Workflow Language}) Elsősorban a munkafolyamatokban előforduló tevékenységekre koncentrált, viszont mára
+ munkafolyamat leírásának teljes eszköztárát támogatja és segíti. \cite{Bohacs}.
 
 A nyelvet egy olyan szoftverrendszer támogatja, amely egy végrehajtó motort, egy grafikus szerkesztőt és egy munkalista kezelőt tartalmaz.
 
@@ -226,7 +210,7 @@ Főbb jellemzői:
 
 \SubSection{XML Process Definition Language}
 
-Az XPDL (\textit{XML Process Definition Language}) a WfMC (\textit{Wokflow Management Coalition})
+Az XPDL (\textit{XML Process Definition Language}) a WfMC (\textit{Workflow Management Coalition})
 által szabványosított leírónyelv. Az XPDL egy olyan XML sémát definiál, ami alkalmas a
 különböző leíró és modellezési eszközök közötti információcserére. Fontos kiemelni, hogy
 az XPDL a folyamat leírása mellett a folyamat végrehajtására is tartalmaz információkat \cite{Wikixpdl}.
@@ -237,6 +221,6 @@ A SysML egy általános célú leíró nyelv mérnöki alkalmazásokra kifejlesz
 analízis, tervezés, felülvizsgálat és jóváhagyás területén nyújt támogatást. A SysML
 tulajdonképpen az UML kiterjesztett változata.
 
-A folyamat, algoritmusok leírását a mérnöki/műszaki tudományok területén kezdték
+A folyamatok, algoritmusok leírását a mérnöki/műszaki tudományok területén kezdték
 formalizálni az 1930-as években \cite{Bohacs}.
 
