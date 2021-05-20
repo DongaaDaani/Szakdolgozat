@@ -5,9 +5,9 @@
 A projekt felépítése több komponensből tevődik össze.
 Model rész, ahol az adatbázisnak megfelelő osztályok implementációja történik.
 
-A \textit{Controller} rész, amelyben a szerver felé irányuló kérések implementációja kerül.
+A \textit{Controller} rész, amelybe a szerver felé irányuló kérések implementációja kerül.
 
-Pár alapvető kérés, mint a POST, amelyel egy új rekordot viszünk fel, PUT amelyel egy meglévő adatot módosítunk , DELETE amelyel törlünk , GET amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nem létező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
+Pár alapvető kérés, mint a POST, amellyel egy új rekordot viszünk fel, PUT amellyel egy meglévő adatot módosítunk , DELETE amellyel törlünk , GET amely lekérdezi, vagy listázza az adatokat. Fontos a kivételkezelés ezekben a metódusokban, például, ha egy nem létező azonosítójú mezőt szeretnénk módosítani, akkor egy kivételt dobjon, és ne a rendszer fagyjon le, esetleg álljon le.
 
 A \textit{Data} részben vannak az adatbázisban lévő kapcsolatok kialakítva, az itt definiált osztály, a DbSet osztályból származik.
 
@@ -19,7 +19,7 @@ Update-Database
 parancs után jön létre, így kialakulnak a kapcsolatok, létrejönnek a táblák. \\
 (A \texttt{connectionString}-ben megadott szerveren, a megadott adatbázis névvel.)
 
-A jelszavak, és egyéb bizalmasan tárolt adatoknál a .net \textit{Framework Authentication Hash} algoritmust használt a titkosításhoz.
+A jelszavaknak, és egyéb bizalmasan tárolt adatoknál a .NET \textit{Framework Authentication Hash} algoritmust használt a titkosításhoz.
 
 Az üzleti folyamatok kezelésére BPM rendszert (\textit{Business Process Management
 system}) használnak. Kétféle típus létezik:
@@ -32,29 +32,29 @@ system}) használnak. Kétféle típus létezik:
 	egész társaságban lehet használni. Az építészet szintjétől az operatív szintig.
 \end{itemize}
 
-Maga az kezelő felület megjelenése teljesen dinamikus. A statikus tartalom itt azokat a
-tartalmakat jelenti, amelyeket az oldalon nem változnak vagy csak ritka esetben változnak,
-ilyen például folyamatok megnevezése, és a hozzájuk tartozó view pagen lévő mezők, illetve
+Maga a kezelő felület megjelenése teljesen dinamikus. A statikus tartalom itt azokat a
+tartalmakat jelenti, amelyek az oldalon nem változnak vagy csak ritka esetben változnak,
+ilyen például a folyamatok megnevezése, és a hozzájuk tartozó view page-en lévő mezők, illetve
 a különböző kilistázási és módosító műveletek, vagy esetleg a céget bemutató szöveg, cég
 logó.
 
 Ezek az adatok közvetlen a React HTML (JSX) fájlaiban szerepelnek. A dinamikus tartalmak
 pedig az adatbázisból töltődnek az oldal felületére, ilyenek például a felhasználók által felvitt
-értékek egy folyamat során, akár az adatok betöltődésénél egy kiolvasási rész, akár egy
+értékek egy folyamat során, vagy az adatok betöltődésénél egy kiolvasási rész, vagy egy
 adatbázisba történő beszúrás, az első lépésben. A különböző dolgozó menedzselése, amely
 során az adataikat lehet változtatni, esetleg törölni az adatbázisból, vagy egy új dolgozót
 hozzáadni ahhoz.
 
 Ami pedig a dinamikus megjelenést illeti, amelyben a React JS elterjedt Bootstrap-je nyújt
 segítséget, ebben az esetben azt jelenti, hogy a felhasználó bármilyen készülékről is
-használja a vállalati alkalamzást (akár egy kisebb irodai laptop, akár egy nagy monitorral
+használja a vállalati alkalamzást (akár egy kisebb irodai laptopról, akár egy nagy monitorral
 rendelkező számítógép, Tablet), a tartalom átláthatóan és érthetően, a készülék méretéhez
 igazítva jelenik meg. Nem lát kevesebb tartalmat és nem korlátozottabb az alkalmazás
 használatában, egyszerűen csak egy más elrendezésű felületet kap, ami az adott készülékhez
 igazodik.
 
 A React JS Bootstrap-jében rengeteg előre definiált stílusú objektumot tudtunk felhasználni,
-amelyektől a weboldal sokkal felhasználó barátabb lesz a dolgozók számára.
+amelyektől a weboldal sokkal felhasználóbarátabb lesz a dolgozók számára.
 
 Maga a felület a minimalista megjelenésre törekszik a könnyebb és átláthatóbb tartalom
 közvetítése és használhatósága végett.
@@ -62,10 +62,10 @@ közvetítése és használhatósága végett.
 A vállalat dolgozóinak lehetősége van bejelentkezni a programba. Ezt email címük és jelszó
 segítségével tudják megtenni. Ezután fogja tudni ténylegesen használni a programot.
 Amennyiben hibás adatokkal próbál valaki belépni, egy hibaüzenet ugrik fel: "\emph{Érvénytelen
-adatok. Adjon meg egy meglévő dolgozó adatait, vagy vegye fel a kapcsolatot az
+adatok. Adja meg egy meglévő dolgozó adatait, vagy vegye fel a kapcsolatot az
 ügyfélszolgálattal.}".
 
-Bejelentkezés követően a felhasználó megtekintheti a kapott feladatokat egy külön erre
+Bejelentkezést követően a felhasználó megtekintheti a kapott feladatokat egy külön erre
 szolgáló menüpontban. Továbbá amennyiben jogosult rá, lehetősége van a rendszerbe
 implementált folyamatok közül elindítani egyet. Két alapvető folyamat lesz definiálva a
 rendszerben, egy személy gépjármű igénylő és egy karbantartási folyamat.
@@ -76,7 +76,7 @@ Több felhasználót különböztet meg a rendszer.
 	használata, a feladatok megtekintése, esetleg folyamatok elindítása.
 	\item Vezető: ő a programot egész átfogóan használja, annak minden egyes funkciójával együtt.
 	Lehetősége van a cégben dolgozó személyek adatainak módosítására, törlésére, különböző
-	lekérdezéskre.
+	lekérdezésekre.
 \end{itemize}
 
 A rendszer további előnye a felhasználóbarát szemléletnek köszönhetően különösebb
@@ -84,14 +84,13 @@ betanulási időt nem igényel, legfeljebb 5 perc alatt mindenki képes lesz el�
 tartalmat, folyamatot elindítani, a feladatokat megtekinteni.
 
 A folyamat elindításához szükség van az előre implementált draft űrlap minden kötelező
-mezőjének a kitöltése, majd a \textit{submit} gombra kattintva elküldheti a felhasználó a következő
+mezőjének a kitöltésére, majd a \textit{submit} gombra kattintva elküldheti a felhasználó a következő
 illetékes személynek a folyamatot.
 Ezután a program az adatokat lementi az adatbázisba, hogy a következő jóváhagyónál ezt
 kiolvassa, és megjelenítse neki a felvitt adatokat, ha mentési hiba történne, akkor azt egy
 hibajelző üzenettel a felhasználó tudomására adná a program. Hibaüzenettel alapvetően nem
 találkozni, a dátum formátumra egy külön, React Bootstrapbe beépített rész lesz alkalmazva, a
-helytelen formátum megadás elkerülésének érdekében. Továbbá az Érvénytelen számot adott
-meg és hasonlók.
+helytelen formátum megadás elkerülésének érdekében.
 
 \Section{React.js technológia részletesebb bemutatása}
 
