@@ -4,7 +4,7 @@ Ebben a fejezetben bemutatásra kerül a folyamatmenedzsment rendszer
 felhasználói felülete. %, illetve az adatbázis modellje.
 A felhasználói felületet
 képernyőfotókkal kiegészítve, egy kisebb változatú, de hasonló célú projekttel
-mutatom be, illetve mindegyikhez adunk egy-egy rövid leírást az adott felhasználói felület funkcióiról.
+mutatom be, illetve mindegyikhez adok egy-egy rövid leírást az adott felhasználói felület funkcióiról.
 % A programunkhoz használt adatbázis leírása és bemutatása után  részletesen bemutatjuk a programunk adatmodelljét, ER és relációs modell segítségével.
 
 \Section{Felületi elemek}
@@ -26,7 +26,7 @@ majd beimportáljuk a projektbe.
 \begin{python}
 <link
   rel="stylesheet" 
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
   integrity="sha384- 
     9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZ
     l5MYYxFfc+NcPb1dKGj7Sk" 
@@ -63,7 +63,7 @@ A felugró ablak hasonlóképpen, \aref{fig:editreszleg}. ábrán látható mód
 
 A törlés gomb megnyomásával egy \textit{Alert} rész ugrik fel, rákérdez arra, hogy
 ,,\textit{Biztosan szeretnéd törölni?}''.
-Ugyanezen a formon lehetőségünk van egy részleg hozzáadására, az \textit{Id} automatikusan incrementálódik, tehát a felhasználónak csak magát a részleg
+Ugyanezen a formon lehetőségünk van egy részleg hozzáadására az \textit{Id} automatikusan inkrementálódik, tehát a felhasználónak csak magát a részleg
 nevét kell megadnia.
 
 \Section{Alkalmazottak adatainak kezelése}
@@ -77,12 +77,12 @@ Az Alkamazottak felülete \aref{fig:alkalmazottak}. ábrán látható.
 	\label{fig:alkalmazottak}
 \end{figure}
 
-A design és a funkciók hasonlóak az előző fórumom láttottakhoz, a tárolt
+A design és a funkciók hasonlóak az előző fórumom látottakhoz, a tárolt
 adatok különböznek, illetve van még némi különbség.
 
 Ha egy új dolgozót szeretnénk felvenni a rendszerbe, akkor a részleg
-kiválasztásnál, a meglévő részlegek közül tudunk választani, egy legördülő
-listában (\ref{fig:addEmployee}. ábra), ezzel korlátozva azt, hogy hibás részleget adjon meg a felhasználó,
+kiválasztásnál a meglévő részlegek közül tudunk választani egy legördülő
+listában (\ref{fig:addEmployee}. ábra), ezzel korlátozva azt, hogy hibás részleget adjon meg a felhasználó
 vagy nem létezőt.
 
 \begin{figure}[h!]
@@ -94,7 +94,7 @@ vagy nem létezőt.
 
 Az adatbázisban felvett dátum típus miatt problémák lehetnek azzal, ha
 hibásan kezeljük az űrlapon implementált dátum mezőt.
-Ebből kifolyólag, egy dátum típusú \textit{Form Control} lett megadva, a helytelen
+Ebből kifolyólag egy dátum típusú \textit{Form Control} lett megadva a helytelen
 konvenciók miatt.
 Ez \aref{fig:editEmployeees}. ábrán tekinthető meg.
 
@@ -110,9 +110,9 @@ Ez \aref{fig:editEmployeees}. ábrán tekinthető meg.
 Mivel két különböző szerveren fut a Backend és a Frontend, így a kommunikációt JSON formátum segítségével oldhatjuk meg, amelyben a
 Backend oldalon a következőkben bemutatásra kerülő részek szerepelnek az implementációban.
 
-Ahhoz, hogy a két server kommunikálni tudjon egymással, és ne írjon hibát, fel
-kell oldani egy CORS problémát a .NET résznél, hogy ez megvalósuljon.
-Mivel a frontend a 3000-as porton érhető el így az implementációja az alábbi
+Ahhoz, hogy a két szerver kommunikálni tudjon egymással, és ne írjon hibát, fel
+kell oldani egy CORS problémát a .NET résznél.
+Mivel a frontend a 3000-es porton érhető el, így az implementációja az alábbi
 formátumban lesz, a NuGet csomagok telepítése után:
 \begin{python}
 config.EnableCors(new
@@ -150,8 +150,8 @@ Az employee részleg esetén :
 },
 \end{python}
 
-A kliens oldali részről, ahhoz hogy ezt a JSON formátumot használhatóvá tudjuk
-tenni, a \textit{ComponentDidMount} függvényen belül definiálni kell a következőket
+A kliens oldali részről ahhoz, hogy ezt a JSON formátumot használhatóvá tudjuk
+tenni, a \textit{ComponentDidMount} függvényen belül definiálni kell a következőket:
 \begin{python}
 fetch('https://localhost:44315/api/Department')
 fetch('https://localhost:44315/api/Employee')
@@ -171,13 +171,13 @@ A modellezett üzleti folyamatot a felhasználó kétféleképpen tudja ábrázo
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=8truecm, height=12truecm]{images/2nd process diagram.png}\\
-	\caption{Folyamatábra készítése a Road Transportation Maintance-hoz.}
+	\caption{Folyamatábra készítése a Road Transportation Maintance-hez.}
 	\label{fig:roadtransporationdemand2ndabra}
 \end{figure}
 
-Amíg a Kliens oldali rész nem került implementálásba, addig az alapvető CRUD
+Amíg a kliens oldali rész nem került implementálásba, addig az alapvető CRUD
 metódusok tesztelése a Postman segítségével történt (\ref{fig:postman}. ábra), ahol kiválaszthatjuk, hogy
-POST / DELETE / UPDATE / DELETE metódust szeretnék végrehajtani az adott URL-en.
+POST / DELETE / UPDATE / DELETE metódust szeretnénk végrehajtani az adott URL-en.
 
 \begin{figure}[h!]
 	\centering
@@ -186,7 +186,7 @@ POST / DELETE / UPDATE / DELETE metódust szeretnék végrehajtani az adott URL-
 	\label{fig:postman}
 \end{figure}
 
-Itt egy adat kerül hozzáadásra, az \textit{Alkalmazottak} mezőhöz. A POST methodusnál
+Itt egy adat kerül hozzáadásra az \textit{Alkalmazottak} mezőhöz. A POST metódusnál
 a kivételkezelés kifejezetten fontos, így hibás adat esetén nem kaptunk volna sikeres visszajelzést.
 
 Az új igénylő első lépése megtekinthető \aref{fig:newMaintance}. ábrán, az első jóváhagyó lépése pedig \aref{fig:newMaintance2}. ábrán.
@@ -194,14 +194,14 @@ Az új igénylő első lépése megtekinthető \aref{fig:newMaintance}. ábrán,
 \begin{figure}[hb!]
 	\centering
 		\includegraphics[width=15truecm, height=7truecm]{images/newRoad1.png}\\
-	\caption{Az új környezetben lévő Road Transportation Maintance}
+	\caption{Az új környezetben lévő Road Transportation Maintenance}
 	\label{fig:newMaintance}
 \end{figure}
 
 \begin{figure}[hb!]
 	\centering
 		\includegraphics[width=15truecm, height=7truecm]{images/newRoad2.png}\\
-	\caption{Az új környezetben lévő Maintance Approve lépés}
+	\caption{Az új környezetben lévő Maintenance Approve lépés}
 	\label{fig:newMaintance2}
 \end{figure}
 
@@ -221,11 +221,11 @@ refreshList() {
 }
 \end{python}
 
-Telefon, vagy egyéb kisebb eszközön az űrlap \aref{fig:responsive}. ábrán látható formában kerül megjelenítésre. 
+Telefonon vagy egyéb kisebb eszközön az űrlap \aref{fig:responsive}. ábrán látható formában kerül megjelenítésre. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=7.5truecm, height=14truecm]{images/Responsive.png}
-	\caption{A responsive megjelenése az igénylő forumnak}
+	\caption{Az igénylő fórum reszponzív megjelenése.}
 	\label{fig:responsive}
 \end{figure}
