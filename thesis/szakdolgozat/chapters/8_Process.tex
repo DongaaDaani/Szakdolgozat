@@ -5,7 +5,7 @@ A fejezet áttekinti a modellezett üzleti folyamatokat és az azokhoz tartozó 
 \Section{Road Transportation Demand}
 
 Az első üzleti folyamat, amely a személygépkocsi igénylése, tulajdonképpen egy
-elég egyszerű (2 lépéses folyamat). Ennek a fejlesztésénél talán a felugró mezők okozzák a
+elég egyszerű 2 lépéses folyamat. Ennek a fejlesztésénél talán a felugró mezők okozzák a
 legnagyobb kihívást.
 
 A folyamat első, \textit{draft} lépése \aref{fig:draft}. ábrán látható módon néz ki.
@@ -20,10 +20,10 @@ A folyamat első, \textit{draft} lépése \aref{fig:draft}. ábrán látható m�
 Az igénylés típusát kiválasztva, olyan mezők adódnak hozzá a folyamathoz, amelyek a jelenlegi
 képernyő fotón nem látszódnak.
 
-A következő az igénylő szervezeti egység lenne, amely egy felugró kereső ablak, ahol a felhasználó
+A következő az igénylő szervezeti egység, amely egy felugró kereső ablak, ahol a felhasználó
 kiválasztja azt, hogy melyik szervezethez tartozik.
 
-Ennek adatai egy külön adatbázis táblában kapnának helyet, amelyben a cégnél nyilvántartott szervezetek lesznek eltárolva,
+Ennek adatai egy külön adatbázis táblában kapnak helyet, amelyben a cégnél nyilvántartott szervezetek lesznek eltárolva,
 majd a felugró ablakban, ezekből lehet választani.
 
 Több mező is a felhasználó álltál kiválasztott Checkbox szerint jelenik majd meg, és tűnik el.
@@ -37,16 +37,16 @@ személygépkocsit” (\ref{fig:roadtransportationdemand}. ábra).
 	\label{fig:roadtransportationdemand}
 \end{figure}
 
-Ekkor megjelenik egy új kiválasztós mező, amelyben az \textit{Oda út és visszaút}ról kérdez, illetve négy
-további mező, amely a gépjármű elvitelének és a gépjármű leadásának az idejéről, illetve a gépjármű
+Ekkor megjelenik egy új kiválasztós mező, amelyben az \textit{Oda út és vissza út}ról kérdez, illetve négy
+további mező, amely a gépjármű elvitelének és a gépjármű leadásának az ideje, illetve a gépjármű
 elviteli ideje és leadási ideje.
 
 Ha csak „egy út” van kiválasztva, akkor a gépjármű leadásának dátuma, és ideje mező eltűnik,
 ellenkező esetben megmarad.
 
-Lehetőségünk van több utast is hozzáadni, amelyben a hozzáadás gomra kattintva felugrik egy rész,
+Lehetőségünk van több utast is hozzáadni, amelyben a hozzáadás gombra kattintva felugrik egy rész,
 ahol az adatokat kérjük le.
-Ez szintén egy új táblázat lesz (Road Transportation Demand DTL), amelyből 1 folyamathoz, akár több
+Ez szintén egy új táblázat lesz (Road Transportation Demand DTL), amelyből egy folyamathoz, akár több
 is tartozhat.
 
 \begin{figure}[h!]
@@ -59,14 +59,14 @@ is tartozhat.
 Itt az \textit{Utas neve}, egy szintén felugró ablak, amelyből kiválaszthat a cég alkalmazottak közül egyet (\ref{fig:popUp}. ábra).
 
 Az utasok a \textit{User} táblából lesznek Listázva, amelyben nyilván van tartva a cég összes alkalmazottja,
-annyi eltéréssel, hogy az utasnak nem lesz költség helyi kódja.
+annyi eltéréssel, hogy az utasnak nem lesz költséghelyi kódja.
 
 Tetszőleges számú utast adhatunk hozzá, illetve tudjuk törölni is őket.
 Ha kitöltötte a felhasználó a mezőket, akkor a \textit{Submit} gombra kattintva a következő, approve lépésbe
 ér a folyamat, ahol a meglévő adatok kiolvasása történik. Itt láthatja a következő illetékes azt, hogy
-milyen adatokkal szeretnének járművel bérelni.
+milyen adatokkal szeretnének járművet bérelni.
 
-Mivel ez egy egyszerű, 2 lépéses folyamat, egy Draft és egy Approve lépésből állt, a folyamat ezt
+Mivel ez egy egyszerű, kétlépéses folyamat, egy Draft és egy Approve lépésből állt, a folyamat ezt
 követően véget is ért.
 
 \Section{Road Transportation Maintance}
@@ -74,7 +74,7 @@ követően véget is ért.
 Második üzleti folyamat, amely egy karbantartási folyamat (\ref{fig:maintranceDraft}. ábra).
 Ez egy komplexebb folyamat, itt több lépés van, mint az előzőben, illetve itt is
 megtalálhatóak a \textit{Checkbox} szerinti kiválasztással felugró mezők.
-Az első lépést, az-az a \textit{draft}-ot itt láthatjuk \aref{fig:maintranceDraft}. ábrán.
+Az első lépést, azaz a \textit{draft}-ot itt láthatjuk \aref{fig:maintranceDraft}. ábrán.
 
 \begin{figure}[h!]
 	\centering
@@ -94,7 +94,7 @@ Az első lépést, az-az a \textit{draft}-ot itt láthatjuk \aref{fig:maintrance
 
 Amennyiben a folyamatban a Jármű kerül kiválasztásra, akkor egy rendszámot kell beírni, amely
 szintén egy külön tábla lesz, hiszen több rendszámot kell nyilvántartani, és a gépjárművekhez tartozó
-további adatokat is, mivel a keresés gomra kattintva, automatikusan kitöltődnek a csak olvasható (\textit{read only}) mezők
+további adatokat is. A keresés gomra kattintva, automatikusan kitöltődnek a csak olvasható (\textit{read only}) mezők
 értékei, mint a Márka, típus, Üzemóra, Futott Kilométer stb.
 
 Ezután a probléma leírása rész következik, ahol egy tetszőleges leírást adhat az igénylő felhasználó.
@@ -111,9 +111,9 @@ Itt a kiolvasott adatok mellett megjelenik egy újabb kitöltő mező, amelyben 
 kell megadni.
 
 A következő 3. lépésben azt kell megadni, hogy mi a probléma típusa, amely lehet Személyes,
-Belső, vagy külső probléma (\ref{fig:coordinatorApprove}. ábra).
+Belső vagy Külső probléma (\ref{fig:coordinatorApprove}. ábra).
 
-Amennyiben a probléma típusa Belső, vagy Külső, akkor egy újabb mező ugrik fel, amelyben szintén a
+Amennyiben a probléma típusa Belső vagy Külső, akkor egy újabb mező ugrik fel, amelyben szintén a
 meglévő alkalmazottak közül kell kiválasztani azt, hogy a folyamat kihez megy tovább, ki lesz érte a
 felelős. A megjelenő oldalt \aref{fig:coordinatorApprove}. ábrán láthatjuk.
  
@@ -133,7 +133,7 @@ Tesztelésként kiválasztjuk az \textit{Internal}-t, majd továbbítjuk, akkor 
 	\label{fig:mechanicalApprove}
 \end{figure}
 
-Ezután, az illetékes az alábbi formot fogja látni a felhasználó (\ref{fig:laststepmaintanceapprove}. ábra).
+Ezután az illetékes az alábbi formot fogja látni a felhasználó (\ref{fig:laststepmaintanceapprove}. ábra).
 
 \begin{figure}[h!]
 	\centering
@@ -142,7 +142,7 @@ Ezután, az illetékes az alábbi formot fogja látni a felhasználó (\ref{fig:
 	\label{fig:laststepmaintanceapprove}
 \end{figure}
 
-\noindent Itt az alábbi adatokat megadva, visszatér a folyamat az előző lépésben lévő emberhez, aki megkapja
+\noindent Itt az alábbi adatokat megadva visszatér a folyamat az előző lépésben lévő emberhez, aki megkapja
 ezeket az adatokat, és jóváhagyja.
 
 Ezáltal vége a folyamatnak. Amennyiben a „\textit{Personal}” részt választotta volna ki, akkor ott lett volna
