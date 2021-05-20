@@ -1,20 +1,20 @@
 \Chapter{Tervezés}
 
-Az fentebb említett problémára, egy olyan vállalati folyamatmodellezési rendszer készítése a cél, amelyben végig lehet követni az elindított folyamatokat, lehetőség lesz új folyamatokat lehet elindítani, az elindított folyamatok állapotát megtekinteni, a meglévő folyamatokat nyomon követni, ezzel megkönnyítve a cég üzleti folyamatainak menedzselését. A következő szakaszokban ennek részleteit láthatjuk.
+A fentebb említett problémára egy olyan vállalati folyamatmodellezési rendszer készítése a cél, amelyben végig lehet követni az elindított folyamatokat, lehetőség lesz új folyamatokat elindítani, az elindított folyamatok állapotát megtekinteni, a meglévő folyamatokat nyomon követni, ezzel megkönnyítve a cég üzleti folyamatainak menedzselését. A következő szakaszokban ennek részleteit láthatjuk.
 
 \Section{Az alkalmazás bemutatása}
 
-A folyamatnak egy aktuális lépésében lehetőség van annak a továbbítása, amellyel a következő illetékes személyhez fog kerülni a feladat. (Ez akár egy feltételes elágazás is lehet, valamilyen megadott paraméter alapján).
+A folyamat végrehajtása során az aktuális lépésben lehetősége van a felhasználónak a feladat továbbításra, amellyel a következő illetékes személyhez fog kerülni a feladat. (Ez akár egy feltételes elágazás is lehet, valamilyen megadott paraméter alapján).
 
-Lehetőség van elutasításra, ha valamilyen hiba lépett fel, akár egy nem megfelelő adat, amellyel az előző személyhez kerül a feladat elküldése.
+Lehetőség van elutasításra, ha valamilyen hiba lépett fel, például egy nem megfelelő adat, amellyel az előző személyhez kerül a feladat elküldése.
 
 A folyamatot a vezetőknek lesz jogosultsága elindítani, és a vállalat alkalmazottai közül lehet majd választani, hogy kinek szeretné kiadni a feladatot. A folyamat elindításához szükséges kitölteni a feladat pontos leírását, az elvégzési határidőt, illetve kiválasztani az illetékes személyt.
 
-Az alkalmazásban több különböző jogosultsági szinthez tartozó \textit{igénylési fórum} lesz megvalósítva. A korábban modellezett folyamatok közül, a Road Transportation Maintancere kitérően, 4 különböző fórum lesz létrehozva (\ref{fig:draft}. és \ref{fig:maintranceDraft}. ábra).
+Az alkalmazásban több különböző jogosultsági szinthez tartozó \textit{igénylési fórum} lesz megvalósítva. A korábban modellezett folyamatok közül, a Road Transportation Maintenance kitérően, 4 különböző fórum lesz létrehozva (\ref{fig:draft}. és \ref{fig:maintranceDraft}. ábra).
 
 % TODO: Az előbbit valahogy magyarosabban is ki lehetne fejezni.
 
-Lesz egy bejelentkezési felület, amelybe az alkalmazottak felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva (\ref{fig:login}. ábra).
+Lesz egy bejelentkezési felület, amelybe az alkalmazottnak a felhasználónevét és a jelszavát kell megadni a belépéshez.  Különböző jogosultsági szintek lesznek megvalósítva (\ref{fig:login}. ábra).
 
 \begin{figure}[h]
 	\centering
@@ -49,7 +49,7 @@ Az alkalmazott a folyamatokat, amiket neki osztottak ki, megtekintheti egy erre 
 \newpage
 \section{Működése}
 
-A felhasználó képes lesz arra, hogy a kapott feladatot továbbítsa, esetleg vissza küldje attól a felhasználótól (Vezetőségtől), akitől megkapta.
+A felhasználó képes arra, hogy a kapott feladatot továbbítsa, esetleg visszaküldje attól a felhasználótól (Vezetőségtől), akitől megkapta.
 
 Egy feladat az alábbi információkat tartalmazza:
 \begin{enumerate}
@@ -58,11 +58,11 @@ Egy feladat az alábbi információkat tartalmazza:
 	\item kitől kapta (Név + Részleg),
 	\item mikor kapta.
 \end{enumerate}
-Minden Részlegnek lesz egy vezetője, aki képes lesz listázni a részlegen lévő alkalmazottakat, itt megtudja tekinteni ki lenne aktuálisan megfelelő a feladat elvégzésére. Az egyes alkalmazottakra kattintva, lehetőség lesz az alkalmazott adatainak részleges megjelentésére. Ez a mód csak vezetőként belépve lesz elérhető. Itt tudunk majd egy feladatot elindítani.
+Minden Részlegnek lesz egy vezetője, aki képes lesz listázni a részlegen lévő alkalmazottakat itt megtudja tekinteni, ki lenne aktuálisan megfelelő a feladat elvégzésére. Az egyes alkalmazottakra kattintva lehetőség lesz az alkalmazott adatainak részleges megjelenítésére. Ez a mód csak vezetőként belépve lesz elérhető. Itt tudunk majd egy feladatot elindítani.
 
 \section{Megvalósítás}
 
-Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \textit{CompanyDB}-ben létre lesz hozva több különböző tábla, mint például \texttt{Employee}, \texttt{Leader}, \texttt{Task}, illetve \texttt{Részleg}.
+Az adatok tárolása \textit{Microsoft SQL Server}-ben történik, itt egy \textit{CompanyDB}-ben létre lesz hozva több különböző tábla, mint például \texttt{Employee}, \texttt{Leader}, \texttt{Task}, illetve \texttt{Részleg}.
 % TODO: Az előbbihez nem feltétlenül kell példa, hogy ha utána egyébként is teljes részletességgel be lesz majd mutatva.
 % TODO: Minden táblának és mezőnek kellene név. A részleg esetében példának beírtam, hogy a mező nevét és a típusát hogy lehet például megadni.
 
@@ -76,7 +76,7 @@ Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \te
 
 \noindent \textbf{Task tábla}
 \begin{itemize}
-	\item Egy részleg vezetőéhez tartozó egyedi azonosító, hogy melyik vezető indította el a task-ot. (Elsődleges Kulcs)
+	\item Egy részleg vezetőjéhez tartozó egyedi azonosító, hogy melyik vezető indította el a task-ot. (Elsődleges Kulcs)
 	\item Egy időpont, hogy mikor lett elindítva a feladat. (Dátum)
 	\item A feladat pontos leírását tartalmazó mező. (Szöveg)
 	\item Határidőt tartalmazó mező. (Dátum)
@@ -91,22 +91,22 @@ Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \te
 	\item Lakcíme (Szöveg)
 	\item Telefonszáma (Egész érték, telefon formátum)
 	\item Email címe (Szöveg, email formátum)
-	\item pozició leírása (Szöveg)
+	\item pozíció leírása (Szöveg)
 	\item A részleg Id-ja, hogy melyik részlegen dolgozik az adott alkalmazott. (Egész érték)
 	\item A részleg neve, amelyhez a megadott Id tartozik. (Egész érték)
 \end{itemize}
 
 \noindent \textbf{Leader tábla}
 \begin{itemize}
-	\item Leader pontos neve, ez tartalmazza a keretnevét, illetve a vezetéknevét. Összetett rekord lesz. (Szöveg)
+	\item Leader pontos neve, ez tartalmazza a keresztnevét, illetve a vezetéknevét. Összetett rekord lesz. (Szöveg)
 	\item Részleg kódja, amely részlegen az adott személy vezető. (Egész érték)
-	\item Elérhetősége, amely egy email cím formát fog jelenteni, validálással megfeleltve. (Szöveg)
+	\item Elérhetősége, amely egy email cím formát fog jelenteni. (Szöveg)
 	\item Egy dátum mező, hogy pontosan mióta vezető az adott részlegen. (Dátum)
 \end{itemize}
 
 \noindent \textbf{Department tábla}
 \begin{itemize}
-	\item Id, A részleg egyedi azonosítószáma (Elsődleges kulcs)
+	\item Id, a részleg egyedi azonosítószáma (Elsődleges kulcs)
 	\item Name, a részleg pontos megnevezése (Szöveg)
 \end{itemize}
 
@@ -125,7 +125,7 @@ Az adatok tárolása a \textit{Microsoft SQL Server}-ben történik, itt egy \te
 	\item Round Trip, amikor a feladat létre lett hozva. (Dátum)
 	\item Description, Probléma leírása. (Szöveg)
 	\item Demand Type, Igénylés típusa. (Egész érték)
-	\item Place To (szöveg)
+	\item Place To (Szöveg)
 	\item Place From (Szöveg)
 	\item Purpose (Szöveg)
 	\item	... 
@@ -140,7 +140,7 @@ Későbbiekben két folyamatról lesz szó, amelyet reprezentálni fogunk, a kö
 	\label{fig:ER}
 \end{figure}
 
-Az adatbázisban a kapcsolatok kialakítása, és a feltételekhez kötött listázások .NET keretrendszerben lévő \textit{Entity Framework}-kel lesz kialakítva, Visual Studio-ban implementálva, ASP.NET Core-t használva.
+Az adatbázisban a kapcsolatok és a feltételekhez kötött listázások, lekérdezések, a .NET keretrendszerben lévő \textit{Entity Framework}-kel lesznek kialakítva, Visual Studio-ban implementálva, ASP.NET Core-t használva.
 
 \Section{Funkciók}
 
@@ -151,7 +151,7 @@ Az applikációban az alábbi funkciók kerülnek megvalósításra.
 	\item Az olyan kiosztott feladatokat lehet listázni, amelyeket az aktuális vezető indított el. A feladatnak megtekinteni a feladatok státuszát, mikor lett kiosztva, ki kapta meg a feladatot stb.
 	\item Alkalmazottak adatainak módosítása, esetleges alkalmazottak törlése, hozzáadása.
 	\item Feladat elindítása, itt egy felugró ablak lesz, amelyben a szükséges adatokat kell kitölteni a vezetőnek.
-	\item A kiosztott feladatot az alkalmazott belépve megtekinthet, majd ha elvégezte a feladatot, akkor továbbíthatja a következő felhasználónak, visszaküldheti a vezetőnek. A feladat utolsó lépésben mindig a vezetőhöz kerül vissza az elvégzett folyamat.
+	\item A belépést követően az alkalmazott megtekinthet, majd ha elvégezte a feladatot, akkor továbbíthatja a következő felhasználónak, visszaküldheti a vezetőnek. A folyamat utolsó lépésben mindig a vezetőhöz kerül vissza az elvégzett folyamat.
 	\item A vezető végig tudja követni a feladat lefolyását.
-	\item Bejelentkező felület elkészítésé validálással, különböző jogosultságok megkülönböztetése.
+	\item Bejelentkező felület elkészítése validálással, különböző jogosultságok megkülönböztetése.
 \end{enumerate}
